@@ -1,36 +1,151 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<html lang="bg">
 
-        <title>Табло за управление</title>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <title>Табло за управление | Оптика Valente</title>
 
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
+    <meta name="robots" content="noindex,nofollow">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-            <!-- Page Heading -->
-            @isset($header)
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endisset
+    {{-- FAVICONS --}}
+    <link rel="icon" type="image/png" href="/assets/images/favicons/favicon-96x96.png?v=<?php echo time(); ?>"
+        sizes="96x96" />
+    <link rel="icon" type="image/svg+xml"
+        href="/assets/images/favicons/transparent-image.png?v=<?php echo time(); ?>" />
+    <link rel="shortcut icon" href="/assets/images/favicons/favicon-96x96.png?v=<?php echo time(); ?>" />
+    <link rel="apple-touch-icon" sizes="180x180"
+        href="/assets/images/favicons/apple-touch-icon.png?v=<?php echo time(); ?>" />
+    <link rel="manifest" href="/assets/images/favicons/site.webmanifest?v=<?php echo time(); ?>" />
 
-            <!-- Page Content -->
-            <main>
+    {{-- CORE CSS --}}
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/assets/css/animate.min.css" />
+    <link rel="stylesheet" href="/assets/css/custom-animate.css" />
+    <link rel="stylesheet" href="/assets/css/swiper.min.css" />
+    <link rel="stylesheet" href="/assets/css/font-awesome-all.css" />
+    <link rel="stylesheet" href="/assets/css/jarallax.css" />
+    <link rel="stylesheet" href="/assets/css/flaticon.css" />
+    <link rel="stylesheet" href="/assets/css/owl.carousel.min.css" />
+
+    {{-- MODULE CSS --}}
+    <link rel="stylesheet" href="/assets/css/module-css/slider.css" />
+    <link rel="stylesheet" href="/assets/css/module-css/footer.css" />
+    <link rel="stylesheet" href="/assets/css/module-css/counter.css" />
+    <link rel="stylesheet" href="/assets/css/module-css/services.css" />
+    <link rel="stylesheet" href="/assets/css/module-css/about.css" />
+    <link rel="stylesheet" href="/assets/css/module-css/brand.css" />
+    <link rel="stylesheet" href="/assets/css/module-css/gallery.css" />
+    <link rel="stylesheet" href="/assets/css/module-css/faq.css" />
+    <link rel="stylesheet" href="/assets/css/module-css/testimonial.css" />
+    <link rel="stylesheet" href="/assets/css/module-css/team.css" />
+    <link rel="stylesheet" href="/assets/css/module-css/contact.css" />
+    <link rel="stylesheet" href="/assets/css/module-css/pricing.css" />
+    <link rel="stylesheet" href="/assets/css/module-css/blog.css" />
+    <link rel="stylesheet" href="/assets/css/module-css/sliding-text.css" />
+    <link rel="stylesheet" href="/assets/css/module-css/cta.css" />
+    <link rel="stylesheet" href="/assets/css/module-css/feature.css" />
+    <link rel="stylesheet" href="/assets/css/module-css/banner.css" />
+
+    <link rel="stylesheet" href="/assets/css/style.css" />
+    <link rel="stylesheet" href="/assets/css/shop.css" />
+    <link rel="stylesheet" href="/assets/css/responsive.css" />
+    <link rel="stylesheet" href="/assets/css/custom.css" />
+
+
+    <link rel="stylesheet" href="/assets/css/dashboard.css?v=<?php echo time(); ?>" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <script src="https://cdn.tiny.cloud/1/daj9dftxtp56iiymy0p7tr418kjkhmf54509unx3enwwzrca/tinymce/8/tinymce.min.js"
+        referrerpolicy="origin" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body class="dashboard-body">
+
+    <div class="dashboard-shell">
+
+        @include('layouts.partials.backend.sidebar')
+
+        <div class="dashboard-main">
+
+            @include('layouts.partials.backend.header')
+
+            <main id="content" class="dashboard-content shadow">
                 {{ $slot }}
             </main>
+
         </div>
-    </body>
+
+    </div>
+
+    <script>
+        // User dropdown toggle
+        document.addEventListener('click', function(e) {
+            const trigger = e.target.closest('[data-dropdown-toggle]');
+            const openDropdown = document.querySelector('.dashboard-dropdown.is-open');
+
+            if (trigger) {
+                const dropdown = trigger.closest('.dashboard-dropdown');
+                if (openDropdown && openDropdown !== dropdown) {
+                    openDropdown.classList.remove('is-open');
+                }
+                dropdown.classList.toggle('is-open');
+                e.stopPropagation();
+                return;
+            }
+
+            if (openDropdown && !e.target.closest('.dashboard-dropdown')) {
+                openDropdown.classList.remove('is-open');
+            }
+        });
+
+        // Sidebar toggle (mobile)
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('[data-sidebar-toggle]')) {
+                document.body.classList.toggle('sidebar-open');
+            }
+            if (e.target.closest('[data-sidebar-close]') ||
+                (document.body.classList.contains('sidebar-open') &&
+                    !e.target.closest('.dashboard-sidebar') &&
+                    !e.target.closest('[data-sidebar-toggle]'))) {
+                document.body.classList.remove('sidebar-open');
+            }
+        });
+
+        tinymce.init({
+            selector: 'textarea',
+            plugins: [
+                // Core editing features
+                'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'link', 'lists', 'media',
+                'searchreplace', 'table', 'visualblocks', 'wordcount',
+
+            ],
+            toolbar: 'undo redo | tinymceai-chat tinymceai-quickactions tinymceai-review | blocks fontfamily fontsize | bold italic underline strikethrough | link media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography uploadcare | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+            tinycomments_mode: 'embedded',
+            tinycomments_author: 'Author name',
+            mergetags_list: [{
+                    value: 'First.Name',
+                    title: 'First Name'
+                },
+                {
+                    value: 'Email',
+                    title: 'Email'
+                },
+            ],
+        });
+    </script>
+
+
+
+
+
+</body>
+
+
 </html>

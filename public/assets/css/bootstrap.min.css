@@ -8326,6 +8326,14 @@ fieldset:disabled .btn {
     border-radius: .3rem !important
 }
 
+.rounded-4 {
+    border-radius: .5rem !important
+}
+
+.rounded-5 {
+    border-radius: 1.5rem !important
+}
+
 .rounded-circle {
     border-radius: 50% !important
 }

@@ -902,38 +902,14 @@
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
-
-
-
-
-
-
-
 
 
 
 /* Mobile Layout: 320px. */
 @media only screen and (max-width: 767px) {
     .section-title__title {
-        font-size: 30px;
+        font-size: 24px;
         line-height: 40px;
     }
 
@@ -1872,10 +1848,10 @@
         margin-top: 51px;
     }
 
-    .product-details__buttons {
+    /* .product-details__buttons {
         flex-direction: column;
         align-items: baseline;
-    }
+    } */
 
     .product-details__buttons-2 {
         margin-left: 0;
@@ -1996,7 +1972,7 @@
     }
 
     .site-footer-two .site-footer__top-inner {
-        padding: 58px 0 90px;
+        padding: 30px 0 0;
     }
 
     .services-three {
@@ -2114,7 +2090,7 @@
     }
 
     .product-details {
-        padding: 90px 0px 56px;
+        padding: 90px 0px 0;
     }
 
     .review-form-one {

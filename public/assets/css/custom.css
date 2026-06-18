@@ -1,0 +1,358 @@
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    /* ===== Auth Layout ===== */
+    .auth {
+        min-height: 100vh;
+        width: 100%;
+        background-color: #fff;
+    }
+
+    .auth__container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: stretch;
+        min-height: 100vh;
+        width: 100%;
+    }
+
+    .auth__side {
+        flex: 1 1 50%;
+        width: 50%;
+        min-width: 0;
+        /* prevents flex children from overflowing */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 3rem 2.5rem;
+        box-sizing: border-box;
+    }
+
+    .auth__side--left {
+        background-color: #ffffff;
+    }
+
+    .auth__side--right {
+        background-color: #f5f7fb;
+    }
+
+    /* ===== Form Block ===== */
+    .auth__form {
+        width: 100%;
+        max-width: 480px;
+    }
+
+    .auth__logo {
+        margin-bottom: 1.75rem;
+        display: flex;
+        justify-content: center;
+    }
+
+    .auth__title {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #1a2238;
+        margin-bottom: 0.5rem;
+        text-align: center;
+    }
+
+    .auth__description {
+        color: #6b7280;
+        margin-bottom: 2.25rem;
+        text-align: center;
+        font-size: 1rem;
+    }
+
+    /* ===== Status / Errors ===== */
+    .auth__status {
+        background: #e6f9ee;
+        color: #166534;
+        border: 1px solid #86efac;
+        padding: 0.75rem 1rem;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+        font-size: 0.875rem;
+    }
+
+    .auth__error {
+        color: #dc2626;
+        font-size: 0.8125rem;
+        margin-top: 0.375rem;
+    }
+
+    /* ===== Fields ===== */
+    .auth__field {
+        margin-bottom: 1.1rem;
+        text-align: left;
+    }
+
+    .auth__label {
+        display: block;
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: #1f2937;
+        margin-bottom: 0.4rem;
+    }
+
+    .auth__input-wrapper {
+        position: relative;
+        display: flex;
+        align-items: stretch;
+    }
+
+    .auth__input {
+        width: 100%;
+        height: 48px;
+        border: 1px solid #d1d5db;
+        border-radius: 8px;
+        padding: 0 1rem;
+        font-size: 1rem;
+        color: #111827;
+        background-color: #fff;
+        transition: border-color 0.15s ease, box-shadow 0.15s ease;
+        box-sizing: border-box;
+    }
+
+    .auth__input:focus {
+        outline: none;
+        border-color: #2563eb;
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
+
+    .auth__input--with-addon {
+        padding-right: 3rem;
+    }
+
+    .auth__input-addon {
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 48px;
+        width: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+        border: none;
+        color: #6b7280;
+        cursor: pointer;
+    }
+
+    .auth__input-addon:hover {
+        color: #111827;
+    }
+
+    /* ===== Forgot / Remember ===== */
+    .auth__forgot {
+        text-align: right;
+        margin-bottom: 1rem;
+    }
+
+    .auth__remember {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.9rem;
+        color: #4b5563;
+        margin-bottom: 1.75rem;
+    }
+
+    .auth__link {
+        color: #2563eb;
+        text-decoration: none;
+        font-size: 0.9rem;
+    }
+
+    .auth__link:hover {
+        text-decoration: underline;
+    }
+
+    /* ===== Submit Button ===== */
+    .auth__submit {
+        margin-top: 0.5rem;
+    }
+
+    .auth__button {
+        width: 100%;
+        height: 52px;
+        border: none;
+        border-radius: 8px;
+        background-color: #2563eb;
+        color: #fff;
+        font-size: 1.05rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.15s ease;
+    }
+
+    .auth__button:hover {
+        background-color: #1d4ed8;
+    }
+
+    .auth__signup {
+        text-align: center;
+        margin-top: 1.75rem;
+        font-size: 0.9rem;
+        color: #4b5563;
+    }
+
+    /* ===== Right-side Visual ===== */
+    .auth__visual {
+        text-align: center;
+        max-width: 520px;
+    }
+
+    .auth__visual__image {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 1.5rem;
+    }
+
+    .auth__visual__title {
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: #1a2238;
+        margin-bottom: 0.5rem;
+    }
+
+    .auth__visual__description {
+        color: #6b7280;
+        line-height: 1.6;
+        font-size: 1rem;
+    }
+
+    .log-register-form form input[type="text"],
+    .log-register-form form input[type="password"],
+    .log-register-form form input[type="email"] {
+        position: relative;
+        display: block;
+        border-radius: 10px;
+        border: 1px solid rgba(var(--crank-bdr-color-rgb), .50);
+        background-color: rgba(var(--crank-bdr-color-rgb), .50);
+        width: 100%;
+        height: 60px;
+        color: var(--crank-gray);
+        font-size: 16px;
+        font-family: var(--crank-font);
+        font-weight: 400;
+        font-style: normal;
+        padding-left: 30px;
+        padding-right: 30px;
+        outline: none;
+        transition: all 500ms ease;
+    }
+
+    .log-register-form form input[type="text"]:focus,
+    .log-register-form form input[type="email"]:focus {
+        border-color: var(--crank-base);
+        background-color: var(--crank-white);
+    }
+
+    .log-register-form form input[type="text"]::-webkit-input-placeholder {
+        color: var(--crank-gray);
+    }
+
+    .log-register-form form input[type="text"]:-moz-placeholder {
+        color: var(--crank-gray);
+    }
+
+    .log-register-form form input[type="text"]::-moz-placeholder {
+        color: var(--crank-gray);
+    }
+
+    .log-register-form form input[type="text"]:-ms-input-placeholder {
+        color: var(--crank-gray);
+    }
+
+    .log-register-form form input[type="email"]::-webkit-input-placeholder {
+        color: var(--crank-gray);
+    }
+
+    .log-register-form form input[type="email"]:-moz-placeholder {
+        color: var(--crank-gray);
+    }
+
+    .log-register-form form input[type="email"]::-moz-placeholder {
+        color: var(--crank-gray);
+    }
+
+    .log-register-form form input[type="email"]:-ms-input-placeholder {
+        color: var(--crank-gray);
+    }
+
+    .log-register-form form .thm-btn {
+        width: 100%;
+        border: none;
+    }
+
+
+    /* Tablets — hide the visual, form goes full-width but stays centered nicely */
+    @media (max-width: 991.98px) {
+        .auth__container {
+            flex-direction: column;
+        }
+
+        .auth__side {
+            flex: 1 1 100%;
+            width: 100%;
+            min-height: auto;
+            padding: 2.5rem 2rem;
+        }
+
+        .auth__side--right {
+            display: none;
+        }
+
+        .auth__form {
+            max-width: 460px;
+        }
+    }
+
+    /* Phones — comfortable spacing, larger touch targets, no cramped form */
+    @media (max-width: 575.98px) {
+        .auth {
+            min-height: 100vh;
+            background-color: #fff;
+        }
+
+        .auth__side {
+            padding: 2rem 1.25rem;
+        }
+
+        .auth__form {
+            max-width: 100%;
+        }
+
+        .auth__title {
+            font-size: 1.6rem;
+        }
+
+        .auth__description {
+            font-size: 0.95rem;
+            margin-bottom: 1.75rem;
+        }
+
+        .auth__input,
+        .auth__input-addon {
+            height: 50px;
+            /* bigger touch target on mobile */
+        }
+
+        .auth__button {
+            height: 54px;
+            font-size: 1rem;
+        }
+
+        .auth__logo {
+            margin-bottom: 1.25rem;
+        }
+
+        .auth__logo svg,
+        .auth__logo img {
+            max-width: 160px;
+            height: auto;
+        }
+    }
