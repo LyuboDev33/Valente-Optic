@@ -1,6 +1,6 @@
 <x-backend>
     <div class="d-flex justify-content-between">
-        <h3>Всички продукти</h3>
+        <h3>Всички продукти админ табло</h3>
         <a class="btn btn-secondary p-2 rounded-5" href="{{ route('admin.products.create') }}">
             Създай продукт
         </a>
@@ -62,7 +62,7 @@
                                             </div>
                                             <div class="product__all-content">
 
-                                            
+
                                                 <h4 class="product__all-title">
                                                     <a href="{{ route('admin.products.show', $product->slug) }}">
                                                         {{ $product->name }}
@@ -70,9 +70,20 @@
                                                 </h4>
 
                                                 <p class="product__all-price">
-                                                    ${{ number_format($product->price, 2) }}
-                                                </p>
+                                                    @if ($product->discount)
+                                                        <del class="text-muted me-2">
+                                                            {{ number_format($product->price, 2) }} €
+                                                        </del>
 
+                                                        <span class="text-danger">
+                                                            {{ number_format($product->price - ($product->price * $product->discount) / 100, 2) }}
+                                                            €
+                                                        </span>
+                                                        (-{{ $product->discount }}%)
+                                                    @else
+                                                        {{ number_format($product->price, 2) }} €
+                                                    @endif
+                                                </p>
                                                 {{-- Categories --}}
                                                 @if ($product->categories->isNotEmpty())
                                                     <p class="small text-muted mb-1">
@@ -88,8 +99,7 @@
                                                         Редактирай
                                                     </a>
 
-                                                    <form
-                                                        action="{{ route('admin.products.destroy', $product) }}"
+                                                    <form action="{{ route('admin.products.destroy', $product) }}"
                                                         method="POST"
                                                         onsubmit="return confirm('Сигурен ли си, че искаш да изтриеш този продукт?');"
                                                         class="m-0">

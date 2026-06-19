@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\FrontEndController;
+use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ShopController;
 use Illuminate\Support\Facades\Route;
@@ -10,10 +11,18 @@ Route::get('/', [FrontEndController::class, 'welcome']);
 Route::get('/contact', [FrontEndController::class, 'contact'])->name('contact');
 Route::get('/about', [FrontEndController::class, 'about'])->name('about');
 
+/** All routes for the shop*/
 Route::get('/shop', [ShopController::class, 'index'])->name('shop.index');
 Route::get('/shop/category/{category_slug}', [ShopController::class, 'category'])->name('shop.category');
 Route::get('/shop/product/{slug}', [ShopController::class, 'show'])->name('shop.show');
 
+Route::get('/cart', [ShopController::class, 'cart'])->name('cart');
+Route::get('/checkout', [ShopController::class, 'checkout'])->name('checkout');
+
+Route::post('/cart/add/{product}', [OrdersController::class, 'addProduct'])->name('product.cart.add');
+Route::delete('/cart/remove/{productId}', [OrdersController::class, 'removeProduct'])->name('cart.remove');
+
+/** All routes for the services */
 Route::get('/services', [FrontEndController::class, 'services'])->name('services');
 Route::get('/service/{service}', [FrontEndController::class, 'serviceShow'])->name('service.show');
 

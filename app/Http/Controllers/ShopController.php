@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Constants\PrescriptionOptions;
 use App\Models\Category;
 use App\Models\Product;
-use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
 
 class ShopController extends Controller
@@ -20,11 +21,59 @@ class ShopController extends Controller
         ]);
     }
 
+    /** Show the cart */
+    public function cart()
+    {
+        $sessionProducts = Session::get('products', []);
+        $productIds = array_keys($sessionProducts);
+
+        $databaseProducts = Product::whereIn('id', $productIds)
+            ->get()
+            ->keyBy('id');
+
+        $products = [];
+
+        foreach ($sessionProducts as $productId => $cartProduct) {
+            $product = $databaseProducts->get((int) $productId);
+
+            if (! $product) {
+                continue;
+            }
+
+            $price = (float) $product->price;
+            $discount = (int) $product->discount;
+
+            $finalPrice = $discount > 0
+                ? $price - (($price * $discount) / 100)
+                : $price;
+
+            $products[$productId] = array_merge($cartProduct, [
+                'product_id' => $product->id,
+                'name' => $product->name,
+                'slug' => $product->slug,
+                'price' => $price,
+                'discount' => $discount,
+                'final_price' => round($finalPrice, 2),
+                'image' => $product->main_image,
+            ]);
+        }
+
+        $subtotal = 0;
+
+        foreach ($products as $product) {
+            $subtotal += $product['final_price'] * $product['quantity'];
+        }
+
+        return view('Frontend.shop.Cart', [
+            'products' => $products,
+            'subtotal' => $subtotal,
+        ]);
+    }
     /** Show products from a specific category (including descendants)
      *
      * @param string $category_slug
      * @return View
-    */
+     */
     public function category(string $category_slug)
     {
         $category    = Category::where('slug', $category_slug)->firstOrFail();
@@ -41,6 +90,54 @@ class ShopController extends Controller
             'category'       => $category,
             'categoriesTree' => $this->buildCategoriesTree(),
         ]);
+    }
+
+
+
+    /** Show a specific product
+     *
+     * @param string $slug
+     * @return View
+     */
+    public function show(string $slug)
+    {
+        // Session::invalidate();
+        // dd(Session::get('products'));
+
+        $product = Product::with(['categories', 'attributeValues.type'])
+            ->where('slug', $slug)
+            ->first();
+
+        if (! $product) {
+            return view('errors.ProductNotFound');
+        }
+
+        return view('Frontend.shop.Show', [
+            'product' => $product,
+            'sphValues' => PrescriptionOptions::SPH,
+            'cylValues' => PrescriptionOptions::CYL,
+            'addValues' => PrescriptionOptions::ADD,
+            'axisValues' => PrescriptionOptions::AXIS,
+        ]);
+    }
+
+
+    /** Return all ids of a given category
+     *
+     * @param Collection $category
+     * @return array[]
+     */
+    private function getCategoryIds($category)
+    {
+        $ids = [$category->id];
+
+        if ($category->children) {
+            foreach ($category->children as $child) {
+                $ids = array_merge($ids, $this->getCategoryIds($child));
+            }
+        }
+
+        return $ids;
     }
 
     /** Shared base query — eager loads + ordering */
@@ -64,7 +161,7 @@ class ShopController extends Controller
      *
      * @param Collection $categories
      * @return array[]
-    */
+     */
     private function buildTree($categories): array
     {
         $tree = [];
@@ -81,45 +178,6 @@ class ShopController extends Controller
         return $tree;
     }
 
-
-    /** Show a specific product
-     *
-     * @param string $slug
-     * @return View
-     */
-    public function show(string $slug)
-    {
-        $product = Product::with(['categories', 'attributeValues.type'])
-            ->where('slug', $slug)
-            ->first();
-
-        if (! $product) {
-            return view('errors.ProductNotFound');
-        }
-
-        return view('Frontend.shop.Show', [
-            'product' => $product
-        ]);
-    }
-
-
-    /** Return all ids of a given category
-     *
-     * @param Collection $category
-     * @return array[]
-     */
-    private function getCategoryIds($category)
-    {
-        $ids = [$category->id];
-
-        if ($category->children) {
-            foreach ($category->children as $child) {
-                $ids = array_merge($ids, $this->getCategoryIds($child));
-            }
-        }
-
-        return $ids;
-    }
 
     /** Return the category tree
      *

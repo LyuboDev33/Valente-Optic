@@ -110,7 +110,7 @@
 <script src="/assets/js/owl.carousel.min.js"></script>
 {{-- <script src="/assets/js/jquery-ui.js"></script>
 <script src="/assets/js/odometer.min.js"></script> --}}
-<script src="/assets/js/jquery.nice-select.min.js"></script>
+{{-- <script src="/assets/js/jquery.nice-select.min.js"></script> --}}
 <script src="/assets/js/jquery-sidebar-content.js"></script>
 {{-- <script src="/assets/js/marquee.min.js"></script> --}}
 {{-- <script src="/assets/js/gsap/gsap.js"></script>

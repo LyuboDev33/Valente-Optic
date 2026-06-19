@@ -105,7 +105,7 @@
                                                 </h4>
 
                                                 <p class="product__all-price">
-                                                    {{ number_format($product->price, 2) }} лв.
+                                                    {{ number_format($product->price, 2) }} €.
                                                 </p>
 
                                                 <div class="product__all-btn-box">
