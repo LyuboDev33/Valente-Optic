@@ -1887,7 +1887,7 @@
     }
 
     .cart-total li {
-        justify-content: flex-start;
+        justify-content: space-between;
     }
 
     .cart-page__buttons {
@@ -1906,8 +1906,7 @@
     }
 
     .checkout__payment {
-        padding: 50px 20px 30px;
-        margin-top: 30px;
+        padding: 15px 10px 15px;
     }
 
 

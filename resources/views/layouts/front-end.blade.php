@@ -48,11 +48,18 @@
 
     <link rel="stylesheet" href="/assets/css/responsive.css" />
 
-    <link rel="icon" type="image/png" href="/assets/images/favicons/favicon-96x96.png?v=<?php echo time(); ?>" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="/assets/images/favicons/transparent-image.png?v=<?php echo time(); ?>" />
+    <link rel="icon" type="image/png" href="/assets/images/favicons/favicon-96x96.png?v=<?php echo time(); ?>"
+        sizes="96x96" />
+    <link rel="icon" type="image/svg+xml"
+        href="/assets/images/favicons/transparent-image.png?v=<?php echo time(); ?>" />
     <link rel="shortcut icon" href="/assets/images/favicons/favicon-96x96.png?v=<?php echo time(); ?>" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicons/apple-touch-icon.png?v=<?php echo time(); ?>" />
+    <link rel="apple-touch-icon" sizes="180x180"
+        href="/assets/images/favicons/apple-touch-icon.png?v=<?php echo time(); ?>" />
     <link rel="manifest" href="/assets/images/favicons/site.webmanifest?v=<?php echo time(); ?>" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.23/dist/lenis.css">
     <script src="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js"></script>
@@ -120,5 +127,6 @@
 
 <!-- template js -->
 <script src="/assets/js/script.js"></script>
+<script src="/assets/js/custom.js"></script>
 
 </html>

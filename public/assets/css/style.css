@@ -61,9 +61,9 @@ body {
     background-color: #F4F4F4;
 }
 
-body.locked {
+/* body.locked {
     overflow: hidden;
-}
+} */
 
 a {
     color: var(--crank-base);
@@ -145,7 +145,7 @@ ul {
     margin: 0 auto;
     width: 100%;
     min-width: 300px;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 .container {
@@ -275,7 +275,7 @@ ul {
 
 .section-title__title {
     color: var(--crank-black);
-    font-size: 45px;
+    font-size: 38px;
     line-height: 55px;
     font-weight: 600;
     margin: 6px 0 0;
@@ -293,6 +293,10 @@ ul {
     margin-bottom: 59px;
     margin-top: -1px;
     z-index: 1;
+}
+
+.red-dot {
+    color: red;
 }
 
 .section-title-two__tagline-box {
@@ -1576,6 +1580,14 @@ ul {
     background-color: white;
     border-radius: 45px;
     z-index: 1;
+}
+
+@media (max-width: 576px) {
+
+    .main-menu-two__wrapper-inner {
+        border-radius: 0;
+    }
+
 }
 
 .main-header-two__logo {

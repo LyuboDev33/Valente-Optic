@@ -2,8 +2,8 @@
         <div class="main-header-two__wrapper">
             <nav class="main-menu main-menu-two">
                 <div class="main-menu-two__wrapper">
-                    <div class="container">
-                        <div class="main-menu-two__wrapper-inner">
+                    <div>
+                        <div class="main-menu-two__wrapper-inner container">
                             <div class="main-menu-two__left">
                                 <div class="main-header-two__logo">
                                     <x-logo width="120" />
@@ -25,7 +25,7 @@
                                         <a href="#">Услуги</a>
                                         <ul>
                                             <li>
-                                                <a href="/servице/konsultaciy-za-ochila">
+                                                <a href="/service/konsultaciy-za-ochila">
                                                     Консултация за очила
                                                 </a>
                                             </li>

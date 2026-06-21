@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Constants\PrescriptionOptions;
 use App\Models\Category;
 use App\Models\Product;
+use App\Services\SpeedyService;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
@@ -18,6 +19,30 @@ class ShopController extends Controller
             'products'       => $this->productsQuery()->paginate(15),
             'category'       => null,
             'categoriesTree' => $this->buildCategoriesTree(),
+        ]);
+    }
+
+    /** Show the checkout */
+    public function checkout () {
+
+        $products = Session::get('products');
+
+        if(!$products || count($products)  < 0) {
+            return redirect(route('cart'));
+        }
+
+        // dd($products);
+
+       $subtotal = 0;
+
+        foreach ($products as $product) {
+            $subtotal += $product['final_price'] * $product['quantity'];
+        }
+
+        return view('Frontend.shop.Checkout', [
+            'speedyOffices' => SpeedyService::offices(),
+            'products' => $products,
+            'subtotal' => $subtotal
         ]);
     }
 

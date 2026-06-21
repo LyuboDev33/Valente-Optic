@@ -330,7 +330,7 @@
         </div>
     @endif
 
-    @if ($errors->any())
+    {{-- @if ($errors->any())
         <div class="modal fade cart-feedback-modal" id="cartErrorModal" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content position-relative">
@@ -358,7 +358,7 @@
                 </div>
             </div>
         </div>
-    @endif
+    @endif --}}
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {

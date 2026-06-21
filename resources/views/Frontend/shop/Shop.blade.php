@@ -71,7 +71,7 @@
 
                                 @forelse ($products as $product)
                                     <!--Product Single Start-->
-                                    <div class="col-xl-4 col-lg-4 col-md-6">
+                                    <div class="col-xl-4 col-lg-4 col-md-6 col-6">
                                         <div class="product__all-single">
 
                                             <div class="product__all-img">
@@ -105,7 +105,19 @@
                                                 </h4>
 
                                                 <p class="product__all-price">
-                                                    {{ number_format($product->price, 2) }} €.
+                                                   @if ($product->discount)
+                                                        <del class="text-muted me-2">
+                                                            {{ number_format($product->price, 2) }} €
+                                                        </del>
+
+                                                        <span class="text-danger">
+                                                            {{ number_format($product->price - ($product->price * $product->discount) / 100, 2) }}
+                                                            €
+                                                        </span>
+                                                        (-{{ $product->discount }}%)
+                                                    @else
+                                                        {{ number_format($product->price, 2) }} €
+                                                    @endif
                                                 </p>
 
                                                 <div class="product__all-btn-box">

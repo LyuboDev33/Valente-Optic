@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
+use App\Models\OrderProduct;
 use App\Models\Product;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
@@ -74,12 +77,18 @@ class OrdersController extends Controller
             ]);
         }
 
-        $prescriptionImagePath = null;
+        $prescriptionImageName = null;
 
         if ($hasUploadedPrescription) {
-            $prescriptionImagePath = $request
-                ->file('prescription_image')
-                ->store('prescriptions', 'public');
+            $file = $request->file('prescription_image');
+
+            $prescriptionImageName =
+                time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+
+            $file->move(
+                public_path('assets/images/prescriptions'),
+                $prescriptionImageName
+            );
         }
 
         $finalPrice = $product->discount
@@ -89,8 +98,8 @@ class OrdersController extends Controller
         if (isset($products[$key])) {
             $products[$key]['quantity'] += $quantity;
 
-            if ($prescriptionImagePath) {
-                $products[$key]['prescription_image'] = $prescriptionImagePath;
+            if ($prescriptionImageName) {
+                $products[$key]['prescription_image'] = $prescriptionImageName;
             }
 
             if ($hasManualPrescription) {
@@ -108,7 +117,7 @@ class OrdersController extends Controller
                 'quantity' => $quantity,
                 'image' => $product->main_image,
 
-                'prescription_image' => $prescriptionImagePath,
+                'prescription_image' => $prescriptionImageName,
                 'right_eye' => $rightEye,
                 'left_eye' => $leftEye,
             ];
@@ -150,5 +159,122 @@ class OrdersController extends Controller
             'success',
             'Продуктът беше премахнат успешно от количката.'
         );
+    }
+
+    /**
+     *
+     * @param Request
+     * @return RedirectResponse
+     */
+    public function create(Request $request): RedirectResponse
+    {
+        $validated = $request->validate([
+            'fname' => ['required', 'string', 'max:255'],
+            'lname' => ['required', 'string', 'max:255'],
+            'phone' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'email', 'max:255'],
+            'delivery_method' => ['required'],
+
+            'city' => ['nullable', 'string', 'max:255'],
+            'billing_address' => ['nullable', 'string', 'max:255'],
+            'office_list' => ['nullable', 'string', 'max:255'],
+
+            'request_invoice' => ['nullable', 'boolean'],
+
+            'company_name' => ['nullable', 'string', 'max:255'],
+            'company_mol' => ['nullable', 'string', 'max:255'],
+            'company_bulstat' => ['nullable', 'string', 'max:255'],
+            'company_address' => ['nullable', 'string', 'max:255'],
+        ]);
+
+        $personalDelivery =
+            !empty($validated['city']) &&
+            !empty($validated['billing_address']);
+
+        $officeDelivery =
+            !empty($validated['office_list']);
+
+        if (! $personalDelivery && ! $officeDelivery) {
+
+            return back()
+                ->withErrors([
+                    'delivery' => 'Моля попълнете адрес за доставка или изберете офис на Speedy и попълнете нужните данни.'
+                ])
+                ->withInput();
+        }
+
+        // dd($request);
+
+        $cartProducts = Session::get('products', []);
+
+        if (empty($cartProducts)) {
+            return back()->withErrors([
+                'cart' => 'Количката е празна.'
+            ]);
+        }
+
+        DB::transaction(function () use ($validated, $cartProducts) {
+
+            $subtotal = 0;
+
+            foreach ($cartProducts as $product) {
+                $subtotal += $product['final_price'] * $product['quantity'];
+            }
+
+            $order = Order::create([
+                'first_name' => $validated['fname'],
+                'last_name' => $validated['lname'],
+                'phone' => $validated['phone'],
+                'email' => $validated['email'],
+
+                'delivery_method' => $validated['delivery_method'],
+
+                'city' => $validated['city'] ?? null,
+                'personal_address' => $validated['billing_address'] ?? null,
+
+                'courier' => !empty($validated['office_list']) ? 'speedy' : null,
+                'office_list' => $validated['office_list'] ?? null,
+
+                'request_invoice' => $validated['request_invoice'] ?? false,
+
+                'company_name' => $validated['company_name'] ?? null,
+                'company_mol' => $validated['company_mol'] ?? null,
+                'company_bulstat' => $validated['company_bulstat'] ?? null,
+                'company_address' => $validated['company_address'] ?? null,
+
+                'subtotal' => $subtotal,
+                'delivery_price' => 0,
+                'total' => $subtotal,
+
+                'payment_option' => 'cash_on_delivery',
+                'status' => Order::STATUS_PENDING,
+            ]);
+
+            foreach ($cartProducts as $product) {
+                OrderProduct::create([
+                    'order_id' => $order->id,
+                    'product_id' => $product['product_id'],
+
+                    'product_name' => $product['name'],
+                    'product_slug' => $product['slug'],
+                    'product_image' => $product['image'],
+
+                    'price' => $product['price'],
+                    'discount' => $product['discount'],
+                    'final_price' => $product['final_price'],
+                    'quantity' => $product['quantity'],
+
+                    'prescription_image' => $product['prescription_image'] ?? null,
+
+                    'right_eye' => $product['right_eye'] ?? null,
+                    'left_eye' => $product['left_eye'] ?? null,
+                ]);
+            }
+        });
+
+        Session::forget('products');
+
+        return redirect('/')
+            ->with('success', 'Поръчката беше изпратена успешно.');
     }
 }

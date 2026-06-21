@@ -1529,7 +1529,7 @@
 
     $(window).on("scroll", function () {
         if ($(".stricked-menu").length) {
-            var headerScrollPos = 130;
+            var headerScrollPos = 350;
             var stricky = $(".stricked-menu");
             if ($(window).scrollTop() > headerScrollPos) {
                 stricky.addClass("stricky-fixed");

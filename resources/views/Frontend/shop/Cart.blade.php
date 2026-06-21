@@ -53,12 +53,9 @@
 
                                     <td>
                                         <div class="quantity-box">
-                                            <input
-                                                type="number"
-                                                value="{{ $product['quantity'] }}"
-                                                min="1"
-                                                readonly
-                                            />
+                                            <p class="text-center">
+                                                {{ $product['quantity'] }}
+                                            </p>
                                         </div>
                                     </td>
 
@@ -68,13 +65,14 @@
 
                                     <td>
                                         <form
+                                        class="d-flex justify-content-end"
                                         action="{{ route('cart.remove', $key) }}"
                                         method="POST">
                                             @csrf
                                             @method('DELETE')
 
                                             <button type="submit" class="cross-icon border-0 bg-transparent">
-                                                <i class="fas fa-times"></i>
+                                             <i class="fa-regular fa-trash-can"></i>
                                             </button>
                                         </form>
                                     </td>
@@ -87,7 +85,12 @@
                 <div class="row">
                     <div class="col-xl-8 col-lg-7"></div>
 
-                    <div class="col-xl-4 col-lg-5">
+                    <div class="col-xl-4 col-lg-5 d-flex flex-column">
+                        <a
+                         class="thm-btn mb-4"
+                         href="{{ route('checkout') }}">
+                            Премини към чекаут
+                        </a>
                         <ul class="cart-total list-unstyled">
                             <li>
                                 <span>Междинна сума</span>

@@ -22,6 +22,10 @@ Route::get('/checkout', [ShopController::class, 'checkout'])->name('checkout');
 Route::post('/cart/add/{product}', [OrdersController::class, 'addProduct'])->name('product.cart.add');
 Route::delete('/cart/remove/{productId}', [OrdersController::class, 'removeProduct'])->name('cart.remove');
 
+Route::post('/order/create', [OrdersController::class, 'create'])->name('order.create');
+
+
+
 /** All routes for the services */
 Route::get('/services', [FrontEndController::class, 'services'])->name('services');
 Route::get('/service/{service}', [FrontEndController::class, 'serviceShow'])->name('service.show');
