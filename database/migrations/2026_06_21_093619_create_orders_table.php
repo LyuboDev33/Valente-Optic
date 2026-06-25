@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
 
+            $table->string('order_number', 255)->unique();
+
             // Customer details
             $table->string('first_name');
             $table->string('last_name');
@@ -27,8 +29,6 @@ return new class extends Migration
 
             $table->string('courier')->nullable();
             $table->string('office_list')->nullable();
-
-         
 
             // Invoice
             $table->boolean('request_invoice')->default(false);

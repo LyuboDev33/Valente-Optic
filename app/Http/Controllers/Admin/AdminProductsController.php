@@ -114,6 +114,7 @@ class AdminProductsController extends Controller
     {
         $validated = $request->validate([
             'name'               => ['required', 'string', 'max:255'],
+            'sku'                => ['required', 'string', 'max:255', Rule::unique('products', 'sku')],
             'category_id'        => ['required', 'exists:categories,id'],
             'description'        => ['required', 'string'],
             'stock'              => ['required', 'integer', 'min:0'],
@@ -123,11 +124,15 @@ class AdminProductsController extends Controller
             'gallery'            => ['required', 'array'],
             'gallery.*'          => ['image', 'mimes:jpg,jpeg,png,webp', 'max:512'],
             'attribute_values'   => ['nullable', 'array'],
-            'attribute_values.*' => ['exists:attribute_values,id'],
         ], [
             'name.required' => 'Името на продукта е задължително.',
+
+            'sku.required' => 'SKU е задължително.',
+            'sku.unique'   => 'Вече съществува продукт със същото SKU.',
+
             'discount.max'  => 'Максималната отстъпка може да бъде 99%',
             'discount.min'  => 'Минималната отстъпка трябва да бъде 0%',
+
             'category_id.required' => 'Моля изберете категория.',
             'category_id.exists' => 'Избраната категория не съществува.',
 
@@ -178,6 +183,7 @@ class AdminProductsController extends Controller
 
         $product = Product::create([
             'name'        => $validated['name'],
+            'sku'         => $validated['sku'],
             'slug'        => $slug,
             'discount'    => $validated['discount'],
             'description' => $validated['description'],
@@ -230,6 +236,7 @@ class AdminProductsController extends Controller
 
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255', Rule::unique('products', 'name')->ignore($product->id)],
+            'sku' => ['required', 'string', 'max:255', Rule::unique('products', 'sku')->ignore($product->id)],
             'category_id'        => ['required', 'exists:categories,id'],
             'description'        => ['required', 'string'],
             'discount'           => ['nullable', 'numeric', 'min:0', 'max:99'],
@@ -240,10 +247,13 @@ class AdminProductsController extends Controller
             'gallery.*'          => ['image', 'mimes:jpg,jpeg,png,webp', 'max:512'],
 
             'attribute_values'   => ['nullable', 'array'],
-            'attribute_values.*' => ['integer', 'exists:attribute_values,id'],
+            // 'attribute_values.*' => ['integer', 'exists:attribute_values,id'],
         ], [
             'name.required' => 'Името на продукта е задължително.',
             'name.unique'   => 'Вече съществува продукт със същото име.',
+
+            'sku.required' => 'SKU е задължително.',
+            'sku.unique'   => 'Вече съществува продукт със същото SKU.',
 
             'discount.max'  => 'Максималната отстъпка може да бъде 99%',
             'discount.min'  => 'Минималната отстъпка трябва да бъде 0%',
@@ -266,8 +276,8 @@ class AdminProductsController extends Controller
             'gallery.*.mimes' => 'Снимките трябва да бъдат JPG, JPEG, PNG или WEBP.',
             'gallery.*.max'   => 'Всяка снимка не може да бъде по-голяма от 0.5MB.',
 
-            'attribute_values.*.integer' => 'Невалиден атрибут.',
-            'attribute_values.*.exists'   => 'Избран атрибут не съществува.',
+            // 'attribute_values.*.integer' => 'Невалиден атрибут.',
+            // 'attribute_values.*.exists'   => 'Избран атрибут не съществува.',
         ]);
 
         $slug = Str::slug($validated['name']);
@@ -309,6 +319,7 @@ class AdminProductsController extends Controller
 
         $product->update([
             'name'        => $validated['name'],
+            'sku'         => $validated['sku'],
             'slug'        => $slug,
             'discount'    => $validated['discount'],
             'description' => $validated['description'],

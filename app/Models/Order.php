@@ -13,6 +13,7 @@ class Order extends Model
     const STATUS_CANCELLED = 'cancelled';
 
     protected $fillable = [
+        'order_number',
         'first_name',
         'last_name',
         'phone',
@@ -51,5 +52,5 @@ class Order extends Model
         return $this->hasMany(OrderProduct::class);
     }
 
-    
+
 }

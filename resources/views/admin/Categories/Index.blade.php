@@ -89,7 +89,7 @@
 
         <ul class="category-tree">
             @foreach ($categoriesTree as $category)
-                <li>
+                <li class="custom-items">
                     <div class="category-node">
                         <strong>{{ $category['name'] }}</strong>
                     </div>

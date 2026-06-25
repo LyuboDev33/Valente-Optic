@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\OrderCreated;
 use App\Models\Order;
 use App\Models\OrderProduct;
 use App\Models\Product;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
+use App\Services\ProductService;
+
 
 class OrdersController extends Controller
 {
@@ -71,24 +75,27 @@ class OrdersController extends Controller
             !empty(array_filter($rightEye)) ||
             !empty(array_filter($leftEye));
 
-        if (! $hasUploadedPrescription && ! $hasManualPrescription) {
-            return back()->withErrors([
-                'prescription' => 'Моля, качете снимка с рецепта или въведете ръчно данните за диоптър.',
-            ]);
+
+        $isProductDioptric = ProductService::getProductTree($product);
+
+        /** Check if the products is dioptric */
+        if ($isProductDioptric) {
+
+            /** If the product is dioptric, it requires  */
+            if (! $hasUploadedPrescription && ! $hasManualPrescription) {
+                return back()->withErrors([
+                    'prescription' => 'Моля, качете снимка с рецепта или въведете ръчно данните за диоптър.',
+                ]);
+            }
         }
+
 
         $prescriptionImageName = null;
 
         if ($hasUploadedPrescription) {
             $file = $request->file('prescription_image');
-
-            $prescriptionImageName =
-                time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
-
-            $file->move(
-                public_path('assets/images/prescriptions'),
-                $prescriptionImageName
-            );
+            $prescriptionImageName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('assets/images/prescriptions'), $prescriptionImageName);
         }
 
         $finalPrice = $product->discount
@@ -222,6 +229,7 @@ class OrdersController extends Controller
             }
 
             $order = Order::create([
+                'order_number' => 'ORD-' . date('ymd') . '-' . random_int(1000, 9999),
                 'first_name' => $validated['fname'],
                 'last_name' => $validated['lname'],
                 'phone' => $validated['phone'],
@@ -251,6 +259,25 @@ class OrdersController extends Controller
             ]);
 
             foreach ($cartProducts as $product) {
+                $databaseProduct = Product::where('id', $product['product_id'])
+                    ->lockForUpdate()
+                    ->first();
+
+                if (! $databaseProduct) {
+                    throw new \Exception('Продуктът не съществува.');
+                }
+
+                $currentStock = (int) $databaseProduct->stock;
+                $orderedQuantity = (int) $product['quantity'];
+
+                if ($currentStock < $orderedQuantity) {
+                    throw new \Exception('Няма достатъчна наличност за продукт: ' . $product['name']);
+                }
+
+                $databaseProduct->update([
+                    'stock' => $currentStock - $orderedQuantity,
+                ]);
+
                 OrderProduct::create([
                     'order_id' => $order->id,
                     'product_id' => $product['product_id'],
@@ -270,11 +297,16 @@ class OrdersController extends Controller
                     'left_eye' => $product['left_eye'] ?? null,
                 ]);
             }
+
+            Mail::to($order->email)->send(new OrderCreated($order));
         });
+
+
 
         Session::forget('products');
 
-        return redirect('/')
-            ->with('success', 'Поръчката беше изпратена успешно.');
+
+
+        return redirect(route('checkout.succes'));
     }
 }

@@ -68,7 +68,7 @@
                     <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInLeft" data-wow-delay="100ms">
                         <div class="services-four__single">
                             <div class="services-four__icon">
-                                <span class="icon-piston"></span>
+                                <span class="fa-solid fa-glasses"></span>
                             </div>
                             <h3 class="services-four__title">
                                 <a href="#">Изработка на диоптрични очила</a>
@@ -83,7 +83,7 @@
                     <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="200ms">
                         <div class="services-four__single">
                             <div class="services-four__icon">
-                                <span class="icon-wheels"></span>
+                                <span class="fa-solid fa-person-circle-check"></span>
                             </div>
                             <h3 class="services-four__title">
                                 <a href="#">Консултация при избор на рамка</a>
@@ -98,7 +98,7 @@
                     <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInRight" data-wow-delay="300ms">
                         <div class="services-four__single">
                             <div class="services-four__icon">
-                                <span class="icon-gearshift"></span>
+                                <span class="fa-solid fa-magnifying-glass"></span>
                             </div>
                             <h3 class="services-four__title">
                                 <a href="#">Висококачествени стъкла</a>

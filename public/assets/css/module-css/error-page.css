@@ -4,7 +4,7 @@
 .error-page {
     position: relative;
     display: block;
-    padding: 73px 0 120px;
+    padding: 115px 0 100px;
     z-index: 1;
 }
 
@@ -23,8 +23,7 @@
 .error-page__title {
     position: relative;
     display: inline-block;
-    font-size: 350px;
-    line-height: 350px;
+    font-size: 150px;
     font-weight: 500;
     color: var(--crank-base);
     z-index: 2;

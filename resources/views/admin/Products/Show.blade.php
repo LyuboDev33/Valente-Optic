@@ -3,7 +3,8 @@
     <div class="d-flex justify-content-between">
         <h3>Редактиране на продукт: {{ $product->name }}</h3>
         <div>
-            <a target="_blank" class="btn btn-info p-2 rounded-5 text-white" href="{{ route('shop.show', $product->slug) }}">
+            <a target="_blank" class="btn btn-info p-2 rounded-5 text-white"
+                href="{{ route('shop.show', $product->slug) }}">
                 Преглед на продукта
             </a>
             <a class="btn btn-secondary p-2 rounded-5" href="{{ route('admin.products.index') }}">
@@ -42,10 +43,15 @@
             <div class="row g-3">
 
                 {{-- ================= BASIC INFO ================= --}}
-                <div class="col-lg-4">
+                <div class="col-lg-3">
                     <label>Име на продукта</label>
                     <input type="text" name="name" class="form-control" value="{{ old('name', $product->name) }}"
                         required>
+                </div>
+
+                <div class="col-lg-3">
+                    <label>SKU</label>
+                    <input value="{{ $product->sku }}" type="text" name="sku" class="form-control" required>
                 </div>
 
                 <div class="col-lg-4">
@@ -61,15 +67,16 @@
                     </select>
                 </div>
 
-                <div class="col-lg-2">
+                <div class="col-lg-1">
                     <label>Наличност</label>
                     <input type="text" name="stock" class="form-control"
                         value="{{ old('stock', $product->stock) }}">
                 </div>
 
-                    <div class="col-lg-2">
+                <div class="col-lg-1">
                     <label>Отстъпка</label>
-                    <input type="number" name="discount" class="form-control" value="{{ old('discount', $product->discount) }}">
+                    <input type="number" name="discount" class="form-control"
+                        value="{{ old('discount', $product->discount) }}">
                 </div>
 
                 <div class="col-lg-12">

@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use App\Constants\PrescriptionOptions;
 use App\Models\Category;
 use App\Models\Product;
+use App\Services\ProductService;
 use App\Services\SpeedyService;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
+
 
 class ShopController extends Controller
 {
@@ -16,24 +17,22 @@ class ShopController extends Controller
     public function index()
     {
         return view('Frontend.shop.Shop', [
-            'products'       => $this->productsQuery()->paginate(15),
+            'products'       => ProductService::productsQuery()->paginate(15),
             'category'       => null,
-            'categoriesTree' => $this->buildCategoriesTree(),
+            'categoriesTree' => ProductService::buildCategoriesTree(),
         ]);
     }
 
     /** Show the checkout */
-    public function checkout () {
-
+    public function checkout()
+    {
         $products = Session::get('products');
 
-        if(!$products || count($products)  < 0) {
+        if (! $products || count($products) <= 0) {
             return redirect(route('cart'));
         }
 
-        // dd($products);
-
-       $subtotal = 0;
+        $subtotal = 0;
 
         foreach ($products as $product) {
             $subtotal += $product['final_price'] * $product['quantity'];
@@ -41,8 +40,8 @@ class ShopController extends Controller
 
         return view('Frontend.shop.Checkout', [
             'speedyOffices' => SpeedyService::offices(),
-            'products' => $products,
-            'subtotal' => $subtotal
+            'products'      => $products,
+            'subtotal'      => $subtotal,
         ]);
     }
 
@@ -67,19 +66,16 @@ class ShopController extends Controller
 
             $price = (float) $product->price;
             $discount = (int) $product->discount;
-
-            $finalPrice = $discount > 0
-                ? $price - (($price * $discount) / 100)
-                : $price;
+            $finalPrice = $discount > 0 ? $price - (($price * $discount) / 100) : $price;
 
             $products[$productId] = array_merge($cartProduct, [
-                'product_id' => $product->id,
-                'name' => $product->name,
-                'slug' => $product->slug,
-                'price' => $price,
-                'discount' => $discount,
+                'product_id'  => $product->id,
+                'name'        => $product->name,
+                'slug'        => $product->slug,
+                'price'       => $price,
+                'discount'    => $discount,
                 'final_price' => round($finalPrice, 2),
-                'image' => $product->main_image,
+                'image'       => $product->main_image,
             ]);
         }
 
@@ -94,6 +90,7 @@ class ShopController extends Controller
             'subtotal' => $subtotal,
         ]);
     }
+
     /** Show products from a specific category (including descendants)
      *
      * @param string $category_slug
@@ -102,9 +99,9 @@ class ShopController extends Controller
     public function category(string $category_slug)
     {
         $category    = Category::where('slug', $category_slug)->firstOrFail();
-        $categoryIds = $this->getCategoryIds($category);
+        $categoryIds = ProductService::getCategoryIds($category);
 
-        $products = $this->productsQuery()
+        $products = ProductService::productsQuery()
             ->whereHas('categories', function ($query) use ($categoryIds) {
                 $query->whereIn('category_id', $categoryIds);
             })
@@ -113,11 +110,9 @@ class ShopController extends Controller
         return view('Frontend.shop.Shop', [
             'products'       => $products,
             'category'       => $category,
-            'categoriesTree' => $this->buildCategoriesTree(),
+            'categoriesTree' => ProductService::buildCategoriesTree(),
         ]);
     }
-
-
 
     /** Show a specific product
      *
@@ -126,10 +121,7 @@ class ShopController extends Controller
      */
     public function show(string $slug)
     {
-        // Session::invalidate();
-        // dd(Session::get('products'));
-
-        $product = Product::with(['categories', 'attributeValues.type'])
+        $product = Product::with(['categories.children', 'attributeValues.type'])
             ->where('slug', $slug)
             ->first();
 
@@ -137,98 +129,22 @@ class ShopController extends Controller
             return view('errors.ProductNotFound');
         }
 
+        $isProductDioptric = ProductService::getProductTree($product);
+
         return view('Frontend.shop.Show', [
-            'product' => $product,
-            'sphValues' => PrescriptionOptions::SPH,
-            'cylValues' => PrescriptionOptions::CYL,
-            'addValues' => PrescriptionOptions::ADD,
-            'axisValues' => PrescriptionOptions::AXIS,
+            'product'           => $product,
+            'isProductDioptric' => $isProductDioptric,
+            'sphValues'         => PrescriptionOptions::SPH,
+            'cylValues'         => PrescriptionOptions::CYL,
+            'addValues'         => PrescriptionOptions::CYL,
+            'axisValues'        => PrescriptionOptions::AXIS,
         ]);
     }
 
 
-    /** Return all ids of a given category
-     *
-     * @param Collection $category
-     * @return array[]
-     */
-    private function getCategoryIds($category)
-    {
-        $ids = [$category->id];
-
-        if ($category->children) {
-            foreach ($category->children as $child) {
-                $ids = array_merge($ids, $this->getCategoryIds($child));
-            }
-        }
-
-        return $ids;
+    /** Redirect after succesfull order */
+    public function success (){
+        return view('Frontend.shop.success');
     }
 
-    /** Shared base query — eager loads + ordering */
-    private function productsQuery()
-    {
-        return Product::with(['categories', 'attributeValues'])->latest();
-    }
-
-    /** Build the categories tree from root nodes (recursive via Category->children) */
-    private function buildCategoriesTree(): array
-    {
-        $roots = Category::whereNull('category_parent_id')
-            ->with('children')
-            ->orderBy('name')
-            ->get();
-
-        return $this->buildTree($roots);
-    }
-
-    /** Recursive helper used by buildCategoriesTree
-     *
-     * @param Collection $categories
-     * @return array[]
-     */
-    private function buildTree($categories): array
-    {
-        $tree = [];
-
-        foreach ($categories as $category) {
-            $tree[] = [
-                'id'       => $category->id,
-                'name'     => $category->name,
-                'slug'     => $category->slug,
-                'children' => $this->buildTree($category->children),
-            ];
-        }
-
-        return $tree;
-    }
-
-
-    /** Return the category tree
-     *
-     * @param Collection $categories
-     * @param string $parentPath
-     * @return array[]
-     */
-    private function flattenCategoryTree($categories, $parentPath = ''): array
-    {
-        $tree = [];
-
-        foreach ($categories as $category) {
-
-            $currentPath = $parentPath ? $parentPath . ' → ' . $category->name : $category->name;
-
-            $tree[] = [
-                'id' => $category->id,
-                'name' => $category->name,
-                'path' => $currentPath,
-            ];
-
-            if ($category->children && $category->children->count()) {
-                $tree = array_merge($tree, $this->flattenCategoryTree($category->children, $currentPath));
-            }
-        }
-
-        return $tree;
-    }
 }

@@ -6,6 +6,10 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ShopController;
 use Illuminate\Support\Facades\Route;
 
+Route::fallback(function () {
+    return view('404');
+});
+
 Route::get('/', [FrontEndController::class, 'welcome']);
 
 Route::get('/contact', [FrontEndController::class, 'contact'])->name('contact');
@@ -18,10 +22,11 @@ Route::get('/shop/product/{slug}', [ShopController::class, 'show'])->name('shop.
 
 Route::get('/cart', [ShopController::class, 'cart'])->name('cart');
 Route::get('/checkout', [ShopController::class, 'checkout'])->name('checkout');
+Route::get('/checkout/sucess', [ShopController::class, 'success'])->name('checkout.succes');
+
 
 Route::post('/cart/add/{product}', [OrdersController::class, 'addProduct'])->name('product.cart.add');
 Route::delete('/cart/remove/{productId}', [OrdersController::class, 'removeProduct'])->name('cart.remove');
-
 Route::post('/order/create', [OrdersController::class, 'create'])->name('order.create');
 
 

@@ -36,10 +36,16 @@
             <div class="row g-3">
 
                 {{-- ================= BASIC INFO ================= --}}
-                <div class="col-lg-4">
+                <div class="col-lg-3">
                     <label>Име на продукта</label>
                     <input type="text" name="name" class="form-control" value="{{ old('name') }}" required>
                 </div>
+
+                <div class="col-lg-3">
+                    <label>SKU</label>
+                    <input type="text" name="sku" class="form-control" required>
+                </div>
+
 
                 <div class="col-lg-4">
                     <label>Категория</label>
@@ -54,12 +60,12 @@
                     </select>
                 </div>
 
-                <div class="col-lg-2">
+                <div class="col-lg-1">
                     <label>Наличност</label>
                     <input type="number" name="stock" class="form-control" value="{{ old('stock') }}">
                 </div>
 
-                <div class="col-lg-2">
+                <div class="col-lg-1">
                     <label>Отстъпка</label>
                     <input type="number" name="discount" class="form-control" value="{{ old('discount') }}">
                 </div>

@@ -20,7 +20,9 @@
             </li>
 
             <li>
-                <a href="#" class="{{ request()->routeIs('/admin/orders.*') ? 'is-active' : '' }}">
+                <a href="{{ route('admin.orders.index') }}"
+                class="{{ request()->routeIs('admin.orders.index') ||
+                          request()->routeIs('admin.orders.show') ? 'is-active' : '' }}">
                     <i class="fa-solid fa-bag-shopping"></i>
                     <span>Поръчки</span>
                 </a>

@@ -12,6 +12,11 @@ Route::prefix('admin')
     ->middleware(['auth'])
     ->group(function () {
 
+        Route::prefix('orders')->group(function () {
+            Route::get('/', [AdminOrdersController::class, 'index'])->name('admin.orders.index');
+            Route::get('/show/{order_id}',  [AdminOrdersController::class, 'show'])->name('admin.orders.show');
+            Route::put('/update-order-status', [AdminOrdersController::class, 'updateOrderStatus'])->name('admin.update.order.status');
+        });
 
         Route::prefix('products')->group(function () {
             Route::get('/', [AdminProductsController::class, 'index'])->name('admin.products.index');
@@ -37,9 +42,5 @@ Route::prefix('admin')
         Route::prefix('categories')->group(function () {
             Route::get('/', [AdminCategoriesController::class, 'index'])->name('admin.category.index');
             Route::post('/categories', [AdminCategoriesController::class, 'create'])->name('category.create');
-        });
-
-        Route::prefix('orders')->group(function () {
-            Route::get('/', [AdminOrdersController::class, 'index'])->name('admin.orders.index');
         });
     });

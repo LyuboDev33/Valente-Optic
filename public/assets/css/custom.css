@@ -289,7 +289,6 @@
     }
 
 
-    /* Tablets — hide the visual, form goes full-width but stays centered nicely */
     @media (max-width: 991.98px) {
         .auth__container {
             flex-direction: column;
@@ -311,7 +310,6 @@
         }
     }
 
-    /* Phones — comfortable spacing, larger touch targets, no cramped form */
     @media (max-width: 575.98px) {
         .auth {
             min-height: 100vh;
@@ -338,7 +336,6 @@
         .auth__input,
         .auth__input-addon {
             height: 50px;
-            /* bigger touch target on mobile */
         }
 
         .auth__button {

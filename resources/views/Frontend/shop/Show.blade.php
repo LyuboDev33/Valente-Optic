@@ -8,8 +8,24 @@
             <div class="row">
                 <div class="col-lg-6 col-xl-6">
                     <div class="product-details__img">
-                        <img src="{{ asset('/assets/images/products/' . $product->main_image) }}"
+                        <img data-fancybox="product-gallery"
+                            src="{{ asset('/assets/images/products/' . $product->main_image) }}"
                             alt="{{ $product->name }}" />
+                    </div>
+
+                    <div class="product-gallery mt-3">
+
+                        {{-- Gallery images --}}
+                        @foreach ($product->gallery as $image)
+                            <a href="{{ asset('/assets/images/product_gallery/' . $image) }}"
+                                class="product-gallery__item"
+                                data-fancybox="product-gallery">
+                                <img
+                                    src="{{ asset('/assets/images/product_gallery/' . $image) }}"
+                                     alt="{{ $product->name }}">
+                            </a>
+                        @endforeach
+
                     </div>
 
                     <div class="product-description__text1 mt-3 d-none d-lg-block">
@@ -19,6 +35,7 @@
 
                 <div class="col-lg-6 col-xl-6">
                     <div class="product-details__top">
+
                         <h3 class="product-details__title">
                             {{ $product->name }}
 
@@ -61,10 +78,11 @@
                             </ul>
                         </div>
                     @endif
-
+                    <h6 class="alert alert-info w-fit p-2 rounded-pill mt-3">Номенклатура: {{ $product->sku }}</h6>
                     <hr>
 
-                    <p class="product-details__content-text2 rounded-pill alert {{ (int) $product->stock > 0 ? 'alert-success' : 'alert-danger' }} p-2 d-inline-block">
+                    <p
+                        class="product-details__content-text2 mb-3 rounded-pill alert {{ (int) $product->stock > 0 ? 'alert-success' : 'alert-danger' }} p-2 d-inline-block">
                         @if ((int) $product->stock > 0)
                             Наличен продукт ({{ $product->stock }} бр.)
                         @else
@@ -77,6 +95,10 @@
                     @enderror
 
                     @if ((int) $product->stock > 0)
+
+
+                        @if($isProductDioptric)
+
                         <div class="prescription-box mt-4 mb-4">
                             <p class="prescription-box__notice">
                                 За да добавите този продукт в количката е нужно да предоставите снимка с рецепта
@@ -146,7 +168,8 @@
                                                     <select name="right_eye[sph]" class="form-select">
                                                         <option value="">Изберете</option>
                                                         @foreach ($sphValues as $value)
-                                                            <option value="{{ $value }}" @selected(old('right_eye.sph') == $value)>
+                                                            <option value="{{ $value }}"
+                                                                @selected(old('right_eye.sph') == $value)>
                                                                 {{ $value }}
                                                             </option>
                                                         @endforeach
@@ -157,7 +180,8 @@
                                                     <select name="right_eye[cyl]" class="form-select">
                                                         <option value="">Изберете</option>
                                                         @foreach ($cylValues as $value)
-                                                            <option value="{{ $value }}" @selected(old('right_eye.cyl') == $value)>
+                                                            <option value="{{ $value }}"
+                                                                @selected(old('right_eye.cyl') == $value)>
                                                                 {{ $value }}
                                                             </option>
                                                         @endforeach
@@ -168,7 +192,8 @@
                                                     <select name="right_eye[axis]" class="form-select">
                                                         <option value="">Изберете</option>
                                                         @foreach ($axisValues as $value)
-                                                            <option value="{{ $value }}" @selected(old('right_eye.axis') == $value)>
+                                                            <option value="{{ $value }}"
+                                                                @selected(old('right_eye.axis') == $value)>
                                                                 {{ $value }}
                                                             </option>
                                                         @endforeach
@@ -179,7 +204,8 @@
                                                     <select name="right_eye[add]" class="form-select">
                                                         <option value="">Изберете</option>
                                                         @foreach ($addValues as $value)
-                                                            <option value="{{ $value }}" @selected(old('right_eye.add') == $value)>
+                                                            <option value="{{ $value }}"
+                                                                @selected(old('right_eye.add') == $value)>
                                                                 {{ $value }}
                                                             </option>
                                                         @endforeach
@@ -196,7 +222,8 @@
                                                     <select name="left_eye[sph]" class="form-select">
                                                         <option value="">Изберете</option>
                                                         @foreach ($sphValues as $value)
-                                                            <option value="{{ $value }}" @selected(old('left_eye.sph') == $value)>
+                                                            <option value="{{ $value }}"
+                                                                @selected(old('left_eye.sph') == $value)>
                                                                 {{ $value }}
                                                             </option>
                                                         @endforeach
@@ -207,7 +234,8 @@
                                                     <select name="left_eye[cyl]" class="form-select">
                                                         <option value="">Изберете</option>
                                                         @foreach ($cylValues as $value)
-                                                            <option value="{{ $value }}" @selected(old('left_eye.cyl') == $value)>
+                                                            <option value="{{ $value }}"
+                                                                @selected(old('left_eye.cyl') == $value)>
                                                                 {{ $value }}
                                                             </option>
                                                         @endforeach
@@ -218,7 +246,8 @@
                                                     <select name="left_eye[axis]" class="form-select">
                                                         <option value="">Изберете</option>
                                                         @foreach ($axisValues as $value)
-                                                            <option value="{{ $value }}" @selected(old('left_eye.axis') == $value)>
+                                                            <option value="{{ $value }}"
+                                                                @selected(old('left_eye.axis') == $value)>
                                                                 {{ $value }}
                                                             </option>
                                                         @endforeach
@@ -229,7 +258,8 @@
                                                     <select name="left_eye[add]" class="form-select">
                                                         <option value="">Изберете</option>
                                                         @foreach ($addValues as $value)
-                                                            <option value="{{ $value }}" @selected(old('left_eye.add') == $value)>
+                                                            <option value="{{ $value }}"
+                                                                @selected(old('left_eye.add') == $value)>
                                                                 {{ $value }}
                                                             </option>
                                                         @endforeach
@@ -242,6 +272,8 @@
                             </div>
                         </div>
 
+                        @endif
+
                         <div class="d-flex mt-3 mb-3 justify-content-center">
                             <div class="product-details__quantity d-flex flex-column">
                                 <h3 class="product-details__quantity-title">Изберете брой</h3>
@@ -251,8 +283,8 @@
                                         <i class="fa fa-minus"></i>
                                     </button>
 
-                                    <input type="number" name="quantity" value="{{ old('quantity', 1) }}" min="1"
-                                        max="{{ (int) $product->stock }}" />
+                                    <input type="number" name="quantity" value="{{ old('quantity', 1) }}"
+                                        min="1" max="{{ (int) $product->stock }}" />
 
                                     <button type="button" class="add">
                                         <i class="fa fa-plus"></i>
@@ -361,7 +393,7 @@
     @endif --}}
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             @if (session('success'))
                 new bootstrap.Modal(document.getElementById('cartSuccessModal')).show();
             @endif

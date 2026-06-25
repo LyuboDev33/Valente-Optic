@@ -6,62 +6,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-
     @yield('SEO')
 
-    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/assets/css/animate.min.css" />
-    <link rel="stylesheet" href="/assets/css/custom-animate.css" />
-    <link rel="stylesheet" href="/assets/css/swiper.min.css" />
-    <link rel="stylesheet" href="/assets/css/font-awesome-all.css" />
-    <link rel="stylesheet" href="/assets/css/jarallax.css" />
-    {{-- <link rel="stylesheet" href="/assets/css/jquery.magnific-popup.css" /> --}}
-    <link rel="stylesheet" href="/assets/css/flaticon.css" />
-    <link rel="stylesheet" href="/assets/css/owl.carousel.min.css" />
-    {{-- <link rel="stylesheet" href="/assets/css/odometer.min.css" />
-    <link rel="stylesheet" href="/assets/css/owl.theme.default.min.css" />
-    <link rel="stylesheet" href="/assets/css/nice-select.css" /> --}}
-    {{-- <link rel="stylesheet" href="/assets/css/jquery-ui.css" />
-    <link rel="stylesheet" href="/assets/css/aos.css" /> --}}
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css?v=<?php echo time(); ?>" />
+    <link rel="stylesheet" href="/assets/css/animate.min.css?v=<?php echo time(); ?>" />
+    <link rel="stylesheet" href="/assets/css/custom-animate.css?v=<?php echo time(); ?>" />
+    <link rel="stylesheet" href="/assets/css/swiper.min.css?v=<?php echo time(); ?>" />
+    <link rel="stylesheet" href="/assets/css/jarallax.css?v=<?php echo time(); ?>" />
 
-    <link rel="stylesheet" href="/assets/css/module-css/slider.css" />
-    <link rel="stylesheet" href="/assets/css/module-css/footer.css" />
-    <link rel="stylesheet" href="/assets/css/module-css/counter.css" />
-    <link rel="stylesheet" href="/assets/css/module-css/services.css" />
-    <link rel="stylesheet" href="/assets/css/module-css/about.css" />
-    <link rel="stylesheet" href="/assets/css/module-css/brand.css" />
-    <link rel="stylesheet" href="/assets/css/module-css/gallery.css" />
-    <link rel="stylesheet" href="/assets/css/module-css/faq.css" />
-    <link rel="stylesheet" href="/assets/css/module-css/testimonial.css" />
-    <link rel="stylesheet" href="/assets/css/module-css/team.css" />
-    <link rel="stylesheet" href="/assets/css/module-css/contact.css" />
-    <link rel="stylesheet" href="/assets/css/module-css/pricing.css" />
-    <link rel="stylesheet" href="/assets/css/module-css/blog.css" />
-    <link rel="stylesheet" href="/assets/css/module-css/sliding-text.css" />
-    <link rel="stylesheet" href="/assets/css/module-css/cta.css" />
-    <link rel="stylesheet" href="/assets/css/module-css/feature.css" />
-    <link rel="stylesheet" href="/assets/css/module-css/banner.css" />
+    {{-- <link rel="stylesheet" href="/assets/css/jquery.magnific-popup.css?v=<?php echo time(); ?>" /> --}}
+
+    {{-- <link rel="stylesheet" href="/assets/css/flaticon.css?v=<?php echo time(); ?>" /> --}}
+    <link rel="stylesheet" href="/assets/css/owl.carousel.min.css?v=<?php echo time(); ?>" />
+
+    {{-- <link rel="stylesheet" href="/assets/css/odometer.min.css?v=<?php echo time(); ?>" />
+    <link rel="stylesheet" href="/assets/css/owl.theme.default.min.css?v=<?php echo time(); ?>" />
+    <link rel="stylesheet" href="/assets/css/nice-select.css?v=<?php echo time(); ?>" /> --}}
+
+    {{-- <link rel="stylesheet" href="/assets/css/jquery-ui.css?v=<?php echo time(); ?>" />
+    <link rel="stylesheet" href="/assets/css/aos.css?v=<?php echo time(); ?>" /> --}}
+
+    <link rel="stylesheet" href="/assets/css/module-css/slider.css?v=<?php echo time(); ?>" />
+    <link rel="stylesheet" href="/assets/css/module-css/footer.css?v=<?php echo time(); ?>" />
+    <link rel="stylesheet" href="/assets/css/module-css/counter.css?v=<?php echo time(); ?>" />
+    <link rel="stylesheet" href="/assets/css/module-css/services.css?v=<?php echo time(); ?>" />
+    <link rel="stylesheet" href="/assets/css/module-css/about.css?v=<?php echo time(); ?>" />
+    <link rel="stylesheet" href="/assets/css/module-css/brand.css?v=<?php echo time(); ?>" />
+    <link rel="stylesheet" href="/assets/css/module-css/gallery.css?v=<?php echo time(); ?>" />
+    <link rel="stylesheet" href="/assets/css/module-css/faq.css?v=<?php echo time(); ?>" />
+    <link rel="stylesheet" href="/assets/css/module-css/testimonial.css?v=<?php echo time(); ?>" />
+    <link rel="stylesheet" href="/assets/css/module-css/team.css?v=<?php echo time(); ?>" />
+    <link rel="stylesheet" href="/assets/css/module-css/contact.css?v=<?php echo time(); ?>" />
+    <link rel="stylesheet" href="/assets/css/module-css/pricing.css?v=<?php echo time(); ?>" />
+    <link rel="stylesheet" href="/assets/css/module-css/blog.css?v=<?php echo time(); ?>" />
+    <link rel="stylesheet" href="/assets/css/module-css/sliding-text.css?v=<?php echo time(); ?>" />
+    <link rel="stylesheet" href="/assets/css/module-css/cta.css?v=<?php echo time(); ?>" />
+    <link rel="stylesheet" href="/assets/css/module-css/feature.css?v=<?php echo time(); ?>" />
+    <link rel="stylesheet" href="/assets/css/module-css/banner.css?v=<?php echo time(); ?>" />
+    <link rel="stylesheet" href="/assets/css/module-css/error-page.css?v=<?php echo time(); ?>" />
 
     <!-- template styles -->
-    <link rel="stylesheet" href="/assets/css/style.css" />
-    <link rel="stylesheet" href="/assets/css/shop.css" />
+    <link rel="stylesheet" href="/assets/css/style.css?v=<?php echo time(); ?>" />
+    <link rel="stylesheet" href="/assets/css/shop.css?v=<?php echo time(); ?>" />
+    <link rel="stylesheet" href="/assets/css/responsive.css?v=<?php echo time(); ?>" />
 
-    <link rel="stylesheet" href="/assets/css/responsive.css" />
+    <link rel="icon"
+          type="image/png"
+          href="/assets/images/favicons/favicon-96x96.png?v=<?php echo time(); ?>"
+          sizes="96x96" />
 
-    <link rel="icon" type="image/png" href="/assets/images/favicons/favicon-96x96.png?v=<?php echo time(); ?>"
-        sizes="96x96" />
-    <link rel="icon" type="image/svg+xml"
-        href="/assets/images/favicons/transparent-image.png?v=<?php echo time(); ?>" />
-    <link rel="shortcut icon" href="/assets/images/favicons/favicon-96x96.png?v=<?php echo time(); ?>" />
-    <link rel="apple-touch-icon" sizes="180x180"
-        href="/assets/images/favicons/apple-touch-icon.png?v=<?php echo time(); ?>" />
-    <link rel="manifest" href="/assets/images/favicons/site.webmanifest?v=<?php echo time(); ?>" />
+    <link rel="icon"
+          type="image/svg+xml"
+          href="/assets/images/favicons/transparent-image.png?v=<?php echo time(); ?>" />
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="shortcut icon"
+          href="/assets/images/favicons/favicon-96x96.png?v=<?php echo time(); ?>" />
 
-    <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.23/dist/lenis.css">
+    <link rel="apple-touch-icon"
+          sizes="180x180"
+          href="/assets/images/favicons/apple-touch-icon.png?v=<?php echo time(); ?>" />
+
+    <link rel="manifest"
+          href="/assets/images/favicons/site.webmanifest?v=<?php echo time(); ?>" />
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+          integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.1/dist/fancybox/fancybox.css" />
+
+    <link rel="stylesheet"
+          href="https://unpkg.com/lenis@1.3.23/dist/lenis.css">
+
     <script src="https://unpkg.com/lenis@1.3.23/dist/lenis.min.js"></script>
 
     <script>
@@ -81,7 +100,6 @@
         requestAnimationFrame(raf);
     </script>
 
-
 </head>
 
 <body class="font-sans antialiased">
@@ -95,38 +113,30 @@
 
         @include('layouts.partials.frontend.footer')
 
-
     </div>
+
+    <script src="/assets/js/jquery-3.6.0.min.js?v=<?php echo time(); ?>"></script>
+    <script src="/assets/js/bootstrap.bundle.min.js?v=<?php echo time(); ?>"></script>
+    <script src="/assets/js/jarallax.min.js?v=<?php echo time(); ?>"></script>
+    <script src="/assets/js/swiper.min.js?v=<?php echo time(); ?>"></script>
+
+    <script src="/assets/js/wow.js?v=<?php echo time(); ?>"></script>
+    <script src="/assets/js/owl.carousel.min.js?v=<?php echo time(); ?>"></script>
+
+    <script src="/assets/js/jquery-sidebar-content.js?v=<?php echo time(); ?>"></script>
+
+    <script src="/assets/js/aos.js?v=<?php echo time(); ?>"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.1/dist/fancybox/fancybox.umd.js"></script>
+
+    <!-- template js -->
+    <script src="/assets/js/script.js?v=<?php echo time(); ?>"></script>
+    <script src="/assets/js/custom.js?v=<?php echo time(); ?>"></script>
+
+    <script>
+        Fancybox.bind("[data-fancybox]", {});
+    </script>
+
 </body>
-
-
-
-
-<script src="/assets/js/jquery-3.6.0.min.js"></script>
-<script src="/assets/js/bootstrap.bundle.min.js"></script>
-<script src="/assets/js/jarallax.min.js"></script>
-<script src="/assets/js/jquery.ajaxchimp.min.js"></script>
-<script src="/assets/js/jquery.appear.min.js"></script>
-<script src="/assets/js/swiper.min.js"></script>
-{{-- <script src="/assets/js/jquery.circle-progress.min.js"></script>
-<script src="/assets/js/jquery.magnific-popup.min.js"></script>
-<script src="/assets/js/isotope.js"></script>
-<script src="/assets/js/jquery.validate.min.js"></script>
-<script src="/assets/js/wNumb.min.js"></script> --}}
-<script src="/assets/js/wow.js"></script>
-<script src="/assets/js/owl.carousel.min.js"></script>
-{{-- <script src="/assets/js/jquery-ui.js"></script>
-<script src="/assets/js/odometer.min.js"></script> --}}
-{{-- <script src="/assets/js/jquery.nice-select.min.js"></script> --}}
-<script src="/assets/js/jquery-sidebar-content.js"></script>
-{{-- <script src="/assets/js/marquee.min.js"></script> --}}
-{{-- <script src="/assets/js/gsap/gsap.js"></script>
-<script src="/assets/js/gsap/ScrollTrigger.js"></script>
-<script src="/assets/js/gsap/SplitText.js"></script> --}}
-<script src="/assets/js/aos.js"></script>
-
-<!-- template js -->
-<script src="/assets/js/script.js"></script>
-<script src="/assets/js/custom.js"></script>
 
 </html>

@@ -817,6 +817,7 @@ Product Details
     border: 1px solid var(--crank-bdr-color);
     border-radius: 15px;
     mix-blend-mode: luminosity;
+    cursor: pointer;
 }
 
 .product-details__top {
