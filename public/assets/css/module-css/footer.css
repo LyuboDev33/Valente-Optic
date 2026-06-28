@@ -228,7 +228,7 @@
     font-weight: 600;
     line-height: 24px;
     margin-bottom: 34px;
-    text-transform: capitalize;
+
 }
 
 .footer-widget__page-link-list {
@@ -412,7 +412,7 @@
 
 .site-footer__copyright-text a {
     color: var(--crank-base);
-    text-transform: capitalize;
+
 }
 
 .site-footer__copyright-text a:hover {

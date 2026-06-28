@@ -135,7 +135,7 @@
 }
 
 /*--------------------------------------------------------------
-# Faq Two 
+# Faq Two
 --------------------------------------------------------------*/
 .faq-two {
     position: relative;
@@ -583,7 +583,7 @@
     font-weight: 600;
     line-height: 25px;
     color: var(--crank-black);
-    text-transform: capitalize;
+
     position: relative;
     -webkit-transition: all 500ms ease;
     transition: all 500ms ease;

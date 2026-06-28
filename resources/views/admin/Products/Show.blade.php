@@ -1,8 +1,8 @@
 <x-backend>
 
-    <div class="d-flex justify-content-between">
+    <div class="d-flex flex-column flex-md-row gap-3 justify-content-between">
         <h3>Редактиране на продукт: {{ $product->name }}</h3>
-        <div>
+        <div class="d-flex flex-column flex-md-row gap-3">
             <a target="_blank" class="btn btn-info p-2 rounded-5 text-white"
                 href="{{ route('shop.show', $product->slug) }}">
                 Преглед на продукта
@@ -10,6 +10,9 @@
             <a class="btn btn-secondary p-2 rounded-5" href="{{ route('admin.products.index') }}">
                 Назад към всички
             </a>
+            <button type="button" class="btn btn-primary rounded-5 px-4 mb-3" id="openProductVariantSidebar">
+                Добави вариант
+            </button>
         </div>
     </div>
     <hr>
@@ -33,8 +36,59 @@
         </div>
     @endif
 
-    {{-- ================= PRODUCT EDIT FORM ================= --}}
     <div class="container">
+
+        @if ($product->variants->isNotEmpty() || $product->variantParent->isNotEmpty())
+            <div class="card shadow-sm border-0 mb-4">
+                <div class="card-body">
+
+                    <h5 class="mb-3">
+                        Варианти на продукта
+                    </h5>
+
+                    <div class="d-flex flex-wrap gap-3">
+
+                        @foreach ($product->variantParent as $parent)
+                            <a href="{{ route('admin.products.show', $parent->slug) }}" class="product-variant-card">
+
+                                <img src="{{ asset('assets/images/products/' . $parent->main_image) }}"
+                                    alt="{{ $parent->name }}">
+
+                                <span>Основен</span>
+                            </a>
+                        @endforeach
+
+                        {{-- Current product --}}
+                        <a href="{{ route('admin.products.show', $product->slug) }}"
+                            class="product-variant-card active">
+
+                            <img src="{{ asset('assets/images/products/' . $product->main_image) }}"
+                                alt="{{ $product->name }}">
+
+                            <span>
+                                @if ($product->variantParent->isEmpty())
+                                    Основен
+                                @else
+                                    {{ $product->name }}
+                                @endif
+                            </span>
+                        </a>
+
+                        @foreach ($product->variants as $variant)
+                            <a href="{{ route('admin.products.show', $variant->slug) }}" class="product-variant-card">
+
+                                <img src="{{ asset('assets/images/products/' . $variant->main_image) }}"
+                                    alt="{{ $variant->name }}">
+
+                                <span>{{ $variant->name }}</span>
+                            </a>
+                        @endforeach
+
+                    </div>
+
+                </div>
+            </div>
+        @endif
 
         <form method="POST" action="{{ route('admin.product.update', $product) }}" enctype="multipart/form-data">
             @csrf
@@ -188,6 +242,54 @@
             </button>
         </form>
 
+        <div class="product-variant-overlay"></div>
+
+
+        <div class="product_variant">
+
+            <div class="product-variant-sidebar__header">
+                <h4>Добави вариант</h4>
+
+                <button type="button" class="product-variant-sidebar__close" id="closeProductVariantSidebar">
+                    &times;
+                </button>
+            </div>
+
+            @include('admin.components.create-product-form', [
+                'action' => route('admin.product.create', $product),
+            ])
+
+        </div>
+
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const openButton = document.getElementById('openProductVariantSidebar');
+            const closeButton = document.getElementById('closeProductVariantSidebar');
+            const sidebar = document.querySelector('.product_variant');
+            const overlay = document.querySelector('.product-variant-overlay');
+
+            if (!openButton || !closeButton || !sidebar || !overlay) {
+                return;
+            }
+
+            function openSidebar() {
+                sidebar.classList.add('active');
+                overlay.classList.add('active');
+                document.body.classList.add('product-variant-sidebar-open');
+            }
+
+            function closeSidebar() {
+                sidebar.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.classList.remove('product-variant-sidebar-open');
+            }
+
+            openButton.addEventListener('click', openSidebar);
+            closeButton.addEventListener('click', closeSidebar);
+            overlay.addEventListener('click', closeSidebar);
+        });
+    </script>
 
 </x-backend>

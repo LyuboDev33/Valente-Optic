@@ -19,582 +19,557 @@
 
 
 
-    //Main Slider
-    if ($(".main-slider__carousel").length) {
-        $(".main-slider__carousel").owlCarousel({
-            loop: true,
-            animateOut: "fadeOut",
-            animateIn: "fadeIn",
-            margin: 0,
-            nav: true,
-            dots: false,
-            smartSpeed: 500,
-            autoplay: true,
-            autoplayTimeout: 7000,
-            navText: [
-                '<span class="icon-arrow-right"></span>',
-                '<span class="icon-arrow-right"></span>',
-            ],
-            responsive: {
-                0: {
-                    items: 1,
-                },
-                600: {
-                    items: 1,
-                },
-                800: {
-                    items: 1,
-                },
-                992: {
-                    items: 1,
-                },
-            },
-        });
-    }
-
-
-
-
-    //Main Slider Two
-    if ($(".main-slider-two__carousel").length) {
-        $(".main-slider-two__carousel").owlCarousel({
-            items: 1,
-
-            // disable all interaction
-            loop: false,
-            mouseDrag: false,
-            touchDrag: false,
-            pullDrag: false,
-            freeDrag: false,
-
-            nav: false,
-            dots: false,
-
-            autoplay: false,
-
-            animateOut: "fadeOut",
-            animateIn: "fadeIn",
-        });
-    }
-
-
-
-
-    //Main Slider Three
-    if ($(".main-slider-three__carousel").length) {
-        $(".main-slider-three__carousel").owlCarousel({
-            //   loop: true,
-            animateOut: "fadeOut",
-            animateIn: "fadeIn",
-            margin: 0,
-            nav: false,
-            dots: false,
-            smartSpeed: 500,
-            autoplay: false,
-            autoplayTimeout: 7000,
-
-            responsive: {
-                0: {
-                    items: 1,
-                },
-                600: {
-                    items: 1,
-                },
-                800: {
-                    items: 1,
-                },
-                992: {
-                    items: 1,
-                },
-            },
-        });
-    }
-
-
-
-
-
-
-
-
-    //Brand One Carousel
-    if ($(".brand-one__carousel").length) {
-        $(".brand-one__carousel").owlCarousel({
-            loop: true,
-            margin: 30,
-            nav: false,
-            dots: false,
-            smartSpeed: 500,
-            autoplay: true,
-            autoplayTimeout: 7000,
-            navText: [
-                '<span class="icon-left-arrow"></span>',
-                '<span class="icon-right-arrow"></span>',
-            ],
-            responsive: {
-                0: {
-                    items: 1,
-                },
-                768: {
-                    items: 2,
-                },
-                992: {
-                    items: 4,
-                },
-                1200: {
-                    items: 5,
-                },
-                1320: {
-                    items: 5,
-                },
-            },
-        });
-    }
-
-
-
-    //Testimonial One Carousel
-    if ($(".testimonial-one__carousel").length) {
-        $(".testimonial-one__carousel").owlCarousel({
-            loop: true,
-            margin: 30,
-            nav: true,
-            dots: false,
-            smartSpeed: 500,
-            autoplay: true,
-            autoplayTimeout: 7000,
-            navText: [
-                '<span class="icon-arrow-left"></span>',
-                '<span class="icon-arrow-right"></span>',
-            ],
-            responsive: {
-                0: {
-                    items: 1,
-                },
-                768: {
-                    items: 1,
-                },
-                992: {
-                    items: 1,
-                },
-                1200: {
-                    items: 1,
-                },
-                1320: {
-                    items: 1,
-                },
-            },
-        });
-    }
-
-
-
-
-
-
-    //Pricing Two Carousel
-    if ($(".pricing-two__carousel").length) {
-        $(".pricing-two__carousel").owlCarousel({
-            loop: true,
-            margin: 30,
-            nav: true,
-            dots: false,
-            smartSpeed: 500,
-            autoplay: true,
-            autoplayTimeout: 7000,
-            navText: [
-                '<span class="icon-arrow-left"></span>',
-                '<span class="icon-arrow-right"></span>',
-            ],
-            responsive: {
-                0: {
-                    items: 1,
-                },
-                768: {
-                    items: 2,
-                },
-                992: {
-                    items: 2,
-                },
-                1200: {
-                    items: 2,
-                },
-                1320: {
-                    items: 2,
-                },
-            },
-        });
-    }
-
-
-    //Brand Two Carousel
-    if ($(".brand-two__carousel").length) {
-        $(".brand-two__carousel").owlCarousel({
-            loop: true,
-            margin: 30,
-            nav: false,
-            dots: false,
-            smartSpeed: 500,
-            autoplay: true,
-            autoplayTimeout: 7000,
-            navText: [
-                '<span class="icon-left-arrow"></span>',
-                '<span class="icon-right-arrow"></span>',
-            ],
-            responsive: {
-                0: {
-                    items: 1,
-                },
-                768: {
-                    items: 2,
-                },
-                992: {
-                    items: 4,
-                },
-                1200: {
-                    items: 5,
-                },
-                1320: {
-                    items: 5,
-                },
-            },
-        });
-    }
-
-
-
-    //Testimonial Two Carousel
-    if ($(".testimonial-two__carousel").length) {
-        $(".testimonial-two__carousel").owlCarousel({
-            loop: true,
-            margin: 30,
-            nav: false,
-            dots: true,
-            smartSpeed: 500,
-            autoplay: true,
-            autoplayTimeout: 7000,
-            navText: [
-                '<span class="icon-arrow-left"></span>',
-                '<span class="icon-arrow-right"></span>',
-            ],
-            responsive: {
-                0: {
-                    items: 1,
-                },
-                768: {
-                    items: 1,
-                },
-                992: {
-                    items: 1,
-                },
-                1200: {
-                    items: 1,
-                },
-                1320: {
-                    items: 1,
-                },
-            },
-        });
-    }
-
-
-
-    //Gallery Two Carousel
-    if ($(".gallery-two__carousel").length) {
-        $(".gallery-two__carousel").owlCarousel({
-            loop: true,
-            margin: 24,
-            nav: false,
-            dots: true,
-            smartSpeed: 500,
-            autoplay: true,
-            autoplayTimeout: 7000,
-            navText: [
-                '<span class="icon-left-arrow"></span>',
-                '<span class="icon-right-arrow"></span>',
-            ],
-            responsive: {
-                0: {
-                    items: 1,
-                },
-                768: {
-                    items: 2,
-                },
-                992: {
-                    items: 3,
-                },
-                1200: {
-                    items: 3,
-                },
-                1320: {
-                    items: 3,
-                },
-            },
-        });
-    }
-
-
-
-    //Testimonial Three Carousel
-    if ($(".testimonial-three__carousel").length) {
-        $(".testimonial-three__carousel").owlCarousel({
-            loop: true,
-            margin: 30,
-            nav: true,
-            dots: false,
-            smartSpeed: 500,
-            autoplay: true,
-            autoplayTimeout: 7000,
-            navText: [
-                '<span class="icon-arrow-left"></span>',
-                '<span class="icon-arrow-right"></span>',
-            ],
-            responsive: {
-                0: {
-                    items: 1,
-                },
-                768: {
-                    items: 2,
-                },
-                992: {
-                    items: 3,
-                },
-                1200: {
-                    items: 3,
-                },
-                1320: {
-                    items: 3,
-                },
-            },
-        });
-    }
-
-
-
-
-
-
-
-    //Testimonial Three Carousel
-    if ($(".testimonial-four__carousel").length) {
-        $(".testimonial-four__carousel").owlCarousel({
-            loop: true,
-            margin: 30,
-            nav: false,
-            dots: false,
-            smartSpeed: 500,
-            autoplay: true,
-            autoplayTimeout: 7000,
-            navText: [
-                '<span class="icon-arrow-left"></span>',
-                '<span class="icon-arrow-right"></span>',
-            ],
-            responsive: {
-                0: {
-                    items: 1,
-                },
-                768: {
-                    items: 1,
-                },
-                992: {
-                    items: 1,
-                },
-                1200: {
-                    items: 1,
-                },
-                1320: {
-                    items: 1,
-                },
-            },
-        });
-    }
-
-
-
-    //Blog Page Carousel
-    if ($(".blog-carousel-style").length) {
-        $(".blog-carousel-style").owlCarousel({
-            loop: true,
-            margin: 30,
-            nav: false,
-            dots: true,
-            smartSpeed: 500,
-            autoplay: true,
-            autoplayTimeout: 7000,
-            navText: [
-                '<span class="icon-right-arrow-1"></span>',
-                '<span class="icon-right-arrow-1"></span>',
-            ],
-            responsive: {
-                0: {
-                    items: 1,
-                },
-                768: {
-                    items: 2,
-                },
-                992: {
-                    items: 2,
-                },
-                1200: {
-                    items: 3,
-                },
-                1320: {
-                    items: 3,
-                },
-            },
-        });
-    }
-
-
-
-
-
-
-    //Services Page Carousel
-    if ($(".services-carousel-style").length) {
-        $(".services-carousel-style").owlCarousel({
-            loop: true,
-            margin: 30,
-            nav: false,
-            dots: true,
-            smartSpeed: 500,
-            autoplay: true,
-            autoplayTimeout: 7000,
-            navText: [
-                '<span class="icon-right-arrow-1"></span>',
-                '<span class="icon-right-arrow-1"></span>',
-            ],
-            responsive: {
-                0: {
-                    items: 1,
-                },
-                768: {
-                    items: 2,
-                },
-                992: {
-                    items: 3,
-                },
-                1200: {
-                    items: 3,
-                },
-                1320: {
-                    items: 3,
-                },
-            },
-        });
-    }
-
-
-
-
-
-
-    //Team Page Carousel
-    if ($(".team-carousel-style").length) {
-        $(".team-carousel-style").owlCarousel({
-            loop: true,
-            margin: 30,
-            nav: false,
-            dots: true,
-            smartSpeed: 500,
-            autoplay: true,
-            autoplayTimeout: 7000,
-            navText: [
-                '<span class="icon-right-arrow-1"></span>',
-                '<span class="icon-right-arrow-1"></span>',
-            ],
-            responsive: {
-                0: {
-                    items: 1,
-                },
-                768: {
-                    items: 2,
-                },
-                992: {
-                    items: 3,
-                },
-                1200: {
-                    items: 3,
-                },
-                1320: {
-                    items: 3,
-                },
-            },
-        });
-    }
-
-
-
-    //Testimonial Page Carousel
-    if ($(".testimonial-carousel-style").length) {
-        $(".testimonial-carousel-style").owlCarousel({
-            loop: true,
-            margin: 30,
-            nav: false,
-            dots: true,
-            smartSpeed: 500,
-            autoplay: true,
-            autoplayTimeout: 7000,
-            navText: [
-                '<span class="icon-right-arrow-1"></span>',
-                '<span class="icon-right-arrow-1"></span>',
-            ],
-            responsive: {
-                0: {
-                    items: 1,
-                },
-                768: {
-                    items: 1,
-                },
-                992: {
-                    items: 2,
-                },
-                1200: {
-                    items: 2,
-                },
-                1320: {
-                    items: 2,
-                },
-            },
-        });
-    }
-
-
-
-
-    //Team Page Carousel
-    if ($(".pricing-carousel-style").length) {
-        $(".pricing-carousel-style").owlCarousel({
-            loop: true,
-            margin: 30,
-            nav: false,
-            dots: true,
-            smartSpeed: 500,
-            autoplay: true,
-            autoplayTimeout: 7000,
-            navText: [
-                '<span class="icon-right-arrow-1"></span>',
-                '<span class="icon-right-arrow-1"></span>',
-            ],
-            responsive: {
-                0: {
-                    items: 1,
-                },
-                768: {
-                    items: 2,
-                },
-                992: {
-                    items: 3,
-                },
-                1200: {
-                    items: 3,
-                },
-                1320: {
-                    items: 3,
-                },
-            },
-        });
-    }
+    // //Main Slider
+    // if ($(".main-slider__carousel").length) {
+    //     $(".main-slider__carousel").owlCarousel({
+    //         loop: true,
+    //         animateOut: "fadeOut",
+    //         animateIn: "fadeIn",
+    //         margin: 0,
+    //         nav: true,
+    //         dots: false,
+    //         smartSpeed: 500,
+    //         autoplay: true,
+    //         autoplayTimeout: 7000,
+    //         navText: [
+    //             '<span class="icon-arrow-right"></span>',
+    //             '<span class="icon-arrow-right"></span>',
+    //         ],
+    //         responsive: {
+    //             0: {
+    //                 items: 1,
+    //             },
+    //             600: {
+    //                 items: 1,
+    //             },
+    //             800: {
+    //                 items: 1,
+    //             },
+    //             992: {
+    //                 items: 1,
+    //             },
+    //         },
+    //     });
+    // }
+
+
+
+
+    // //Main Slider Two
+    // if ($(".main-slider-two__carousel").length) {
+    //     $(".main-slider-two__carousel").owlCarousel({
+    //         items: 1,
+
+    //         // disable all interaction
+    //         loop: false,
+    //         mouseDrag: false,
+    //         touchDrag: false,
+    //         pullDrag: false,
+    //         freeDrag: false,
+
+    //         nav: false,
+    //         dots: false,
+
+    //         autoplay: false,
+
+    //         animateOut: "fadeOut",
+    //         animateIn: "fadeIn",
+    //     });
+    // }
+
+
+
+
+    // //Main Slider Three
+    // if ($(".main-slider-three__carousel").length) {
+    //     $(".main-slider-three__carousel").owlCarousel({
+    //         //   loop: true,
+    //         animateOut: "fadeOut",
+    //         animateIn: "fadeIn",
+    //         margin: 0,
+    //         nav: false,
+    //         dots: false,
+    //         smartSpeed: 500,
+    //         autoplay: false,
+    //         autoplayTimeout: 7000,
+
+    //         responsive: {
+    //             0: {
+    //                 items: 1,
+    //             },
+    //             600: {
+    //                 items: 1,
+    //             },
+    //             800: {
+    //                 items: 1,
+    //             },
+    //             992: {
+    //                 items: 1,
+    //             },
+    //         },
+    //     });
+    // }
+
+
+    // //Brand One Carousel
+    // if ($(".brand-one__carousel").length) {
+    //     $(".brand-one__carousel").owlCarousel({
+    //         loop: true,
+    //         margin: 30,
+    //         nav: false,
+    //         dots: false,
+    //         smartSpeed: 500,
+    //         autoplay: true,
+    //         autoplayTimeout: 7000,
+    //         navText: [
+    //             '<span class="icon-left-arrow"></span>',
+    //             '<span class="icon-right-arrow"></span>',
+    //         ],
+    //         responsive: {
+    //             0: {
+    //                 items: 1,
+    //             },
+    //             768: {
+    //                 items: 2,
+    //             },
+    //             992: {
+    //                 items: 4,
+    //             },
+    //             1200: {
+    //                 items: 5,
+    //             },
+    //             1320: {
+    //                 items: 5,
+    //             },
+    //         },
+    //     });
+    // }
+
+
+
+    // //Testimonial One Carousel
+    // if ($(".testimonial-one__carousel").length) {
+    //     $(".testimonial-one__carousel").owlCarousel({
+    //         loop: true,
+    //         margin: 30,
+    //         nav: true,
+    //         dots: false,
+    //         smartSpeed: 500,
+    //         autoplay: true,
+    //         autoplayTimeout: 7000,
+    //         navText: [
+    //             '<span class="icon-arrow-left"></span>',
+    //             '<span class="icon-arrow-right"></span>',
+    //         ],
+    //         responsive: {
+    //             0: {
+    //                 items: 1,
+    //             },
+    //             768: {
+    //                 items: 1,
+    //             },
+    //             992: {
+    //                 items: 1,
+    //             },
+    //             1200: {
+    //                 items: 1,
+    //             },
+    //             1320: {
+    //                 items: 1,
+    //             },
+    //         },
+    //     });
+    // }
+
+    // //Pricing Two Carousel
+    // if ($(".pricing-two__carousel").length) {
+    //     $(".pricing-two__carousel").owlCarousel({
+    //         loop: true,
+    //         margin: 30,
+    //         nav: true,
+    //         dots: false,
+    //         smartSpeed: 500,
+    //         autoplay: true,
+    //         autoplayTimeout: 7000,
+    //         navText: [
+    //             '<span class="icon-arrow-left"></span>',
+    //             '<span class="icon-arrow-right"></span>',
+    //         ],
+    //         responsive: {
+    //             0: {
+    //                 items: 1,
+    //             },
+    //             768: {
+    //                 items: 2,
+    //             },
+    //             992: {
+    //                 items: 2,
+    //             },
+    //             1200: {
+    //                 items: 2,
+    //             },
+    //             1320: {
+    //                 items: 2,
+    //             },
+    //         },
+    //     });
+    // }
+
+
+    // //Brand Two Carousel
+    // if ($(".brand-two__carousel").length) {
+    //     $(".brand-two__carousel").owlCarousel({
+    //         loop: true,
+    //         margin: 30,
+    //         nav: false,
+    //         dots: false,
+    //         smartSpeed: 500,
+    //         autoplay: true,
+    //         autoplayTimeout: 7000,
+    //         navText: [
+    //             '<span class="icon-left-arrow"></span>',
+    //             '<span class="icon-right-arrow"></span>',
+    //         ],
+    //         responsive: {
+    //             0: {
+    //                 items: 1,
+    //             },
+    //             768: {
+    //                 items: 2,
+    //             },
+    //             992: {
+    //                 items: 4,
+    //             },
+    //             1200: {
+    //                 items: 5,
+    //             },
+    //             1320: {
+    //                 items: 5,
+    //             },
+    //         },
+    //     });
+    // }
+
+
+
+    // //Testimonial Two Carousel
+    // if ($(".testimonial-two__carousel").length) {
+    //     $(".testimonial-two__carousel").owlCarousel({
+    //         loop: true,
+    //         margin: 30,
+    //         nav: false,
+    //         dots: true,
+    //         smartSpeed: 500,
+    //         autoplay: true,
+    //         autoplayTimeout: 7000,
+    //         navText: [
+    //             '<span class="icon-arrow-left"></span>',
+    //             '<span class="icon-arrow-right"></span>',
+    //         ],
+    //         responsive: {
+    //             0: {
+    //                 items: 1,
+    //             },
+    //             768: {
+    //                 items: 1,
+    //             },
+    //             992: {
+    //                 items: 1,
+    //             },
+    //             1200: {
+    //                 items: 1,
+    //             },
+    //             1320: {
+    //                 items: 1,
+    //             },
+    //         },
+    //     });
+    // }
+
+
+
+    // //Gallery Two Carousel
+    // if ($(".gallery-two__carousel").length) {
+    //     $(".gallery-two__carousel").owlCarousel({
+    //         loop: true,
+    //         margin: 24,
+    //         nav: false,
+    //         dots: true,
+    //         smartSpeed: 500,
+    //         autoplay: true,
+    //         autoplayTimeout: 7000,
+    //         navText: [
+    //             '<span class="icon-left-arrow"></span>',
+    //             '<span class="icon-right-arrow"></span>',
+    //         ],
+    //         responsive: {
+    //             0: {
+    //                 items: 1,
+    //             },
+    //             768: {
+    //                 items: 2,
+    //             },
+    //             992: {
+    //                 items: 3,
+    //             },
+    //             1200: {
+    //                 items: 3,
+    //             },
+    //             1320: {
+    //                 items: 3,
+    //             },
+    //         },
+    //     });
+    // }
+
+
+
+    // //Testimonial Three Carousel
+    // if ($(".testimonial-three__carousel").length) {
+    //     $(".testimonial-three__carousel").owlCarousel({
+    //         loop: true,
+    //         margin: 30,
+    //         nav: true,
+    //         dots: false,
+    //         smartSpeed: 500,
+    //         autoplay: true,
+    //         autoplayTimeout: 7000,
+    //         navText: [
+    //             '<span class="icon-arrow-left"></span>',
+    //             '<span class="icon-arrow-right"></span>',
+    //         ],
+    //         responsive: {
+    //             0: {
+    //                 items: 1,
+    //             },
+    //             768: {
+    //                 items: 2,
+    //             },
+    //             992: {
+    //                 items: 3,
+    //             },
+    //             1200: {
+    //                 items: 3,
+    //             },
+    //             1320: {
+    //                 items: 3,
+    //             },
+    //         },
+    //     });
+    // }
+
+
+    // //Testimonial Three Carousel
+    // if ($(".testimonial-four__carousel").length) {
+    //     $(".testimonial-four__carousel").owlCarousel({
+    //         loop: true,
+    //         margin: 30,
+    //         nav: false,
+    //         dots: false,
+    //         smartSpeed: 500,
+    //         autoplay: true,
+    //         autoplayTimeout: 7000,
+    //         navText: [
+    //             '<span class="icon-arrow-left"></span>',
+    //             '<span class="icon-arrow-right"></span>',
+    //         ],
+    //         responsive: {
+    //             0: {
+    //                 items: 1,
+    //             },
+    //             768: {
+    //                 items: 1,
+    //             },
+    //             992: {
+    //                 items: 1,
+    //             },
+    //             1200: {
+    //                 items: 1,
+    //             },
+    //             1320: {
+    //                 items: 1,
+    //             },
+    //         },
+    //     });
+    // }
+
+
+
+    // //Blog Page Carousel
+    // if ($(".blog-carousel-style").length) {
+    //     $(".blog-carousel-style").owlCarousel({
+    //         loop: true,
+    //         margin: 30,
+    //         nav: false,
+    //         dots: true,
+    //         smartSpeed: 500,
+    //         autoplay: true,
+    //         autoplayTimeout: 7000,
+    //         navText: [
+    //             '<span class="icon-right-arrow-1"></span>',
+    //             '<span class="icon-right-arrow-1"></span>',
+    //         ],
+    //         responsive: {
+    //             0: {
+    //                 items: 1,
+    //             },
+    //             768: {
+    //                 items: 2,
+    //             },
+    //             992: {
+    //                 items: 2,
+    //             },
+    //             1200: {
+    //                 items: 3,
+    //             },
+    //             1320: {
+    //                 items: 3,
+    //             },
+    //         },
+    //     });
+    // }
+
+
+    // //Services Page Carousel
+    // if ($(".services-carousel-style").length) {
+    //     $(".services-carousel-style").owlCarousel({
+    //         loop: true,
+    //         margin: 30,
+    //         nav: false,
+    //         dots: true,
+    //         smartSpeed: 500,
+    //         autoplay: true,
+    //         autoplayTimeout: 7000,
+    //         navText: [
+    //             '<span class="icon-right-arrow-1"></span>',
+    //             '<span class="icon-right-arrow-1"></span>',
+    //         ],
+    //         responsive: {
+    //             0: {
+    //                 items: 1,
+    //             },
+    //             768: {
+    //                 items: 2,
+    //             },
+    //             992: {
+    //                 items: 3,
+    //             },
+    //             1200: {
+    //                 items: 3,
+    //             },
+    //             1320: {
+    //                 items: 3,
+    //             },
+    //         },
+    //     });
+    // }
+
+    // //Team Page Carousel
+    // if ($(".team-carousel-style").length) {
+    //     $(".team-carousel-style").owlCarousel({
+    //         loop: true,
+    //         margin: 30,
+    //         nav: false,
+    //         dots: true,
+    //         smartSpeed: 500,
+    //         autoplay: true,
+    //         autoplayTimeout: 7000,
+    //         navText: [
+    //             '<span class="icon-right-arrow-1"></span>',
+    //             '<span class="icon-right-arrow-1"></span>',
+    //         ],
+    //         responsive: {
+    //             0: {
+    //                 items: 1,
+    //             },
+    //             768: {
+    //                 items: 2,
+    //             },
+    //             992: {
+    //                 items: 3,
+    //             },
+    //             1200: {
+    //                 items: 3,
+    //             },
+    //             1320: {
+    //                 items: 3,
+    //             },
+    //         },
+    //     });
+    // }
+
+
+
+    // //Testimonial Page Carousel
+    // if ($(".testimonial-carousel-style").length) {
+    //     $(".testimonial-carousel-style").owlCarousel({
+    //         loop: true,
+    //         margin: 30,
+    //         nav: false,
+    //         dots: true,
+    //         smartSpeed: 500,
+    //         autoplay: true,
+    //         autoplayTimeout: 7000,
+    //         navText: [
+    //             '<span class="icon-right-arrow-1"></span>',
+    //             '<span class="icon-right-arrow-1"></span>',
+    //         ],
+    //         responsive: {
+    //             0: {
+    //                 items: 1,
+    //             },
+    //             768: {
+    //                 items: 1,
+    //             },
+    //             992: {
+    //                 items: 2,
+    //             },
+    //             1200: {
+    //                 items: 2,
+    //             },
+    //             1320: {
+    //                 items: 2,
+    //             },
+    //         },
+    //     });
+    // }
+
+
+
+
+    // //Team Page Carousel
+    // if ($(".pricing-carousel-style").length) {
+    //     $(".pricing-carousel-style").owlCarousel({
+    //         loop: true,
+    //         margin: 30,
+    //         nav: false,
+    //         dots: true,
+    //         smartSpeed: 500,
+    //         autoplay: true,
+    //         autoplayTimeout: 7000,
+    //         navText: [
+    //             '<span class="icon-right-arrow-1"></span>',
+    //             '<span class="icon-right-arrow-1"></span>',
+    //         ],
+    //         responsive: {
+    //             0: {
+    //                 items: 1,
+    //             },
+    //             768: {
+    //                 items: 2,
+    //             },
+    //             992: {
+    //                 items: 3,
+    //             },
+    //             1200: {
+    //                 items: 3,
+    //             },
+    //             1320: {
+    //                 items: 3,
+    //             },
+    //         },
+    //     });
+    // }
 
 
 

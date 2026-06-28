@@ -53,7 +53,7 @@
     color: var(--crank-white);
     font-weight: 600;
     line-height: 84px;
-    text-transform: capitalize;
+
     letter-spacing: -0.02em;
     margin-bottom: 32px;
     opacity: 0;
@@ -308,6 +308,7 @@
     position: relative;
     display: block;
     z-index: 10;
+    background: url(/assets/images/bg-main.png);
 }
 
 .main-slider-two {
@@ -323,14 +324,14 @@
     width: 100%;
     margin: 0 auto 0;
     /* border-radius: 60px; */
-    background-color: var(--crank-black);
+    /* background-color: var(--crank-black); */
     z-index: 10;
 }
 
 .main-slider-two .item {
     position: relative;
  padding-top: 200px;
-    padding-bottom: 150px;
+    /* padding-bottom: 150px; */
     z-index: 10;
 }
 
@@ -347,12 +348,11 @@
     color: var(--crank-white);
     font-weight: 600;
     line-height: 84px;
-    text-transform: capitalize;
     letter-spacing: -0.02em;
     margin-bottom: 32px;
-    opacity: 0;
+    /* opacity: 0; */
     transition: transform 1200ms ease, opacity 1200ms ease;
-    transform: translateX(200px);
+    /* transform: translateX(200px); */
 }
 
 .active .main-slider-two__title {
@@ -367,9 +367,9 @@
     font-size: 16px;
     line-height: 26px;
     color: var(--crank-white);
-    opacity: 0;
+    /* opacity: 0; */
     transition: transform 1200ms ease, opacity 1200ms ease;
-    transform: translateX(-200px);
+    /* transform: translateX(-200px); */
 }
 
 .active .main-slider-two__text {
@@ -384,9 +384,9 @@
     align-items: center;
     gap: 40px;
     margin-top: 57px;
-    opacity: 0;
+    /* opacity: 0;
     visibility: hidden;
-    transform: perspective(400px) rotateY(0deg) translateY(80px);
+    transform: perspective(400px) rotateY(0deg) translateY(80px); */
     transform-origin: bottom;
     transition: transform 1200ms ease, opacity 1200ms ease;
 }
@@ -410,6 +410,10 @@
     position: absolute;
     top: -76px;
     right: 0;
+}
+
+.main-slider-two__img-box img {
+    max-width: 500px;
 }
 
 .main-slider-two__shape-1 {
@@ -720,7 +724,7 @@
     color: var(--crank-black);
     font-weight: 700;
     line-height: 96px;
-    text-transform: capitalize;
+
     letter-spacing: -0.02em;
     margin-bottom: 29px;
     opacity: 0;

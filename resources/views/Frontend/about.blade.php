@@ -77,7 +77,7 @@
                     <div class="about-five__right">
                         <div class="about-five__img-box">
                             <div class="about-five__img">
-                                <img src="assets/images/resources/about-five-img-1.jpg" alt="Valente Optic" />
+                                <img src="/assets/images/resources/about-five-img-1.jpg" alt="Valente Optic" />
                             </div>
                             <div class="about-five__shope-box">
                                 <div class="about-five__shope-box-bg-shape"
@@ -159,7 +159,7 @@
                     <div class="item">
                         <div class="brand-one__single">
                             <div class="brand-one__img">
-                                <img src="assets/images/brand/brand-1-1.png" alt="Партньор" />
+                                <img src="/assets/images/brand/brand-1-1.png" alt="Партньор" />
                             </div>
                         </div>
                     </div>
@@ -168,7 +168,7 @@
                     <div class="item">
                         <div class="brand-one__single">
                             <div class="brand-one__img">
-                                <img src="assets/images/brand/brand-1-2.png" alt="Партньор" />
+                                <img src="/assets/images/brand/brand-1-2.png" alt="Партньор" />
                             </div>
                         </div>
                     </div>
@@ -177,7 +177,7 @@
                     <div class="item">
                         <div class="brand-one__single">
                             <div class="brand-one__img">
-                                <img src="assets/images/brand/brand-1-3.png" alt="Партньор" />
+                                <img src="/assets/images/brand/brand-1-3.png" alt="Партньор" />
                             </div>
                         </div>
                     </div>
@@ -186,7 +186,7 @@
                     <div class="item">
                         <div class="brand-one__single">
                             <div class="brand-one__img">
-                                <img src="assets/images/brand/brand-1-4.png" alt="Партньор" />
+                                <img src="/assets/images/brand/brand-1-4.png" alt="Партньор" />
                             </div>
                         </div>
                     </div>
@@ -195,7 +195,7 @@
                     <div class="item">
                         <div class="brand-one__single">
                             <div class="brand-one__img">
-                                <img src="assets/images/brand/brand-1-5.png" alt="Партньор" />
+                                <img src="/assets/images/brand/brand-1-5.png" alt="Партньор" />
                             </div>
                         </div>
                     </div>
@@ -248,7 +248,7 @@
                 <!--Services Two Single Start-->
                 <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="200ms">
                     <div class="services-two__img">
-                        <img src="assets/images/team/team-two-img-1.png" alt="Valente Optic екип" />
+                        <img src="/assets/images/team/team-two-img-1.png" alt="Valente Optic екип" />
                     </div>
                 </div>
                 <!--Services Two Single End-->
@@ -288,13 +288,13 @@
         <div class="testimonial-two__inner">
             <div class="testimonial-two__shape-1"></div>
             <div class="testimonial-two__shape-2">
-                <img src="assets/images/shapes/testimonial-two-shape-2.png" alt="" />
+                <img src="/assets/images/shapes/testimonial-two-shape-2.png" alt="" />
             </div>
             <div class="testimonial-two__shape-3">
-                <img src="assets/images/shapes/testimonial-two-shape-3.png" alt="" />
+                <img src="/assets/images/shapes/testimonial-two-shape-3.png" alt="" />
             </div>
             <div class="testimonial-two__shape-4">
-                <img src="assets/images/shapes/testimonial-two-shape-4.png" alt="" />
+                <img src="/assets/images/shapes/testimonial-two-shape-4.png" alt="" />
             </div>
             <div class="container">
                 <div class="row">
@@ -388,7 +388,7 @@
                     <div class="col-xl-6 col-lg-6">
                         <div class="testimonial-two__right">
                             <div class="testimonial-two__img wow fadeInUp" data-wow-delay="100ms">
-                                <img src="assets/images/testimonial/testimonial-two-img-1.png"
+                                <img src="/assets/images/testimonial/testimonial-two-img-1.png"
                                     alt="Отзиви Valente Optic" />
                             </div>
                         </div>

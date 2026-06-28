@@ -16,8 +16,8 @@
 
     {{-- <link rel="stylesheet" href="/assets/css/jquery.magnific-popup.css?v=<?php echo time(); ?>" /> --}}
 
-    {{-- <link rel="stylesheet" href="/assets/css/flaticon.css?v=<?php echo time(); ?>" /> --}}
-    <link rel="stylesheet" href="/assets/css/owl.carousel.min.css?v=<?php echo time(); ?>" />
+    <link rel="stylesheet" href="/assets/css/flaticon.css?v=<?php echo time(); ?>" />
+    {{-- <link rel="stylesheet" href="/assets/css/owl.carousel.min.css?v=<?php echo time(); ?>" /> --}}
 
     {{-- <link rel="stylesheet" href="/assets/css/odometer.min.css?v=<?php echo time(); ?>" />
     <link rel="stylesheet" href="/assets/css/owl.theme.default.min.css?v=<?php echo time(); ?>" />
@@ -55,19 +55,10 @@
           href="/assets/images/favicons/favicon-96x96.png?v=<?php echo time(); ?>"
           sizes="96x96" />
 
-    <link rel="icon"
-          type="image/svg+xml"
-          href="/assets/images/favicons/transparent-image.png?v=<?php echo time(); ?>" />
-
-    <link rel="shortcut icon"
-          href="/assets/images/favicons/favicon-96x96.png?v=<?php echo time(); ?>" />
-
-    <link rel="apple-touch-icon"
-          sizes="180x180"
-          href="/assets/images/favicons/apple-touch-icon.png?v=<?php echo time(); ?>" />
-
-    <link rel="manifest"
-          href="/assets/images/favicons/site.webmanifest?v=<?php echo time(); ?>" />
+    <link rel="icon" type="image/svg+xml" href="/assets/images/favicons/transparent-image.png?v=<?php echo time(); ?>" />
+    <link rel="shortcut icon" href="/assets/images/favicons/favicon-96x96.png?v=<?php echo time(); ?>" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicons/apple-touch-icon.png?v=<?php echo time(); ?>" />
+    <link rel="manifest" href="/assets/images/favicons/site.webmanifest?v=<?php echo time(); ?>" />
 
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
@@ -121,7 +112,7 @@
     <script src="/assets/js/swiper.min.js?v=<?php echo time(); ?>"></script>
 
     <script src="/assets/js/wow.js?v=<?php echo time(); ?>"></script>
-    <script src="/assets/js/owl.carousel.min.js?v=<?php echo time(); ?>"></script>
+    {{-- <script src="/assets/js/owl.carousel.min.js?v=<?php echo time(); ?>"></script> --}}
 
     <script src="/assets/js/jquery-sidebar-content.js?v=<?php echo time(); ?>"></script>
 

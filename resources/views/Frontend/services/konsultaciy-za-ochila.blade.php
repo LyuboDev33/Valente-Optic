@@ -1,5 +1,33 @@
 <x-frontend>
 
+    @section('SEO')
+    <title>Консултация при избор на рамки и диоптрични стъкла | Valente Optic</title>
+
+    <meta name="description" content="Професионална консултация при избор на диоптрични рамки и стъкла. Ще ви помогнем да изберете най-подходящите очила според зрението, начина на живот и личния ви стил.">
+    <meta name="keywords" content="консултация за очила, избор на рамки, избор на диоптрични стъкла, диоптрични рамки, оптика, очила, антирефлексни стъкла, фотохромни лещи, Valente Optic">
+    <meta name="author" content="Valente Optic">
+    <meta name="robots" content="index, follow">
+
+    <link rel="canonical" href="{{ url()->current() }}">
+
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="bg_BG">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:title" content="Консултация при избор на рамки и диоптрични стъкла | Valente Optic">
+    <meta property="og:description" content="Получете професионална помощ при избора на рамки, диоптрични стъкла и покрития според вашите зрителни нужди, начин на живот и ежедневен комфорт.">
+    <meta property="og:image" content="{{ asset('/assets/images/seo.png') }}">
+    <meta property="og:image:secure_url" content="{{ asset('/assets/images/seo.png') }}">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="Valente Optic">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Консултация при избор на рамки и диоптрични стъкла | Valente Optic">
+    <meta name="twitter:description" content="Професионална консултация за избор на диоптрични рамки, стъкла и подходящи покрития според вашите нужди.">
+    <meta name="twitter:image" content="{{ asset('/assets/images/seo.png') }}">
+@endsection
+
     <!--Service Details Start-->
     <section class="service-details">
         <div class="container">
@@ -17,7 +45,7 @@
                         </p>
 
                         <div class="service-details__img">
-                            <img src="assets/images/resources/service-details-img-1.jpg" alt="" />
+                            <img src="/assets/images/resources/service-details-img-1.jpg" alt="" />
                         </div>
 
                         <h3 class="service-details__title-2">
@@ -146,7 +174,7 @@
                     <div class="col-xl-6">
                         <div class="service-details__bottom-left">
                             <div class="service-details__bottom-img">
-                                <img src="assets/images/resources/service-details-bottom-img.jpg" alt="" />
+                                <img src="/assets/images/resources/service-details-bottom-img.jpg" alt="" />
                             </div>
 
                             <h3 class="service-details__bottom-title">
@@ -226,7 +254,7 @@
                             </div>
 
                             <div class="service-details__bottom-img-two">
-                                <img src="assets/images/resources/service-details-bottom-img-1.jpg" alt="" />
+                                <img src="/assets/images/resources/service-details-bottom-img-1.jpg" alt="" />
                             </div>
                         </div>
                     </div>

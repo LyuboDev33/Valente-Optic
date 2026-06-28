@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\ProductVariants;
 use App\Models\AttributeType;
 use App\Models\Category;
 use App\Models\Product;
@@ -80,7 +81,7 @@ class AdminProductsController extends Controller
      */
     public function show(string $slug)
     {
-        $product = Product::with(['categories', 'attributeValues'])
+        $product = Product::with(['categories', 'attributeValues', 'variants', 'variantParent'])
             ->where('slug', $slug)
             ->firstOrFail();
 
@@ -105,13 +106,16 @@ class AdminProductsController extends Controller
         ]);
     }
 
-    /** Create the product
+    /** Create the product and a variation if $product is not null
      *
      * @param Request $request
+     * @param Product|null $product
      * @return RedirectResponse
      */
-    public function create(Request $request): RedirectResponse
+    public function create(Request $request, ?Product $product = null): RedirectResponse
     {
+        $parentProduct = $product;
+
         $validated = $request->validate([
             'name'               => ['required', 'string', 'max:255'],
             'sku'                => ['required', 'string', 'max:255', Rule::unique('products', 'sku')],
@@ -120,9 +124,9 @@ class AdminProductsController extends Controller
             'stock'              => ['required', 'integer', 'min:0'],
             'discount'           => ['nullable', 'numeric', 'min:0', 'max:99'],
             'price'              => ['required', 'numeric', 'min:0'],
-            'main_image'         => ['required', 'image', 'mimes:jpg,jpeg,png,webp', 'max:512'],
+            'main_image'         => ['required', 'image', 'mimes:jpg,jpeg,png,webp'],
             'gallery'            => ['required', 'array'],
-            'gallery.*'          => ['image', 'mimes:jpg,jpeg,png,webp', 'max:512'],
+            'gallery.*'          => ['image', 'mimes:jpg,jpeg,png,webp'],
             'attribute_values'   => ['nullable', 'array'],
         ], [
             'name.required' => 'Името на продукта е задължително.',
@@ -145,29 +149,23 @@ class AdminProductsController extends Controller
             'main_image.required' => 'Главната снимка е задължителна.',
             'main_image.image' => 'Файлът трябва да бъде изображение.',
             'main_image.mimes' => 'Главната снимка трябва да бъде JPG, JPEG, PNG или WEBP.',
-            'main_image.max' => 'Главната снимка не може да бъде по-голяма от 0.5MB.',
 
             'gallery.required' => 'Моля качете снимки в галерията.',
             'gallery.array' => 'Галерията е невалидна.',
 
             'gallery.*.image' => 'Всеки файл в галерията трябва да бъде изображение.',
             'gallery.*.mimes' => 'Снимките в галерията трябва да бъдат JPG, JPEG, PNG или WEBP.',
-            'gallery.*.max' => 'Всяка снимка в галерията не може да бъде по-голяма от 0.5MB.',
-
-            'attribute_values.*.exists' => 'Избран атрибут не съществува.',
         ]);
 
-        $slug = Str::slug($validated['name']);
+        $slug = Str::slug($validated['name']) . '-' . Str::slug($validated['sku']);
 
         if (Product::where('slug', $slug)->exists()) {
             return back()
                 ->withInput()
                 ->withErrors([
-                    'name' => 'Вече съществува продукт със същото име.',
+                    'name' => 'Вече съществува продукт със същото име/SKU.',
                 ]);
         }
-
-        $mainImageName = null;
 
         $file = $request->file('main_image');
         $mainImageName = str_replace(' ', '', time() . '_' . $file->getClientOriginalName());
@@ -181,7 +179,7 @@ class AdminProductsController extends Controller
             $galleryNames[] = $galleryName;
         }
 
-        $product = Product::create([
+        $createdProduct = Product::create([
             'name'        => $validated['name'],
             'sku'         => $validated['sku'],
             'slug'        => $slug,
@@ -206,15 +204,24 @@ class AdminProductsController extends Controller
 
         foreach ($categoriesToInsert as $categoryId) {
             ProductCategory::create([
-                'product_id'  => $product->id,
+                'product_id'  => $createdProduct->id,
                 'category_id' => $categoryId,
             ]);
         }
 
-        $valueIds = array_filter($request->input('attribute_values', []));
+        $valueIds = array_values(array_filter($request->input('attribute_values', [])));
 
-        if (!empty($valueIds)) {
-            $product->attributeValues()->attach($valueIds);
+        if (! empty($valueIds)) {
+            $createdProduct->attributeValues()->attach($valueIds);
+        }
+
+        if ($parentProduct) {
+            ProductVariants::create([
+                'parent_product_id'  => $parentProduct->id,
+                'variant_product_id' => $createdProduct->id,
+            ]);
+
+            return back()->with('success', 'Вариантът беше добавен успешно!');
         }
 
         return back()->with('success', 'Продуктът беше добавен успешно!');
@@ -235,22 +242,22 @@ class AdminProductsController extends Controller
         ]);
 
         $validated = $request->validate([
-            'name' => ['required', 'string', 'max:255', Rule::unique('products', 'name')->ignore($product->id)],
+            'name' => ['required', 'string', 'max:255'],
             'sku' => ['required', 'string', 'max:255', Rule::unique('products', 'sku')->ignore($product->id)],
             'category_id'        => ['required', 'exists:categories,id'],
             'description'        => ['required', 'string'],
             'discount'           => ['nullable', 'numeric', 'min:0', 'max:99'],
             'stock'              => ['required', 'integer', 'min:0'],
             'price'              => ['required', 'numeric', 'min:0'],
-            'main_image'         => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:512'],
+            'main_image'         => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp'],
             'gallery'            => ['nullable', 'array'],
-            'gallery.*'          => ['image', 'mimes:jpg,jpeg,png,webp', 'max:512'],
+            'gallery.*'          => ['image', 'mimes:jpg,jpeg,png,webp'],
 
             'attribute_values'   => ['nullable', 'array'],
-            // 'attribute_values.*' => ['integer', 'exists:attribute_values,id'],
+            // 'attribute_values.*' => ['exists:attribute_values,id'],
         ], [
             'name.required' => 'Името на продукта е задължително.',
-            'name.unique'   => 'Вече съществува продукт със същото име.',
+            // 'name.unique'   => 'Вече съществува продукт със същото име.',
 
             'sku.required' => 'SKU е задължително.',
             'sku.unique'   => 'Вече съществува продукт със същото SKU.',
@@ -277,10 +284,10 @@ class AdminProductsController extends Controller
             'gallery.*.max'   => 'Всяка снимка не може да бъде по-голяма от 0.5MB.',
 
             // 'attribute_values.*.integer' => 'Невалиден атрибут.',
-            // 'attribute_values.*.exists'   => 'Избран атрибут не съществува.',
+            'attribute_values.*.exists'   => 'Избран атрибут не съществува.',
         ]);
 
-        $slug = Str::slug($validated['name']);
+        $slug = Str::slug($validated['name']) . '-' . Str::slug($validated['sku']);
 
         $mainImageName = $product->main_image;
 

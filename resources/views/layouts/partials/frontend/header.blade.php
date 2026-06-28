@@ -22,7 +22,7 @@
                                     </li>
 
                                     <li class="dropdown">
-                                        <a href="#">Услуги</a>
+                                        <a>Услуги</a>
                                         <ul>
                                             <li>
                                                 <a href="/service/konsultaciy-za-ochila">
@@ -31,19 +31,19 @@
                                             </li>
 
                                             <li>
-                                                <a href="/services/diagnostics">
+                                                <a href="/service/kompiutarna-diagnostika">
                                                     Компютърна диагностика
                                                 </a>
                                             </li>
 
                                             <li>
-                                                <a href="/services/prescription-glasses">
+                                                <a href="/service/izrabotka-ochila">
                                                     Изработка на очила
                                                 </a>
                                             </li>
 
                                             <li>
-                                                <a href="/services/glasses-adjustment">
+                                                <a href="/service/regulirane-serviz-ochila">
                                                     Регулиране и сервиз на очила
                                                 </a>
                                             </li>
@@ -94,6 +94,14 @@
                                 </ul>
                             </div>
                             <div class="d-flex gap-3 align-items-center">
+                                 <a href="/cart" class="cart numb">
+                                    <img src="{{ asset('/assets/images/heart.png') }}" alt="Heart">
+
+                                    <span>
+                                        {{ count(session('favourites', [])) }}
+                                    </span>
+
+                                </a>
                                 <a href="/cart" class="cart numb">
                                     <img src="{{ asset('/assets/images/shopping.png') }}" alt="Shopping cart">
 

@@ -724,7 +724,7 @@
 
 .blog-details__client-content p {
     color: var(--crank-white);
-    text-transform: capitalize;
+
 }
 
 .blog-details__client-content h5 {
@@ -732,7 +732,7 @@
     font-weight: 600;
     line-height: 34px;
     color: var(--crank-white);
-    text-transform: capitalize;
+
     margin-top: 8px;
 }
 
@@ -1577,7 +1577,7 @@
     font-weight: 600;
     line-height: 55px;
     margin-bottom: 40px;
-    text-transform: capitalize;
+
 }
 
 .blog-list__title a {

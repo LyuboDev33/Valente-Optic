@@ -24,7 +24,7 @@ Product
     font-size: 20px;
     font-weight: 600;
     line-height: 20px;
-    text-transform: capitalize;
+
     margin: 0;
     margin-bottom: 22px;
 }
@@ -200,7 +200,7 @@ Product
     position: relative;
     line-height: 24px;
     font-size: 16px;
-    text-transform: capitalize;
+
     color: var(--crank-gray);
     margin-bottom: 5px;
 }
@@ -214,7 +214,7 @@ Product
     display: block;
     line-height: 24px;
     font-size: 16px;
-    text-transform: capitalize;
+
     color: var(--crank-gray);
     font-weight: 500;
     border-radius: 8px;
@@ -822,7 +822,7 @@ Product Details
     font-size: 34px;
     line-height: 44px;
     font-weight: 400;
-    text-transform: capitalize;
+
     margin: 0;
 }
 
@@ -895,7 +895,7 @@ Product Details
     font-size: 18px;
     line-height: 30px;
     font-weight: 400;
-    text-transform: capitalize;
+
     margin-right: 20px;
 }
 
@@ -997,7 +997,7 @@ Product Details
     font-size: 20px;
     line-height: 30px;
     font-weight: 400;
-    text-transform: capitalize;
+
 }
 
 .product-details__social-link {
@@ -1046,7 +1046,7 @@ Product Details
     font-size: 30px;
     line-height: 30px;
     font-weight: 600;
-    text-transform: capitalize;
+
     margin-bottom: 27px;
 }
 
@@ -1126,7 +1126,7 @@ Product Details
     font-size: 30px;
     line-height: 30px;
     font-weight: 600;
-    text-transform: capitalize;
+
     margin: 0;
 }
 
@@ -1186,7 +1186,7 @@ Product Details
     font-size: 20px;
     line-height: 32px;
     font-weight: 500;
-    text-transform: capitalize;
+
 }
 
 .review-one__content-top .info h2 span {
@@ -1235,7 +1235,7 @@ Product Details
     font-size: 30px;
     font-weight: 600;
     line-height: 30px;
-    text-transform: capitalize;
+
 }
 
 .review-form-one__rate-box {
@@ -1415,7 +1415,7 @@ Product Details
     font-size: 20px;
     font-weight: 600;
     margin: 0;
-    text-transform: capitalize;
+
 }
 
 .cart-table h3 a {
@@ -2026,7 +2026,7 @@ Product Details
     font-size: 22px;
     font-weight: 500;
     line-height: 22px;
-    text-transform: capitalize;
+
 }
 
 .product-name-select-box .product-name p {
@@ -2112,7 +2112,7 @@ Product Details
     z-index: 1;
     border: 1px solid var(--crank-bdr-color);
     font-family: var(--crank-font-two);
-    text-transform: capitalize;
+
     letter-spacing: 0.1em;
 }
 
@@ -2340,7 +2340,7 @@ Product Details
     font-size: 60px;
     line-height: normal;
     font-weight: 600;
-    text-transform: capitalize;
+
 }
 
 .sign-up-one__form form {
@@ -2517,7 +2517,7 @@ Product Details
     font-size: 60px;
     line-height: 1.0em;
     font-weight: 600;
-    text-transform: capitalize;
+
 }
 
 .login-one__form form {

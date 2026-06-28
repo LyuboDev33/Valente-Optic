@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Admin\ProductVariants;
 use App\Models\AttributeValue;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -37,4 +38,23 @@ class Product extends Model
         return $this->belongsToMany(AttributeValue::class, 'product_attribute_value')->withTimestamps();
     }
 
+    public function variants()
+    {
+        return $this->belongsToMany(
+            Product::class,
+            'product_variants',
+            'parent_product_id',
+            'variant_product_id'
+        );
+    }
+
+    public function variantParent()
+    {
+        return $this->belongsToMany(
+            Product::class,
+            'product_variants',
+            'variant_product_id',
+            'parent_product_id'
+        );
+    }
 }

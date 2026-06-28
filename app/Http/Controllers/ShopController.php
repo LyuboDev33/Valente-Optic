@@ -17,7 +17,7 @@ class ShopController extends Controller
     public function index()
     {
         return view('Frontend.shop.Shop', [
-            'products'       => ProductService::productsQuery()->paginate(15),
+            'products'       => Product::with(['categories', 'attributeValues'])->paginate(15),
             'category'       => null,
             'categoriesTree' => ProductService::buildCategoriesTree(),
         ]);
@@ -101,7 +101,7 @@ class ShopController extends Controller
         $category    = Category::where('slug', $category_slug)->firstOrFail();
         $categoryIds = ProductService::getCategoryIds($category);
 
-        $products = ProductService::productsQuery()
+        $products = Product::with(['categories', 'attributeValues'])
             ->whereHas('categories', function ($query) use ($categoryIds) {
                 $query->whereIn('category_id', $categoryIds);
             })
@@ -121,7 +121,7 @@ class ShopController extends Controller
      */
     public function show(string $slug)
     {
-        $product = Product::with(['categories.children', 'attributeValues.type'])
+        $product = Product::with(['categories.children', 'attributeValues.type', 'variants', 'variantParent'])
             ->where('slug', $slug)
             ->first();
 

@@ -69,7 +69,7 @@
     font-weight: 600;
     line-height: 55px;
     margin-top: 16px;
-    text-transform: capitalize;
+
 }
 
 .contact-one__form {
@@ -388,7 +388,7 @@
     font-size: 18px;
     font-weight: 600;
     color: var(--crank-white);
-    text-transform: capitalize;
+
     margin-bottom: 23px;
 }
 
@@ -475,7 +475,7 @@
     font-weight: 600;
     line-height: 55px;
     text-align: center;
-    text-transform: capitalize;
+
     margin-bottom: 60px;
 }
 

@@ -68,7 +68,7 @@
     line-height: 45px;
     color: var(--crank-white);
     font-family: var(--crank-font-two);
-    text-transform: capitalize;
+
     position: relative;
     display: block;
     top: 8px;

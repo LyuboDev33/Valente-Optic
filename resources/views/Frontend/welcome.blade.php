@@ -2,19 +2,147 @@
 
     @section('SEO')
         <title>Начална страница | Valente Optic</title>
-        <meta name="description" content="Valente Optic — семеен бизнес с над 10 години опит. Диоптрични очила, слънчеви очила, висококачествени стъкла и професионална консултация в Бургас и Равда.">
-        <meta name="keywords" content="оптика, диоптрични очила, слънчеви очила, прогресивни стъкла, Бургас, Равда, Valente Optic">
+        <meta name="description"
+            content="Valente Optic — семеен бизнес с над 10 години опит. Диоптрични очила, слънчеви очила, висококачествени стъкла и професионална консултация в Бургас и Равда.">
+        <meta name="keywords"
+            content="оптика, диоптрични очила, слънчеви очила, прогресивни стъкла, Бургас, Равда, Valente Optic">
     @endsection
 
 
-    <div class="preloader">
+    {{-- <div class="preloader">
         <div class="preloader__image"></div>
-    </div>
-
+    </div> --}}
 
 
     <!-- Main Slider Two Start -->
     <section class="main-slider-two">
+        <div class="main-slider-two__wrap">
+            <div class="main-slider-two__carousel">
+                <div class="item">
+
+                    <div class="container">
+                        <div class="main-slider-two__content">
+
+                            <h2 class="main-slider-two__title">
+                                Качествени очила <br />
+                                за вашето зрение <br />
+                                с грижа от 2014
+                            </h2>
+
+                            <p class="main-slider-two__text">
+                                Над 19 години опит в оптиката, индивидуален подход <br />
+                                и внимателно подбрани диоптрични рамки, слънчеви очила и стъкла
+                            </p>
+
+                            <div class="main-slider-two__btn">
+                                <a href="{{ route('contact') }}" class="thm-btn">
+                                    Запази час
+                                    <span class="icon-arrow-up-right"></span>
+                                </a>
+                            </div>
+
+                            <div class="main-slider-two__img-box">
+                                <div class="">
+                                    <img src="/assets/images/mimito.png"
+                                        alt="Valente Optic — главна снимка">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Black Services Strip -->
+                    <div class="services-strip">
+
+                        <div class="services-strip__inner">
+
+                            <div class="services-strip__single">
+                                <div class="services-strip__icon">
+                                    <span class="fa-solid fa-glasses"></span>
+                                </div>
+
+                                <div class="services-strip__content">
+                                    <h4>
+                                        <a href="/service/konsultaciy-za-ochila">
+                                            Консултация за очила
+                                        </a>
+                                    </h4>
+
+                                    <p>
+                                        Избор на рамка и лещи според вашите нужди.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="services-strip__single">
+                                <div class="services-strip__icon">
+                                    <span class="fa-solid fa-eye"></span>
+                                </div>
+
+                                <div class="services-strip__content">
+                                    <h4>
+                                        <a href="/service/kompiutarna-diagnostika">
+                                            Компютърна диагностика
+                                        </a>
+                                    </h4>
+
+                                    <p>
+                                        Бързо измерване на ориентировъчен диоптър.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="services-strip__single">
+                                <div class="services-strip__icon">
+                                    <span class="fa-solid fa-screwdriver-wrench"></span>
+                                </div>
+
+                                <div class="services-strip__content">
+                                    <h4>
+                                        <a href="/service/izrabotka-ochila">
+                                            Изработка на очила
+                                        </a>
+                                    </h4>
+
+                                    <p>
+                                        Прецизна изработка и монтаж на диоптрични очила.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="services-strip__single">
+                                <div class="services-strip__icon">
+                                    <span class="fa-solid fa-screwdriver"></span>
+                                </div>
+
+                                <div class="services-strip__content">
+                                    <h4>
+                                        <a href="/service/regulirane-serviz-ochila">
+                                            Регулиране и сервиз
+                                        </a>
+                                    </h4>
+
+                                    <p>
+                                        Регулиране, почистване и обслужване на очила.
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <!-- End Black Services Strip -->
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Main Slider Two End -->
+
+
+
+    <!-- Main Slider Two Start -->
+    {{-- <section class="main-slider-two">
         <div class="main-slider-two__wrap">
             <div class="main-slider-two__carousel owl-carousel owl-theme">
                 <div class="item">
@@ -36,7 +164,7 @@
                             </div>
                             <div class="main-slider-two__img-box">
                                 <div class="main-slider-two__img">
-                                    <img src="assets/images/resources/main-slider-two-img-1.png" alt="Valente Optic — главна снимка" />
+                                    <img src="/assets/images/resources/main-slider-two-img-1.png" alt="Valente Optic — главна снимка" />
                                 </div>
                             </div>
                         </div>
@@ -44,8 +172,9 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!--Main Slider Two End -->
+
 
 
     <!--Services Four Start -->
@@ -58,91 +187,94 @@
                     <div class="section-title-two__tagline-shape-1"></div>
                 </div>
                 <h2 class="section-title-two__title title-animation">
-                    Професионални решения <br />
-                    за вашето зрение и комфорт
+                    Професионална грижа <br />
+                    за вашето зрение
                 </h2>
             </div>
+
             <div class="services-four__top">
                 <div class="row">
-                    <!--Services Three Single Start -->
-                    <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInLeft" data-wow-delay="100ms">
+
+                    <!-- Service -->
+                    <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInLeft" data-wow-delay="100ms">
                         <div class="services-four__single">
                             <div class="services-four__icon">
                                 <span class="fa-solid fa-glasses"></span>
                             </div>
+
                             <h3 class="services-four__title">
-                                <a href="#">Изработка на диоптрични очила</a>
+                                <a href="/service/konsultaciy-za-ochila">
+                                    Консултация за очила
+                                </a>
                             </h3>
+
                             <p class="services-four__text">
-                                Очила по индивидуална поръчка с прецизен монтаж на стъкла според предписанието ви
+                                Професионална консултация за избор на рамка и подходящи диоптрични или слънчеви лещи
+                                според вашите нужди.
                             </p>
                         </div>
                     </div>
-                    <!--Services Three Single End -->
-                    <!--Services Three Single Start -->
-                    <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="200ms">
+
+                    <!-- Service -->
+                    <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="200ms">
                         <div class="services-four__single">
                             <div class="services-four__icon">
-                                <span class="fa-solid fa-person-circle-check"></span>
+                                <span class="fa-solid fa-eye"></span>
                             </div>
+
                             <h3 class="services-four__title">
-                                <a href="#">Консултация при избор на рамка</a>
+                                <a href="/service/kompiutarna-diagnostika">
+                                    Компютърна диагностика
+                                </a>
                             </h3>
+
                             <p class="services-four__text">
-                                Помагаме ви да изберете рамка според формата на лицето, стила и ежедневните нужди
+                                Бързо и прецизно измерване на ориентировъчния диоптър чрез професионален
+                                авторефрактометър.
                             </p>
                         </div>
                     </div>
-                    <!--Services Three Single End -->
-                    <!--Services Three Single Start -->
-                    <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInRight" data-wow-delay="300ms">
+
+                    <!-- Service -->
+                    <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="300ms">
                         <div class="services-four__single">
                             <div class="services-four__icon">
-                                <span class="fa-solid fa-magnifying-glass"></span>
+                                <span class="fa-solid fa-screwdriver-wrench"></span>
                             </div>
+
                             <h3 class="services-four__title">
-                                <a href="#">Висококачествени стъкла</a>
+                                <a href="/service/izrabotka-ochila">
+                                    Изработка на очила
+                                </a>
                             </h3>
+
                             <p class="services-four__text">
-                                Прогресивни, бифокални, Blue Control, фотосоларни и изтънени диоптрични стъкла
+                                Изработка на диоптрични очила с качествени лещи, прецизен монтаж и възможност за
+                                изработка до 30 минути.
                             </p>
                         </div>
                     </div>
-                    <!--Services Three Single End -->
-                </div>
-            </div>
-            <div class="services-four__bottom">
-                <div class="row">
-                    <!--Services Three Single Start -->
-                    <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInLeft" data-wow-delay="400ms">
+
+                    <!-- Service -->
+                    <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInRight" data-wow-delay="400ms">
                         <div class="services-four__single">
                             <div class="services-four__icon">
-                                <span class="icon-pressure"></span>
+                                <span class="fa-solid fa-screwdriver"></span>
                             </div>
+
                             <h3 class="services-four__title">
-                                <a href="#">Слънчеви очила</a>
+                                <a href="/service/regulirane-serviz-ochila">
+                                    Регулиране и сервиз
+                                </a>
                             </h3>
+
                             <p class="services-four__text">
-                                Модели за мъже, жени и деца — с поляризация и сертифицирана UV защита
+                                Регулиране, почистване и обслужване на очила за максимален комфорт, стабилност и дълъг
+                                живот на рамките.
                             </p>
                         </div>
                     </div>
-                    <!--Services Three Single End -->
-                    <!--Services Three Single Start -->
-                    <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInRight" data-wow-delay="500ms">
-                        <div class="services-four__single">
-                            <div class="services-four__icon">
-                                <span class="icon-broken-car"></span>
-                            </div>
-                            <h3 class="services-four__title">
-                                <a href="#">Смяна и регулиране на очила</a>
-                            </h3>
-                            <p class="services-four__text">
-                                Подмяна на стъкла, регулиране на рамки и обслужване за дълъг живот на очилата ви
-                            </p>
-                        </div>
-                    </div>
-                    <!--Services Three Single End -->
+
                 </div>
             </div>
         </div>
@@ -156,7 +288,7 @@
                 <div class="col-xl-6 wow slideInLeft" data-wow-delay="100ms" data-wow-duration="2500ms">
                     <div class="about-four__left">
                         <div class="about-four__img">
-                            <img src="assets/images/resources/about-four-img-1.jpg" alt="За Valente Optic" />
+                            <img src="/assets/images/resources/about-four-img-1.jpg" alt="За Valente Optic" />
                         </div>
                     </div>
                 </div>
@@ -176,7 +308,8 @@
                             професионално обслужване и индивидуално отношение към всеки клиент. Зад нас стои
                             дългогодишен опит — повече от 19 години в оптиката.
                         </p>
-                        <div class="about-four__points-box wow slideInRight" data-wow-delay="100ms" data-wow-duration="2500ms">
+                        <div class="about-four__points-box wow slideInRight" data-wow-delay="100ms"
+                            data-wow-duration="2500ms">
                             <ul class="list-unstyled about-four__points">
                                 <li>
                                     <div class="about-four__points-count"></div>
@@ -363,7 +496,7 @@
                         <div class="gallery-four__single">
                             <div class="gallery-four__img-box wow fadeInLeft" data-wow-delay="100ms">
                                 <div class="gallery-four__img">
-                                    <img src="assets/images/gallery/gallery-4-1.jpg" alt="Диоптрични рамки" />
+                                    <img src="/assets/images/gallery/gallery-4-1.jpg" alt="Диоптрични рамки" />
                                 </div>
                                 <div class="gallery-four__content">
                                     <div class="gallery-four__title-box">
@@ -373,7 +506,7 @@
                                         <p>Колекция 2024</p>
                                     </div>
                                     <div class="gallery-four__arrow">
-                                        <a href="assets/images/gallery/gallery-4-1.jpg" class="img-popup">
+                                        <a href="/assets/images/gallery/gallery-4-1.jpg" class="img-popup">
                                             <span class="icon-arrow-right-three"></span>
                                         </a>
                                     </div>
@@ -381,7 +514,7 @@
                             </div>
                             <div class="gallery-four__img-box wow fadeInLeft" data-wow-delay="200ms">
                                 <div class="gallery-four__img">
-                                    <img src="assets/images/gallery/gallery-4-2.jpg" alt="Слънчеви очила" />
+                                    <img src="/assets/images/gallery/gallery-4-2.jpg" alt="Слънчеви очила" />
                                 </div>
                                 <div class="gallery-four__content">
                                     <div class="gallery-four__title-box">
@@ -391,7 +524,7 @@
                                         <p>UV защита</p>
                                     </div>
                                     <div class="gallery-four__arrow">
-                                        <a href="assets/images/gallery/gallery-4-2.jpg" class="img-popup">
+                                        <a href="/assets/images/gallery/gallery-4-2.jpg" class="img-popup">
                                             <span class="icon-arrow-right-three"></span>
                                         </a>
                                     </div>
@@ -403,7 +536,7 @@
                         <div class="gallery-four__single">
                             <div class="gallery-four__img-box wow fadeInRight" data-wow-delay="300ms">
                                 <div class="gallery-four__img">
-                                    <img src="assets/images/gallery/gallery-4-3.jpg" alt="Прогресивни стъкла" />
+                                    <img src="/assets/images/gallery/gallery-4-3.jpg" alt="Прогресивни стъкла" />
                                 </div>
                                 <div class="gallery-four__content">
                                     <div class="gallery-four__title-box">
@@ -413,7 +546,7 @@
                                         <p>За далеч и близо</p>
                                     </div>
                                     <div class="gallery-four__arrow">
-                                        <a href="assets/images/gallery/gallery-4-3.jpg" class="img-popup">
+                                        <a href="/assets/images/gallery/gallery-4-3.jpg" class="img-popup">
                                             <span class="icon-arrow-right-three"></span>
                                         </a>
                                     </div>
@@ -421,7 +554,7 @@
                             </div>
                             <div class="gallery-four__img-box wow fadeInRight" data-wow-delay="400ms">
                                 <div class="gallery-four__img">
-                                    <img src="assets/images/gallery/gallery-4-4.jpg" alt="Детски очила" />
+                                    <img src="/assets/images/gallery/gallery-4-4.jpg" alt="Детски очила" />
                                 </div>
                                 <div class="gallery-four__content">
                                     <div class="gallery-four__title-box">
@@ -431,7 +564,7 @@
                                         <p>Грижа за малките</p>
                                     </div>
                                     <div class="gallery-four__arrow">
-                                        <a href="assets/images/gallery/gallery-4-4.jpg" class="img-popup">
+                                        <a href="/assets/images/gallery/gallery-4-4.jpg" class="img-popup">
                                             <span class="icon-arrow-right-three"></span>
                                         </a>
                                     </div>
@@ -452,7 +585,7 @@
         <div class="container">
             <div class="testimonial-four__inner">
                 <div class="testimonial-four__big-img">
-                    <img src="assets/images/testimonial/testimonial-four-big-img.png" alt="Отзиви от клиенти" />
+                    <img src="/assets/images/testimonial/testimonial-four-big-img.png" alt="Отзиви от клиенти" />
                 </div>
                 <div class="testimonial-four__top">
                     <div class="row">
@@ -479,7 +612,8 @@
                                         </p>
                                         <div class="testimonial-four__client-info">
                                             <div class="testimonial-four__client-img">
-                                                <img src="assets/images/testimonial/testimonial-4-1.jpg" alt="Стоянка Михайлова" />
+                                                <img src="/assets/images/testimonial/testimonial-4-1.jpg"
+                                                    alt="Стоянка Михайлова" />
                                             </div>
                                             <h3 class="testimonial-four__client-name">
                                                 <a href="#">Стоянка Михайлова</a>
@@ -511,7 +645,8 @@
                                         </p>
                                         <div class="testimonial-four__client-info">
                                             <div class="testimonial-four__client-img">
-                                                <img src="assets/images/testimonial/testimonial-4-2.jpg" alt="Мария Тодорова" />
+                                                <img src="/assets/images/testimonial/testimonial-4-2.jpg"
+                                                    alt="Мария Тодорова" />
                                             </div>
                                             <h3 class="testimonial-four__client-name">
                                                 <a href="#">Мария Тодорова</a>
@@ -543,7 +678,8 @@
                                         </p>
                                         <div class="testimonial-four__client-info">
                                             <div class="testimonial-four__client-img">
-                                                <img src="assets/images/testimonial/testimonial-4-3.jpg" alt="Иван Георгиев" />
+                                                <img src="/assets/images/testimonial/testimonial-4-3.jpg"
+                                                    alt="Иван Георгиев" />
                                             </div>
                                             <h3 class="testimonial-four__client-name">
                                                 <a href="#">Иван Георгиев</a>
@@ -558,16 +694,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="testimonial-four__bottom">
-                    <div class="row">
-                        <div class="col-xl-3 col-lg-4 col-md-5">
-                            <div class="testimonial-four__bottom-img">
-                                <img src="assets/images/testimonial/testimonial-four-bottom-img-1.jpg" alt="Запази час" />
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
+                
             </div>
         </div>
     </section>

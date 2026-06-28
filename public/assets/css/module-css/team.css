@@ -301,7 +301,7 @@
     font-size: 24px;
     font-weight: 600;
     line-height: 34px;
-    text-transform: capitalize;
+
     margin-bottom: 8px;
 }
 
@@ -762,7 +762,7 @@
     font-size: 36px;
     font-weight: 500;
     line-height: 46px;
-    text-transform: capitalize;
+
 }
 
 .team-details__client-sub-title {

@@ -53,7 +53,7 @@
 .why-choose-one__user-text {
     font-weight: 600;
     font-family: var(--crank-font-two);
-    text-transform: capitalize;
+
     color: var(--crank-white);
     line-height: 28px;
 }
@@ -94,7 +94,7 @@
     line-height: 28px;
     color: var(--crank-white);
     font-family: var(--crank-font-two);
-    text-transform: capitalize;
+
 }
 
 .why-choose-one__count-box {

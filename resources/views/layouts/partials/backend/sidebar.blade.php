@@ -59,6 +59,15 @@
             </li>
 
             <li>
+                <a href="{{ route('admin.promocodes.index') }}"
+                    class="{{ request()->routeIs('admin.promocodes.index') ? 'is-active' : '' }}">
+                 <i class="fa-solid fa-percent"></i>
+                    <span>Промо кодове</span>
+                </a>
+            </li>
+
+
+            <li>
                 <a href="{{ route('profile.edit') }}"
                     class="{{ request()->routeIs('profile.*') ? 'is-active' : '' }}">
                     <i class="fa fa-user"></i>

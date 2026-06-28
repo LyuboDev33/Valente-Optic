@@ -4,9 +4,9 @@
         <title>
             {{ $category ? $category->name . ' — Магазин' : 'Магазин' }} | Valente Optic
         </title>
-        <meta name="description" content="Разгледайте нашата колекция от диоптрични рамки, слънчеви очила и стъкла във Valente Optic.">
+        <meta name="description"
+            content="Разгледайте нашата колекция от диоптрични рамки, слънчеви очила и стъкла във Valente Optic.">
     @endsection
-
 
 
     <!--Product Start-->
@@ -14,29 +14,31 @@
         <div class="container">
             <div class="row">
 
-                {{-- ============ SIDEBAR ============ --}}
                 <div class="col-xl-3 col-lg-12">
+
+                    <button class="shop-sidebar-toggle d-md-none" id="shopSidebarToggle">
+                        <i class="fa-solid fa-bars"></i>
+                        Категории
+                    </button>
+
+                    <div class="shop-sidebar-overlay"></div>
+
                     <div class="product__sidebar">
 
-
-
-                        {{-- Categories tree --}}
                         <div class="shop-category product__sidebar-single">
                             <h3 class="product__sidebar-title">Категории</h3>
 
                             <ul class="list-unstyled shop-category__tree">
 
-                                {{-- "All products" entry --}}
-                                <li class="{{ ! $category ? 'active' : '' }}">
+                                <li class="{{ !$category ? 'active' : '' }}">
                                     <a href="{{ route('shop.index') }}">
                                         Всички продукти
                                     </a>
                                 </li>
 
-                                {{-- Recursive tree --}}
                                 @foreach ($categoriesTree as $node)
                                     @include('Frontend.shop.partials.category-tree', [
-                                        'node'       => $node,
+                                        'node' => $node,
                                         'activeSlug' => $category?->slug,
                                     ])
                                 @endforeach
@@ -50,7 +52,6 @@
                 <div class="col-xl-9 col-lg-12">
                     <div class="product__items">
 
-                        {{-- Results count --}}
                         <div class="row">
                             <div class="col-xl-12">
                                 <div class="product__showing-result">
@@ -78,14 +79,14 @@
                                                 <a href="{{ route('shop.show', $product->slug) }}">
                                                     @if ($product->main_image)
                                                         <img src="{{ asset('assets/images/products/' . $product->main_image) }}"
-                                                             alt="{{ $product->name }}" />
+                                                            alt="{{ $product->name }}" />
                                                         <img src="{{ asset('assets/images/products/' . $product->main_image) }}"
-                                                             alt="{{ $product->name }}" />
+                                                            alt="{{ $product->name }}" />
                                                     @else
                                                         <img src="{{ asset('assets/images/shop/shop-product-1-1.jpg') }}"
-                                                             alt="{{ $product->name }}" />
+                                                            alt="{{ $product->name }}" />
                                                         <img src="{{ asset('assets/images/shop/shop-product-1-1.jpg') }}"
-                                                             alt="{{ $product->name }}" />
+                                                            alt="{{ $product->name }}" />
                                                     @endif
                                                 </a>
                                             </div>
@@ -105,7 +106,7 @@
                                                 </h4>
 
                                                 <p class="product__all-price">
-                                                   @if ($product->discount)
+                                                    @if ($product->discount)
                                                         <del class="text-muted me-2">
                                                             {{ number_format($product->price, 2) }} €
                                                         </del>
@@ -122,7 +123,7 @@
 
                                                 <div class="product__all-btn-box">
                                                     <a class="thm-btn product__all-btn"
-                                                       href="{{ route('shop.show', $product->slug) }}">
+                                                        href="{{ route('shop.show', $product->slug) }}">
                                                         Разгледай
                                                     </a>
                                                 </div>
@@ -162,5 +163,33 @@
         </div>
     </section>
     <!--Product End-->
+
+   <script>
+document.addEventListener('DOMContentLoaded', function () {
+    const shopSidebarToggle = document.getElementById('shopSidebarToggle');
+    const shopSidebar = document.querySelector('.product__sidebar');
+    const shopSidebarOverlay = document.querySelector('.shop-sidebar-overlay');
+
+    if (!shopSidebarToggle || !shopSidebar || !shopSidebarOverlay) {
+        console.log('test');
+
+        return;
+    }
+
+    function closeSidebar() {
+        shopSidebar.classList.remove('active');
+        shopSidebarOverlay.classList.remove('active');
+        document.body.classList.remove('sidebar-open');
+    }
+
+    shopSidebarToggle.addEventListener('click', function () {
+        shopSidebar.classList.toggle('active');
+        shopSidebarOverlay.classList.toggle('active');
+        document.body.classList.toggle('sidebar-open');
+    });
+
+    shopSidebarOverlay.addEventListener('click', closeSidebar);
+});
+</script>
 
 </x-frontend>
