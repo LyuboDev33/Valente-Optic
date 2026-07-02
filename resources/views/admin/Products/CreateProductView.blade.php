@@ -33,7 +33,6 @@
         @include('admin.components.create-product-form', [
             'action' => route('admin.product.create'),
         ])
-        
     </div>
 
 </x-backend>

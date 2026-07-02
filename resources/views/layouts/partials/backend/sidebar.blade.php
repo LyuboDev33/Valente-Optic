@@ -59,6 +59,15 @@
             </li>
 
             <li>
+                <a href="{{ route('admin.glasses.index') }}"
+                    class="{{ request()->routeIs('admin.glasses.index') ? 'is-active' : '' }}">
+                  <i class="fa-solid fa-glasses"></i>
+                    <span>Стъкла</span>
+                </a>
+            </li>
+
+
+            <li>
                 <a href="{{ route('admin.promocodes.index') }}"
                     class="{{ request()->routeIs('admin.promocodes.index') ? 'is-active' : '' }}">
                  <i class="fa-solid fa-percent"></i>

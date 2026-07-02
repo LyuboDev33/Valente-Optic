@@ -106,7 +106,7 @@
         <div class="container">
             <div class="counter-one__inner">
                 <ul class="list-unstyled counter-one__list">
-                    <li class="wow fadeInLeft" data-wow-delay="100ms">
+                    <li>
                         <div class="counter-one__single">
                             <div class="counter-one__count-box">
                                 <h3 class="odometer" data-count="19">00</h3>
@@ -115,7 +115,7 @@
                             <p class="counter-one__text">Години опит</p>
                         </div>
                     </li>
-                    <li class="wow fadeInLeft" data-wow-delay="200ms">
+                    <li>
                         <div class="counter-one__single">
                             <div class="counter-one__count-box">
                                 <h3 class="odometer" data-count="5">00</h3>
@@ -124,7 +124,7 @@
                             <p class="counter-one__text">Доволни клиенти</p>
                         </div>
                     </li>
-                    <li class="wow fadeInRight" data-wow-delay="300ms">
+                    <li>
                         <div class="counter-one__single">
                             <div class="counter-one__count-box">
                                 <h3 class="odometer" data-count="2">00</h3>
@@ -133,7 +133,7 @@
                             <p class="counter-one__text">Локации в България</p>
                         </div>
                     </li>
-                    <li class="wow fadeInRight" data-wow-delay="400ms">
+                    <li>
                         <div class="counter-one__single">
                             <div class="counter-one__count-box">
                                 <h3 class="odometer" data-count="500">00</h3>
@@ -220,7 +220,7 @@
             </div>
             <div class="row">
                 <!--Services Two Single Start-->
-                <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="100ms">
+                <div class="col-xl-4 col-lg-4 ">
                     <div class="services-two__single">
                         <div class="services-two__icon">
                             <span class="icon-gearshift"></span>
@@ -246,14 +246,14 @@
                 </div>
                 <!--Services Two Single End-->
                 <!--Services Two Single Start-->
-                <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="200ms">
+                <div class="col-xl-4 col-lg-4">
                     <div class="services-two__img">
                         <img src="/assets/images/team/team-two-img-1.png" alt="Valente Optic екип" />
                     </div>
                 </div>
                 <!--Services Two Single End-->
                 <!--Services Two Single Start-->
-                <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="300ms">
+                <div class="col-xl-4 col-lg-4">
                     <div class="services-two__single">
                         <div class="services-two__icon">
                             <span class="icon-piston"></span>
@@ -387,7 +387,7 @@
                     </div>
                     <div class="col-xl-6 col-lg-6">
                         <div class="testimonial-two__right">
-                            <div class="testimonial-two__img wow fadeInUp" data-wow-delay="100ms">
+                            <div class="testimonial-two__img">
                                 <img src="/assets/images/testimonial/testimonial-two-img-1.png"
                                     alt="Отзиви Valente Optic" />
                             </div>

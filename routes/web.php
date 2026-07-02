@@ -30,6 +30,13 @@ Route::delete('/cart/remove/{productId}', [OrdersController::class, 'removeProdu
 Route::post('/order/create', [OrdersController::class, 'create'])->name('order.create');
 
 
+/** All wishlist routes */
+
+Route::prefix('wishlist')->group(function () {
+    Route::get('/', [ShopController::class, 'wishlist'])->name('wishlist');
+    Route::post('/add-to-wishlist/{product}', [ShopController::class, 'addToWishlist'])->name('wishlist.add');
+});
+
 
 /** All routes for the services */
 Route::get('/services', [FrontEndController::class, 'services'])->name('services');
@@ -46,5 +53,5 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
-require __DIR__.'/admin.php';
+require __DIR__ . '/auth.php';
+require __DIR__ . '/admin.php';

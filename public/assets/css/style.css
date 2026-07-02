@@ -1673,10 +1673,13 @@ ul {
 }
 
 .stricky-header .main-menu-two__wrapper-inner {
-    padding: 0 20px 0;
+    padding: 10px 15px 10px;
     background-color: transparent;
 }
 
+.m-0-auto {
+    margin: 0 auto;
+}
 
 /*--------------------------------------------------------------
 # Navigations Three
@@ -1958,8 +1961,8 @@ ul {
 
 .main-menu-four .main-menu__list>li,
 .stricky-header.main-menu-four .main-menu__list>li {
-    padding-top: 32.5px;
-    padding-bottom: 32.5px;
+    padding-top: 13.5px;
+    padding-bottom: 13.5px;
 }
 
 .main-menu-four .main-menu__list>li>a,
@@ -2196,9 +2199,16 @@ ul {
     cursor: pointer;
 }
 
-.cart.numb img {
+.cart.numb .shopping-cart {
     width: 45px;
     height: 75px;
+    object-fit: contain;
+    display: block;
+}
+
+.cart.numb .heart {
+    width: 30px;
+    height: 70px;
     object-fit: contain;
     display: block;
 }
@@ -2236,6 +2246,15 @@ ul {
         font-size: 10px;
         line-height: 16px;
     }
+}
+
+.wishlist-btn {
+    background: none;
+    border: none;
+}
+
+.wishlist-btn .fa-heart {
+
 }
 
 
@@ -2733,6 +2752,13 @@ body.product-variant-sidebar-open {
     padding: 10px;
     font-size: 14px;
     font-weight: 600;
+}
+
+@media (min-width: 992px) {
+    .product-page-image {
+        position: sticky;
+        top: 100px;
+    }
 }
 
 

@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\CreateProductRequest;
+use App\Models\Admin\Glass;
+use App\Models\Admin\LensIndex;
+use App\Models\Admin\LensIndexProduct;
 use App\Models\Admin\ProductVariants;
 use App\Models\AttributeType;
 use App\Models\Category;
@@ -98,64 +102,31 @@ class AdminProductsController extends Controller
 
         $selectedAttributeValueIds = $product->attributeValues->pluck('id')->toArray();
 
+        $glasses = Glass::with('values')->orderBy('id', 'desc')->get();
+        $lens = LensIndex::orderBy('id', 'desc')->get();
+
         return view('admin.Products.Show', [
             'product'                   => $product,
             'categories'                => $categories,
             'attributeTypes'            => $attributeTypes,
             'selectedAttributeValueIds' => $selectedAttributeValueIds,
+            'glasses'                   => $glasses,
+            'lens'                      => $lens
         ]);
     }
 
     /** Create the product and a variation if $product is not null
      *
-     * @param Request $request
+     * @param CreateProductRequest $request
      * @param Product|null $product
      * @return RedirectResponse
      */
-    public function create(Request $request, ?Product $product = null): RedirectResponse
+    public function create(CreateProductRequest $request, ?Product $product = null): RedirectResponse
     {
+        /** Validate the request */
+        $validated = $request->validated();
+
         $parentProduct = $product;
-
-        $validated = $request->validate([
-            'name'               => ['required', 'string', 'max:255'],
-            'sku'                => ['required', 'string', 'max:255', Rule::unique('products', 'sku')],
-            'category_id'        => ['required', 'exists:categories,id'],
-            'description'        => ['required', 'string'],
-            'stock'              => ['required', 'integer', 'min:0'],
-            'discount'           => ['nullable', 'numeric', 'min:0', 'max:99'],
-            'price'              => ['required', 'numeric', 'min:0'],
-            'main_image'         => ['required', 'image', 'mimes:jpg,jpeg,png,webp'],
-            'gallery'            => ['required', 'array'],
-            'gallery.*'          => ['image', 'mimes:jpg,jpeg,png,webp'],
-            'attribute_values'   => ['nullable', 'array'],
-        ], [
-            'name.required' => 'Името на продукта е задължително.',
-
-            'sku.required' => 'SKU е задължително.',
-            'sku.unique'   => 'Вече съществува продукт със същото SKU.',
-
-            'discount.max'  => 'Максималната отстъпка може да бъде 99%',
-            'discount.min'  => 'Минималната отстъпка трябва да бъде 0%',
-
-            'category_id.required' => 'Моля изберете категория.',
-            'category_id.exists' => 'Избраната категория не съществува.',
-
-            'description.required' => 'Описанието на продукта е задължително.',
-
-            'price.required' => 'Цената е задължителна.',
-            'price.numeric' => 'Цената трябва да бъде число.',
-            'price.min' => 'Цената не може да бъде отрицателна.',
-
-            'main_image.required' => 'Главната снимка е задължителна.',
-            'main_image.image' => 'Файлът трябва да бъде изображение.',
-            'main_image.mimes' => 'Главната снимка трябва да бъде JPG, JPEG, PNG или WEBP.',
-
-            'gallery.required' => 'Моля качете снимки в галерията.',
-            'gallery.array' => 'Галерията е невалидна.',
-
-            'gallery.*.image' => 'Всеки файл в галерията трябва да бъде изображение.',
-            'gallery.*.mimes' => 'Снимките в галерията трябва да бъдат JPG, JPEG, PNG или WEBP.',
-        ]);
 
         $slug = Str::slug($validated['name']) . '-' . Str::slug($validated['sku']);
 

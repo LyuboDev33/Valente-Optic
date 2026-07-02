@@ -62,6 +62,9 @@
     <script src="https://cdn.tiny.cloud/1/daj9dftxtp56iiymy0p7tr418kjkhmf54509unx3enwwzrca/tinymce/8/tinymce.min.js"
         referrerpolicy="origin" crossorigin="anonymous"></script>
 
+        <script src="/assets/js/jquery-3.6.0.min.js?v=<?php echo time(); ?>"></script>
+
+
 
 </head>
 
@@ -82,6 +85,13 @@
         </div>
 
     </div>
+    <script src="/assets/js/bootstrap.bundle.min.js?v=<?php echo time(); ?>"></script>
+    <script src="/assets/js/jarallax.min.js?v=<?php echo time(); ?>"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.1/dist/fancybox/fancybox.umd.js"></script>
+
+
 
     <script>
         // User dropdown toggle

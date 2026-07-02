@@ -177,6 +177,11 @@
                     <small class="text-muted">Качването на нови снимки ще ги добави към съществуващите.</small>
                 </div>
 
+                <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
+                    rel="stylesheet" />
+
+                <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
                 @if ($attributeTypes->isNotEmpty())
                     <div class="col-lg-12">
                         <hr>
@@ -192,28 +197,24 @@
                                 @endif
                             </label>
 
-                            @php
-                                // Fall back chain: old input > already-selected on this product > nothing
-                                $currentlySelected = old('attribute_values', $selectedAttributeValueIds);
-                            @endphp
+
 
                             @if ($type->is_multiple)
-                                {{-- multi-select --}}
-                                <select name="attribute_values[]" class="form-control" multiple size="4">
+                                <select name="attribute_values[]" class="form-control searchable-select" multiple>
                                     @foreach ($type->values as $value)
                                         <option value="{{ $value->id }}"
-                                            {{ in_array($value->id, $currentlySelected) ? 'selected' : '' }}>
+                                            {{ in_array($value->id, $selectedAttributeValueIds) ? 'selected' : '' }}>
                                             {{ $value->value }}
                                         </option>
                                     @endforeach
                                 </select>
                             @else
-                                {{-- single-select --}}
-                                <select name="attribute_values[]" class="form-control">
+                                <select name="attribute_values[]" class="form-control searchable-select">
                                     <option value="">— Избери —</option>
+
                                     @foreach ($type->values as $value)
                                         <option value="{{ $value->id }}"
-                                            {{ in_array($value->id, $currentlySelected) ? 'selected' : '' }}>
+                                            {{ in_array($value->id, $selectedAttributeValueIds) ? 'selected' : '' }}>
                                             {{ $value->value }}
                                         </option>
                                     @endforeach
@@ -289,6 +290,13 @@
             openButton.addEventListener('click', openSidebar);
             closeButton.addEventListener('click', closeSidebar);
             overlay.addEventListener('click', closeSidebar);
+
+
+            $('.searchable-select').select2({
+                width: '100%',
+                placeholder: 'Търси...',
+                allowClear: true
+            });
         });
     </script>
 

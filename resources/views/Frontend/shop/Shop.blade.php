@@ -121,12 +121,25 @@
                                                     @endif
                                                 </p>
 
-                                                <div class="product__all-btn-box">
-                                                    <a class="thm-btn product__all-btn"
+                                                <form method="POST"
+                                                    action="{{ route('wishlist.add', $product) }}"
+                                                    class="product__all-btn-box d-flex justify-content-center">
+
+                                                    @csrf
+
+                                                    <a class="thm-btn product__all-btn p-2"
                                                         href="{{ route('shop.show', $product->slug) }}">
                                                         Разгледай
                                                     </a>
-                                                </div>
+                                                    @php
+                                                        $wishlist = Session::get('wishlist', []);
+                                                        $isInWishlist = isset($wishlist[$product->id]);
+                                                    @endphp
+                                                    <button type="submit" class="wishlist-btn">
+                                                        <i
+                                                            class="{{ $isInWishlist ? 'fa-solid' : 'fa-regular' }} fa-heart"></i>
+                                                    </button>
+                                                </form>
 
                                             </div>
                                         </div>
@@ -164,32 +177,40 @@
     </section>
     <!--Product End-->
 
-   <script>
-document.addEventListener('DOMContentLoaded', function () {
-    const shopSidebarToggle = document.getElementById('shopSidebarToggle');
-    const shopSidebar = document.querySelector('.product__sidebar');
-    const shopSidebarOverlay = document.querySelector('.shop-sidebar-overlay');
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
 
-    if (!shopSidebarToggle || !shopSidebar || !shopSidebarOverlay) {
-        console.log('test');
+            toggleSidebar();
 
-        return;
-    }
+        });
 
-    function closeSidebar() {
-        shopSidebar.classList.remove('active');
-        shopSidebarOverlay.classList.remove('active');
-        document.body.classList.remove('sidebar-open');
-    }
+        function toggleSidebar() {
+            const shopSidebarToggle = document.getElementById('shopSidebarToggle');
+            const shopSidebar = document.querySelector('.product__sidebar');
+            const shopSidebarOverlay = document.querySelector('.shop-sidebar-overlay');
 
-    shopSidebarToggle.addEventListener('click', function () {
-        shopSidebar.classList.toggle('active');
-        shopSidebarOverlay.classList.toggle('active');
-        document.body.classList.toggle('sidebar-open');
-    });
+            if (!shopSidebarToggle || !shopSidebar || !shopSidebarOverlay) {
+                console.log('test');
 
-    shopSidebarOverlay.addEventListener('click', closeSidebar);
-});
-</script>
+                return;
+            }
+
+            function closeSidebar() {
+                shopSidebar.classList.remove('active');
+                shopSidebarOverlay.classList.remove('active');
+                document.body.classList.remove('sidebar-open');
+            }
+
+            shopSidebarToggle.addEventListener('click', function() {
+                shopSidebar.classList.toggle('active');
+                shopSidebarOverlay.classList.toggle('active');
+                document.body.classList.toggle('sidebar-open');
+            });
+
+            shopSidebarOverlay.addEventListener('click', closeSidebar);
+        }
+
+
+    </script>
 
 </x-frontend>

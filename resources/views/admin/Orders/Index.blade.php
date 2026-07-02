@@ -22,6 +22,7 @@
                 <table class="table cart-table">
                     <thead>
                         <tr>
+                            <th>ID</th>
                             <th>Номер на поръчка</th>
                             <th>Клиент</th>
                             <th>Телефон</th>
@@ -35,6 +36,8 @@
                     <tbody>
                         @forelse ($orders as $order)
                             <tr>
+
+                                <td>{{ $order->id }} </td>
 
                                 <td>
                                     <strong>{{ $order->order_number }}</strong>

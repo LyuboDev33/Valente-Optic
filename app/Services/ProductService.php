@@ -9,12 +9,12 @@ use Illuminate\Support\Collection;
 
 class ProductService
 {
-    /** Get the categories of a specific product
+    /** This method checks whether the product is Dioptric
      *
      * @param Product $product
      * @return boolean
      */
-    public static function getProductTree(Product $product): bool
+    public static function isProductDioptric(Product $product): bool
     {
         $categoryIds = [];
 

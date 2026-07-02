@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     checkoutInvoice();
     checkoutDelivery();
+    addToWishlist();
 });
 
 function checkoutInvoice() {
@@ -76,4 +77,53 @@ function checkoutDelivery() {
         personalDelivery.classList.add('d-none');
         officeDelivery.classList.remove('d-none');
     });
+}
+
+function addToWishlist() {
+
+    document.addEventListener('submit', function (e) {
+
+        e.preventDefault();
+
+        const form = e.target;
+        const button = form.querySelector('.wishlist-btn');
+        const icon = button.querySelector('i');
+
+        if(!button) return;
+
+        fetch(form.action, {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': form.querySelector('input[name="_token"]').value,
+                'Accept': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+
+                if (!data.success) {
+                    return;
+                }
+
+                let wishlistCount = document.querySelectorAll('.wishlist-count');
+                wishlistCount.forEach(wishlist => {
+                    wishlist.innerHTML = data.count;
+                });
+
+                if (data.action === 'added') {
+                    icon.classList.remove('fa-regular');
+                    icon.classList.add('fa-solid');
+                } else {
+                    icon.classList.remove('fa-solid');
+                    icon.classList.add('fa-regular');
+                }
+
+            })
+            .catch(error => {
+                console.error(error);
+            });
+
+    });
+
 }

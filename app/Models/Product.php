@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
-use App\Models\Admin\ProductVariants;
+use App\Models\Admin\GlassValue;
+use App\Models\Admin\LensIndex;
 use App\Models\AttributeValue;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Product extends Model
@@ -57,4 +57,29 @@ class Product extends Model
             'parent_product_id'
         );
     }
+
+
+    public function glassValues()
+    {
+        return $this->belongsToMany(
+            GlassValue::class,
+            'glass_value_product',
+            'product_id',
+            'glass_value_id'
+        )->withPivot('price')->withTimestamps();
+    }
+
+    public function lensIndexes(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            LensIndex::class,
+            'lens_index_product',
+            'product_id',
+            'lens_index_id'
+        )->withPivot('price')->withTimestamps();
+    }
+
+
+
+    
 }

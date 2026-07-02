@@ -76,7 +76,7 @@ class OrdersController extends Controller
             !empty(array_filter($leftEye));
 
 
-        $isProductDioptric = ProductService::getProductTree($product);
+        $isProductDioptric = ProductService::isProductDioptric($product);
 
         /** Check if the products is dioptric */
         if ($isProductDioptric) {

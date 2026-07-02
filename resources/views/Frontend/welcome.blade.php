@@ -196,7 +196,7 @@
                 <div class="row">
 
                     <!-- Service -->
-                    <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInLeft" data-wow-delay="100ms">
+                    <div class="col-xl-3 col-lg-6 col-md-6">
                         <div class="services-four__single">
                             <div class="services-four__icon">
                                 <span class="fa-solid fa-glasses"></span>
@@ -216,7 +216,7 @@
                     </div>
 
                     <!-- Service -->
-                    <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="200ms">
+                    <div class="col-xl-3 col-lg-6 col-md-6 ">
                         <div class="services-four__single">
                             <div class="services-four__icon">
                                 <span class="fa-solid fa-eye"></span>
@@ -236,7 +236,7 @@
                     </div>
 
                     <!-- Service -->
-                    <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="300ms">
+                    <div class="col-xl-3 col-lg-6 col-md-6">
                         <div class="services-four__single">
                             <div class="services-four__icon">
                                 <span class="fa-solid fa-screwdriver-wrench"></span>
@@ -256,7 +256,7 @@
                     </div>
 
                     <!-- Service -->
-                    <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInRight" data-wow-delay="400ms">
+                    <div class="col-xl-3 col-lg-6 col-md-6">
                         <div class="services-four__single">
                             <div class="services-four__icon">
                                 <span class="fa-solid fa-screwdriver"></span>
@@ -285,7 +285,7 @@
     <section class="about-four">
         <div class="container">
             <div class="row">
-                <div class="col-xl-6 wow slideInLeft" data-wow-delay="100ms" data-wow-duration="2500ms">
+                <div class="col-xl-6 ">
                     <div class="about-four__left">
                         <div class="about-four__img">
                             <img src="/assets/images/resources/about-four-img-1.jpg" alt="За Valente Optic" />
@@ -308,8 +308,7 @@
                             професионално обслужване и индивидуално отношение към всеки клиент. Зад нас стои
                             дългогодишен опит — повече от 19 години в оптиката.
                         </p>
-                        <div class="about-four__points-box wow slideInRight" data-wow-delay="100ms"
-                            data-wow-duration="2500ms">
+                        <div class="about-four__points-box">
                             <ul class="list-unstyled about-four__points">
                                 <li>
                                     <div class="about-four__points-count"></div>
@@ -388,7 +387,7 @@
                 </h2>
             </div>
             <ul class="list-unstyled feature-one__list">
-                <li class="wow fadeInLeft" data-wow-delay="100ms">
+                <li>
                     <div class="feature-one__title-box">
                         <h2 class="feature-one__title">
                             <a href="#">Дългогодишен <br />опит</a>
@@ -405,7 +404,7 @@
                         </div>
                     </div>
                 </li>
-                <li class="wow fadeInRight" data-wow-delay="200ms">
+                <li>
                     <div class="feature-one__title-box">
                         <h2 class="feature-one__title">
                             <a href="#">Индивидуален <br />подход</a>
@@ -422,7 +421,7 @@
                         </div>
                     </div>
                 </li>
-                <li class="wow fadeInLeft" data-wow-delay="300ms">
+                <li>
                     <div class="feature-one__title-box">
                         <h2 class="feature-one__title">
                             <a href="#">Качествени <br />материали</a>
@@ -439,7 +438,7 @@
                         </div>
                     </div>
                 </li>
-                <li class="wow fadeInRight" data-wow-delay="400ms">
+                <li>
                     <div class="feature-one__title-box">
                         <h2 class="feature-one__title">
                             <a href="#">Онлайн <br />консултации</a>
@@ -494,7 +493,7 @@
                 <div class="row">
                     <div class="col-xl-6 col-lg-6">
                         <div class="gallery-four__single">
-                            <div class="gallery-four__img-box wow fadeInLeft" data-wow-delay="100ms">
+                            <div class="gallery-four__img-box">
                                 <div class="gallery-four__img">
                                     <img src="/assets/images/gallery/gallery-4-1.jpg" alt="Диоптрични рамки" />
                                 </div>
@@ -512,7 +511,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="gallery-four__img-box wow fadeInLeft" data-wow-delay="200ms">
+                            <div class="gallery-four__img-box">
                                 <div class="gallery-four__img">
                                     <img src="/assets/images/gallery/gallery-4-2.jpg" alt="Слънчеви очила" />
                                 </div>
@@ -534,7 +533,7 @@
                     </div>
                     <div class="col-xl-6 col-lg-6">
                         <div class="gallery-four__single">
-                            <div class="gallery-four__img-box wow fadeInRight" data-wow-delay="300ms">
+                            <div class="gallery-four__img-box">
                                 <div class="gallery-four__img">
                                     <img src="/assets/images/gallery/gallery-4-3.jpg" alt="Прогресивни стъкла" />
                                 </div>
@@ -552,7 +551,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="gallery-four__img-box wow fadeInRight" data-wow-delay="400ms">
+                            <div class="gallery-four__img-box">
                                 <div class="gallery-four__img">
                                     <img src="/assets/images/gallery/gallery-4-4.jpg" alt="Детски очила" />
                                 </div>
@@ -694,7 +693,7 @@
                         </div>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </section>

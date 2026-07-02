@@ -1,4 +1,4 @@
-<li class="{{ ($activeSlug ?? null) === $node['slug'] ? 'active' : '' }}">
+<li class="{{ ($activeSlug ?? null) === $node['slug'] ? 'active open' : '' }}">
     <a href="{{ route('shop.category', $node['slug']) }}">
         {{ $node['name'] }}
     </a>

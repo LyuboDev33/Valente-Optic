@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminCategoriesController;
+use App\Http\Controllers\Admin\AdminGlassesController;
 use App\Http\Controllers\Admin\AdminOrdersController;
 use App\Http\Controllers\Admin\AdminProductsController;
 use App\Http\Controllers\Admin\AdminPromoCodesController;
@@ -13,6 +14,22 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('admin')
     ->middleware(['auth'])
     ->group(function () {
+
+        Route::prefix('glasses')->group(function () {
+            Route::get('/', [AdminGlassesController::class, 'index'])->name('admin.glasses.index');
+
+            Route::post('/store', [AdminGlassesController::class, 'storeGlass'])->name('admin.glasses.store');
+            Route::delete('/destroy/{glass}', [AdminGlassesController::class, 'destroyGlass'])->name('admin.glasses.destroy');
+
+            Route::post('/values/store', [AdminGlassesController::class, 'storeGlassValue'])->name('admin.glass-values.store');
+            Route::put('/values/update/{glassValue}', [AdminGlassesController::class, 'updateGlassValue'])->name('admin.glass-values.update');
+            Route::delete('/values/destroy/{glassValue}', [AdminGlassesController::class, 'destroyGlassValue'])->name('admin.glass-values.destroy');
+
+            Route::post('/lances/store', [AdminGlassesController::class, 'storeLance'])->name('admin.lances.store');
+            Route::put('/lances/update/{lance}', [AdminGlassesController::class, 'updateLance'])->name('admin.lances.update');
+            Route::delete('/lances/destroy/{lance}', [AdminGlassesController::class, 'destroyLance'])->name('admin.lances.destroy');
+        });
+
 
         Route::prefix('promo-codes')->group(function () {
             Route::get('/', [AdminPromoCodesController::class, 'index'])->name('admin.promocodes.index');
@@ -35,7 +52,6 @@ Route::prefix('admin')
             Route::put('/{product}', [AdminProductsController::class, 'update'])->name('admin.product.update');
             Route::delete('/{product:slug}', [AdminProductsController::class, 'destroy'])->name('admin.products.destroy');
         });
-
 
 
         Route::prefix('product-attributes')->group(function () {

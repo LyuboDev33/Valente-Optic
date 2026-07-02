@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css?v=<?php echo time(); ?>" />
     <link rel="stylesheet" href="/assets/css/animate.min.css?v=<?php echo time(); ?>" />
     <link rel="stylesheet" href="/assets/css/custom-animate.css?v=<?php echo time(); ?>" />
-    <link rel="stylesheet" href="/assets/css/swiper.min.css?v=<?php echo time(); ?>" />
     <link rel="stylesheet" href="/assets/css/jarallax.css?v=<?php echo time(); ?>" />
 
     {{-- <link rel="stylesheet" href="/assets/css/jquery.magnific-popup.css?v=<?php echo time(); ?>" /> --}}
@@ -109,12 +108,6 @@
     <script src="/assets/js/jquery-3.6.0.min.js?v=<?php echo time(); ?>"></script>
     <script src="/assets/js/bootstrap.bundle.min.js?v=<?php echo time(); ?>"></script>
     <script src="/assets/js/jarallax.min.js?v=<?php echo time(); ?>"></script>
-    <script src="/assets/js/swiper.min.js?v=<?php echo time(); ?>"></script>
-
-    <script src="/assets/js/wow.js?v=<?php echo time(); ?>"></script>
-    {{-- <script src="/assets/js/owl.carousel.min.js?v=<?php echo time(); ?>"></script> --}}
-
-    <script src="/assets/js/jquery-sidebar-content.js?v=<?php echo time(); ?>"></script>
 
     <script src="/assets/js/aos.js?v=<?php echo time(); ?>"></script>
 
