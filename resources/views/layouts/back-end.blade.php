@@ -57,7 +57,7 @@
 
             @include('layouts.partials.backend.header')
 
-            <main id="content" class="dashboard-content shadow">
+            <main id="content" class="dashboard-content shadow position-relative">
                 {{ $slot }}
             </main>
 

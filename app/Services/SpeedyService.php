@@ -61,11 +61,12 @@ class SpeedyService
     /**
      * Call this method whenever you want to insert all latest offices
      *
-     * @return void
      */
-    public static function insertOffices(): void
+    public static function insertOffices()
     {
         $offices = static::offices();
+
+        return $offices;
 
         SpeedyOffice::truncate();
 

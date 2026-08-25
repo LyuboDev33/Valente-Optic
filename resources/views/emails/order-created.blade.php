@@ -38,12 +38,11 @@
                                 padding: 35px 25px 20px;
                                 background-color: #ffffff;
                             ">
-                            <img src="{{ url('/assets/images/resources/order-success.png') }}" alt="Успешна поръчка"
+                            <img src="{{ url('/assets/images/logo-valente.png') }}" alt="Успешна поръчка"
                                 width="100"
                                 style="
                                     display: block;
-                                    width: 100px;
-                                    max-width: 100px;
+                                    width: 250px;
                                     height: auto;
                                     border: 0;
                                     margin: 0 auto 20px;

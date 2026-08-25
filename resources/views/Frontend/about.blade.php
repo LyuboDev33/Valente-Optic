@@ -174,6 +174,7 @@
         </div>
     </section>
     <!-- Brand Marquee End -->
+
     <!-- Brand Marquee Start -->
     <section class="brand-marquee">
         <div class="brand-marquee__viewport">
@@ -407,7 +408,7 @@
                                                 </h4>
 
                                                 <p class="testimonial-showcase__location">
-                                                    Клиент, Бургас
+                                                    Доволен клиент 
                                                 </p>
                                             </div>
                                         </div>
@@ -497,7 +498,7 @@
                                                 </h4>
 
                                                 <p class="testimonial-showcase__location">
-                                                    Редовен клиент
+                                                    Доволен клиент
                                                 </p>
                                             </div>
                                         </div>

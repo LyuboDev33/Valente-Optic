@@ -1,34 +1,40 @@
 <x-backend>
-<div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4 max-width-admin-products">
 
-    <h3 class="mb-0">Всички продукти админ табло</h3>
+        <h3 class="mb-0">Всички продукти админ табло</h3>
 
-    <div class="product-search-bar d-flex gap-2">
+        <div class="product-search-bar d-flex flex-column gap-2">
 
-        <div class="position-relative">
-            <i class="fa-solid fa-magnifying-glass product-search-icon"></i>
-            <input
-                type="text"
-                class="form-control product-search-input"
-                placeholder="Търси по име">
+            <form method="GET" class="position-relative">
+                <i class="fa-solid fa-magnifying-glass product-search-icon"></i>
+                <select id="brand" name="brand" class="form-select attribute-choice"
+                    data-placeholder="Започни да пишеш...">
+                    <option value="">Избери марка</option>
+
+                    @foreach ($brands as $brand)
+                        <option value="{{ $brand->id }}" @selected(old('brand') == $brand->id)>
+                            {{ $brand->value }}
+                        </option>
+                    @endforeach
+                </select>
+                <button class="btn btn-secondary rounded-pill px-4">Търси по бранд</button>
+            </form>
+
+            <form method="GET" class="position-relative">
+
+                <i class="fa-solid fa-barcode product-search-icon"></i>
+                <input type="text" name="sku" value="<?= isset($_GET['sku']) ? $_GET['sku'] : '' ?>"
+                    class="form-control product-search-input" placeholder="Търси по каталожен номер">
+            </form>
+
         </div>
 
-        <div class="position-relative">
-            <i class="fa-solid fa-barcode product-search-icon"></i>
-            <input
-                type="text"
-                class="form-control product-search-input"
-                placeholder="Търси по каталожен номер">
-        </div>
+        <a class="btn btn-secondary rounded-pill px-4 create-product" href="{{ route('admin.products.create') }}">
+            <i class="fa-solid fa-plus me-2"></i>
+            Създай продукт
+        </a>
 
     </div>
-
-    <a class="btn btn-secondary rounded-pill px-4" href="{{ route('admin.products.create') }}">
-        <i class="fa-solid fa-plus me-2"></i>
-        Създай продукт
-    </a>
-
-</div>
     <hr>
 
     {{-- Flash messages --}}
@@ -115,7 +121,9 @@
                                                     </p>
                                                 @endif
 
-
+                                                <p class="small text-muted mb-1">
+                                                    {{ $product->sku }}
+                                                </p>
 
                                                 <div class="product__all-btn-box d-flex gap-2 flex-column pe-3 ps-3">
                                                     <a class="thm-btn product__all-btn p-2"

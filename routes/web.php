@@ -11,6 +11,7 @@ Route::fallback(function () {
     return view('404');
 });
 
+
 Route::get('/', [FrontEndController::class, 'welcome']);
 
 Route::get('/contact', [FrontEndController::class, 'contact'])->name('contact');

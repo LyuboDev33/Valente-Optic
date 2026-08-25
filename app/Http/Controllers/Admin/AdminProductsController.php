@@ -22,14 +22,47 @@ use Illuminate\Support\Facades\File;
 
 class AdminProductsController extends Controller
 {
-    /** Return all products */
-    public function index()
+    /**
+     * Return all products.
+     *
+     * @param Request $request
+     * @return \Illuminate\View\View|\Illuminate\Http\RedirectResponse
+     */
+    public function index(Request $request)
     {
-        $products = Product::with(['categories', 'attributeValues'])
-            ->latest()
-            ->paginate(15);
+        if ($request->has('sku') && !$request->filled('sku')) {
+            return redirect()->route('admin.products.index');
+        }
 
-        return view('admin.Products.Index', compact('products'));
+        if ($request->has('brand') && !$request->filled('brand')) {
+            return redirect()->route('admin.products.index');
+        }
+
+        $products = Product::with(['categories', 'attributeValues']);
+
+        if ($request->filled('sku')) {
+            $products->where('sku', 'LIKE', '%' . $request->sku . '%');
+        }
+
+        if ($request->filled('brand')) {
+
+            $products->whereHas('attributeValues', function ($query) use ($request) {
+                $query->where('attribute_values.id', $request->brand);
+            });
+        }
+
+        $products = $products
+            ->latest()
+            ->paginate(25)
+            ->withQueryString();
+
+        $brands = AttributeValue::where('attribute_type_id', 1)
+            ->get();
+
+        return view('admin.Products.Index', [
+            'products' => $products,
+            'brands'   => $brands,
+        ]);
     }
 
     /** Return the category tree
@@ -348,50 +381,50 @@ class AdminProductsController extends Controller
      * @param Product $product
      * @return JsonResponse
      */
-   public function deleteGalleryImage(Request $request, Product $product): JsonResponse {
-    $validated = $request->validate([
-        'image' => [
-            'required',
-            'string',
-        ],
-    ]);
+    public function deleteGalleryImage(Request $request, Product $product): JsonResponse
+    {
+        $validated = $request->validate([
+            'image' => [
+                'required',
+                'string',
+            ],
+        ]);
 
-    $imageName = $validated['image'];
-    $gallery = $product->gallery ?? [];
+        $imageName = $validated['image'];
+        $gallery = $product->gallery ?? [];
 
 
-    if (!in_array($imageName, $gallery, true)) {
+        if (!in_array($imageName, $gallery, true)) {
+            return response()->json([
+                'message' => 'Снимката не беше намерена в галерията на продукта.',
+            ], 404);
+        }
+
+
+        $updatedGallery = array_values(
+            array_filter(
+                $gallery,
+                fn(string $galleryImage): bool => $galleryImage !== $imageName
+            )
+        );
+
+        $imagePath = public_path(
+            'assets/images/product_gallery/' . $imageName
+        );
+
+        if (File::exists($imagePath) && !File::delete($imagePath)) {
+            return response()->json([
+                'message' => 'Файлът на снимката не можа да бъде изтрит.',
+            ], 500);
+        }
+
+        $product->update([
+            'gallery' => $updatedGallery,
+        ]);
+
         return response()->json([
-            'message' => 'Снимката не беше намерена в галерията на продукта.',
-        ], 404);
+            'message' => 'Снимката беше изтрита успешно.',
+            'gallery' => $updatedGallery,
+        ]);
     }
-
-
-    $updatedGallery = array_values(
-        array_filter($gallery,
-            fn (string $galleryImage): bool => $galleryImage !== $imageName
-        )
-    );
-    
-    $imagePath = public_path(
-        'assets/images/product_gallery/' . $imageName
-    );
-
-    if (File::exists($imagePath) && !File::delete($imagePath)) {
-        return response()->json([
-            'message' => 'Файлът на снимката не можа да бъде изтрит.',
-        ], 500);
-    }
-
-    $product->update([
-        'gallery' => $updatedGallery,
-    ]);
-
-    return response()->json([
-        'message' => 'Снимката беше изтрита успешно.',
-        'gallery' => $updatedGallery,
-    ]);
-}
-
-
 }
