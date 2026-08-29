@@ -11,6 +11,8 @@ Product
 
 .product.fe-section {
     padding-top: 150px;
+    /* background: #eeeeee; */
+    /* background: linear-gradient(145deg, rgb(0 0 0), rgb(71 71 71 / 96%)); */
 }
 
 @media (max-width: 992px) {
@@ -186,7 +188,7 @@ Product
 .shop-category {
     position: relative;
     display: block;
-    background-color: #b99b83;
+    background-color: #1654833b;
     padding: 29px 15px 15px;
     border-radius: 20px;
     margin-bottom: 40px;
@@ -809,7 +811,7 @@ Product Details
   position: relative;
     display: block;
     padding: 160px 0px 0px;
-    background: #f7ddba6e;
+    background: #faf4f2;
 }
 
 .product-details__img {

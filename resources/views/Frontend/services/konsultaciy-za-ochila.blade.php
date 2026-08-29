@@ -374,9 +374,9 @@
                                         </div>
 
                                         <div class="glasses-process__content">
-                                            <div class="glasses-process__icon">
+                                            {{-- <div class="glasses-process__icon">
                                                 <i class="fa-regular fa-eye"></i>
-                                            </div>
+                                            </div> --}}
 
                                             <div>
                                                 <h3>Проверка на зрението</h3>
@@ -396,9 +396,9 @@
                                         </div>
 
                                         <div class="glasses-process__content">
-                                            <div class="glasses-process__icon">
+                                            {{-- <div class="glasses-process__icon">
                                                 <i class="fa-solid fa-glasses"></i>
-                                            </div>
+                                            </div> --}}
 
                                             <div>
                                                 <h3>Избор на рамка</h3>
@@ -419,9 +419,9 @@
                                         </div>
 
                                         <div class="glasses-process__content">
-                                            <div class="glasses-process__icon">
+                                            {{-- <div class="glasses-process__icon">
                                                 <i class="fa-regular fa-circle"></i>
-                                            </div>
+                                            </div> --}}
 
                                             <div>
                                                 <h3>Изработване на стъклата</h3>
@@ -442,9 +442,9 @@
                                         </div>
 
                                         <div class="glasses-process__content">
-                                            <div class="glasses-process__icon">
+                                            {{-- <div class="glasses-process__icon">
                                                 <i class="fa-solid fa-layer-group"></i>
-                                            </div>
+                                            </div> --}}
 
                                             <div>
                                                 <h3>Покрития и технологии</h3>
@@ -465,9 +465,9 @@
                                         </div>
 
                                         <div class="glasses-process__content">
-                                            <div class="glasses-process__icon">
+                                            {{-- <div class="glasses-process__icon">
                                                 <i class="fa-solid fa-screwdriver-wrench"></i>
-                                            </div>
+                                            </div> --}}
 
                                             <div>
                                                 <h3>Сглобяване на очилата</h3>
@@ -487,9 +487,9 @@
                                         </div>
 
                                         <div class="glasses-process__content">
-                                            <div class="glasses-process__icon">
+                                            {{-- <div class="glasses-process__icon">
                                                 <i class="fa-regular fa-star"></i>
-                                            </div>
+                                            </div> --}}
 
                                             <div>
                                                 <h3>Качествен контрол</h3>
@@ -510,9 +510,9 @@
                                         </div>
 
                                         <div class="glasses-process__content">
-                                            <div class="glasses-process__icon">
+                                            {{-- <div class="glasses-process__icon">
                                                 <i class="fa-solid fa-box"></i>
-                                            </div>
+                                            </div> --}}
 
                                             <div>
                                                 <h3>Готови за вас</h3>
@@ -533,9 +533,9 @@
                                         </div>
 
                                         <div class="glasses-process__content">
-                                            <div class="glasses-process__icon">
+                                            {{-- <div class="glasses-process__icon">
                                                 <i class="fa-regular fa-face-smile"></i>
-                                            </div>
+                                            </div> --}}
 
                                             <div>
                                                 <h3>Ясно зрение, повече увереност</h3>

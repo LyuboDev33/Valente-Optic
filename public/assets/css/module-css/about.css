@@ -556,7 +556,8 @@
     counter-reset: count;
     padding: 90px 0 70px;
     z-index: 1;
-    background: #f7ddbacc;
+    background:linear-gradient(145deg, rgba(19, 19, 19, 0.98), rgba(42, 42, 42, 0.96));
+;
     /* background-image: url('/assets/images/about/about.png');
     background-repeat: no-repeat;
     background-size: cover; */
@@ -595,6 +596,7 @@
     margin-bottom: 20px;
     font-size: 18px;
     line-height: 1.6;
+    color: white;
 }
 
 .about-four__points-box {
@@ -679,7 +681,8 @@
     display: block;
     padding: 150px 0 0px;
     z-index: 1;
-    background-color: #f7ddba6e;
+    background: linear-gradient(145deg, rgba(19, 19, 19, 0.98), rgba(42, 42, 42, 0.96));
+;
 }
 
 .about-five__left {
@@ -692,9 +695,15 @@
     margin-bottom: 21px;
 }
 
+.contact-four__text,
+.contact-four__contact-title-box {
+    color: white;
+}
+
 .about-five__text-1 {
     margin-bottom: 20px;
     font-size: 18px;
+    color: white;
 }
 
 .about-five__points {

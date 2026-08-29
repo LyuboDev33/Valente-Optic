@@ -1,57 +1,54 @@
 <x-frontend>
 
     @section('SEO')
-    {{-- Основно SEO --}}
-    <title>Valente Optics | Диоптрични и слънчеви очила в Бургас и Равда</title>
+        {{-- Основно SEO --}}
+        <title>Valente Optics | Диоптрични и слънчеви очила в Бургас и Равда</title>
 
-    <meta name="description"
-        content="Valente Optics предлага диоптрични, слънчеви, компютърни и детски очила, качествени стъкла, професионална консултация, компютърна диагностика, изработка и сервиз на очила в Бургас и Равда. Пазарувайте и онлайн с доставка в цяла България.">
+        <meta name="description"
+            content="Valente Optics предлага диоптрични, слънчеви, компютърни и детски очила, качествени стъкла, професионална консултация, компютърна диагностика, изработка и сервиз на очила в Бургас и Равда. Пазарувайте и онлайн с доставка в цяла България.">
 
-    <meta name="keywords"
-        content="Valente Optics, оптика Бургас, оптика Равда, онлайн магазин за очила, диоптрични очила, диоптрични рамки, слънчеви очила, детски очила, компютърни очила, прогресивни стъкла, фотосоларни стъкла, Blue Control, изработка на очила, сервиз на очила, компютърна диагностика">
+        <meta name="keywords"
+            content="Valente Optics, оптика Бургас, оптика Равда, онлайн магазин за очила, диоптрични очила, диоптрични рамки, слънчеви очила, детски очила, компютърни очила, прогресивни стъкла, фотосоларни стъкла, Blue Control, изработка на очила, сервиз на очила, компютърна диагностика">
 
-    <meta name="robots"
-        content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+        <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
 
-    <meta name="googlebot"
-        content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+        <meta name="googlebot" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
 
-    <link rel="canonical" href="{{ url('/') }}">
+        <link rel="canonical" href="{{ url('/') }}">
 
-    {{-- Език и регион --}}
-    <meta property="og:locale" content="bg_BG">
+        {{-- Език и регион --}}
+        <meta property="og:locale" content="bg_BG">
 
-    {{-- Open Graph: Facebook, Messenger, LinkedIn и други --}}
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="Valente Optics">
+        {{-- Open Graph: Facebook, Messenger, LinkedIn и други --}}
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="Valente Optics">
 
-    <meta property="og:title" content="Valente Optics | Всичко за вашето зрение">
+        <meta property="og:title" content="Valente Optics | Всичко за вашето зрение">
 
-    <meta property="og:description" content="Диоптрични, слънчеви, компютърни и детски очила, качествени стъкла и професионална грижа за зрението. Посетете Valente Optics в Бургас и Равда или пазарувайте онлайн.">
+        <meta property="og:description"
+            content="Диоптрични, слънчеви, компютърни и детски очила, качествени стъкла и професионална грижа за зрението. Посетете Valente Optics в Бургас и Равда или пазарувайте онлайн.">
 
-    <meta property="og:url" content="{{ url('/') }}">
-    <meta property="og:image" content="{{ asset('assets/images/seo/valente-optics-home.jpg') }}">
+        <meta property="og:url" content="{{ url('/') }}">
+        <meta property="og:image" content="{{ asset('assets/images/seo/valente-optics-home.jpg') }}">
 
-    <meta property="og:image:secure_url" content="{{ asset('assets/images/seo/valente-optics-home.jpg') }}">
-    <meta property="og:image:type" content="image/jpeg">
-    <meta property="og:image:alt" content="Valente Optics – диоптрични и слънчеви очила в Бургас и Равда">
+        <meta property="og:image:secure_url" content="{{ asset('assets/images/seo/valente-optics-home.jpg') }}">
+        <meta property="og:image:type" content="image/jpeg">
+        <meta property="og:image:alt" content="Valente Optics – диоптрични и слънчеви очила в Бургас и Равда">
 
-    {{-- Twitter / X Card --}}
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Valente Optics | Всичко за вашето зрение">
-    <meta name="twitter:description" content="Открийте диоптрични и слънчеви очила, качествени стъкла, професионална консултация, диагностика, изработка и сервиз на очила.">
+        {{-- Twitter / X Card --}}
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="Valente Optics | Всичко за вашето зрение">
+        <meta name="twitter:description"
+            content="Открийте диоптрични и слънчеви очила, качествени стъкла, професионална консултация, диагностика, изработка и сервиз на очила.">
 
-    <meta name="twitter:image" content="{{ asset('assets/images/seo/valente-optics-home.jpg') }}">
-    <meta name="twitter:image:alt" content="Valente Optics – очила, стъкла и професионална грижа за зрението">
+        <meta name="twitter:image" content="{{ asset('assets/images/seo/valente-optics-home.jpg') }}">
+        <meta name="twitter:image:alt" content="Valente Optics – очила, стъкла и професионална грижа за зрението">
 
-    {{-- Допълнителна информация --}}
-    <meta name="author" content="Valente Optics">
-    <meta name="application-name" content="Valente Optics">
-    <meta name="theme-color" content="#ffffff">
-
-
-
-@endsection
+        {{-- Допълнителна информация --}}
+        <meta name="author" content="Valente Optics">
+        <meta name="application-name" content="Valente Optics">
+        <meta name="theme-color" content="#ffffff">
+    @endsection
 
 
     {{-- <div class="preloader">
@@ -68,128 +65,88 @@
                     <div class="container welcome-container">
                         <div class="main-slider-two__content">
 
-                            <p class="main-slider-two__subtitle-custom">
-                                Valente Optics
-                            </p>
+                            <div class="main-slider-two__subtitle">ВИЖ СВЕТА</div>
 
                             <h2 class="main-slider-two__title main-slider-two__title-custom">
-                                ВСИЧКО ЗА <br> ВАШЕТО ЗРЕНИЕ
+                                ПО СВОЙ НАЧИН
                             </h2>
 
-                            <div class="main-slider-two__divider-custom">
-                                <span></span>
-                                <i class="fa-regular fa-heart"></i>
-                                <span></span>
-                            </div>
-
                             <p class="main-slider-two__text main-slider-two__text-custom">
-                                Диоптрични, слънчеви и компютърни очила,<br>
-                                качествени стъкла, модерни рамки и професионална консултация.
+                                Подбрани модели очила от световни марки.<br>
+                                Качество, комфорт и стил за всеки ден.
                             </p>
 
                             <div class="main-slider-two__btn">
                                 <a href="{{ route('shop.index') }}" class="main-slider-two__btn-custom rounded-pill">
-                                    Разгледай магазина
+                                    РАЗГЛЕДАЙ КОЛЕКЦИЯТА
+                                    <i class="fa-solid fa-arrow-right-long"></i>
                                 </a>
                             </div>
 
                             <div class="main-slider-two__img-box">
                                 <div>
-                                    <img src="/assets/images/couple.png" alt="Valente Optics — главна снимка">
+                                    <img src="/assets/images/single-lady.png" alt="Valente Optics">
                                 </div>
                             </div>
 
                         </div>
                     </div>
 
-                    <!-- Services Strip -->
-                    <div class="services-strip">
 
+                    <!-- Services Strip Start -->
+                    <div class="services-strip">
                         <div class="services-strip__inner">
 
                             <div class="services-strip__single">
                                 <div class="services-strip__icon">
-                                    <span class="fa-solid fa-glasses"></span>
+                                    <i class="fa-solid fa-truck"></i>
                                 </div>
 
                                 <div class="services-strip__content">
-                                    <h4>
-                                        <a href="/service/konsultaciy-za-ochila">
-                                            Консултация за очила
-                                        </a>
-                                    </h4>
-
-                                    <p>
-                                        Избор на подходящи рамки, стъкла и индивидуално решение за вашето зрение.
-                                    </p>
-                                </div>
-                            </div>
-
-                            <hr class="d-md-none bg-white mt-1 mb-1">
-
-                            <div class="services-strip__single">
-                                <div class="services-strip__icon">
-                                    <span class="fa-solid fa-eye"></span>
-                                </div>
-
-                                <div class="services-strip__content">
-                                    <h4>
-                                        <a href="/service/kompiutarna-diagnostika">
-                                            Компютърна диагностика
-                                        </a>
-                                    </h4>
-
-                                    <p>
-                                        Бързо измерване на ориентировъчен диоптър с модерна апаратура.
-                                    </p>
+                                    <h4>БЕЗПЛАТНА ДОСТАВКА</h4>
+                                    <p>Над 100 лв.</p>
                                 </div>
                             </div>
 
 
-                            <hr class="d-md-none bg-white mt-1 mb-1">
-
                             <div class="services-strip__single">
                                 <div class="services-strip__icon">
-                                    <span class="fa-solid fa-screwdriver-wrench"></span>
+                                    <i class="fa-solid fa-shield-halved"></i>
                                 </div>
 
                                 <div class="services-strip__content">
-                                    <h4>
-                                        <a href="/service/izrabotka-ochila">
-                                            Изработка на очила
-                                        </a>
-                                    </h4>
-
-                                    <p>
-                                        Прецизна изработка на диоптрични очила с висококачествени стъкла.
-                                    </p>
+                                    <h4>14 ДНИ ПРАВО НА ВРЪЩАНЕ</h4>
+                                    <p>Пазарувай спокойно.</p>
                                 </div>
                             </div>
 
-                            <hr class="d-md-none bg-white mt-1 mb-1">
 
                             <div class="services-strip__single">
-                                <div class="services-strip__icon">
-                                    <span class="fa-solid fa-screwdriver"></span>
+                                <div class="services-strip__icon services-strip__icon--gold">
+                                    <i class="fa-solid fa-award"></i>
                                 </div>
 
                                 <div class="services-strip__content">
-                                    <h4>
-                                        <a href="/service/regulirane-serviz-ochila">
-                                            Регулиране и сервиз
-                                        </a>
-                                    </h4>
+                                    <h4>ГАРАНЦИЯ ЗА КАЧЕСТВО</h4>
+                                    <p>Оригинални продукти.</p>
+                                </div>
+                            </div>
 
-                                    <p>
-                                        Регулиране, почистване и сервизно обслужване за максимален комфорт.
-                                    </p>
+
+                            <div class="services-strip__single">
+                                <div class="services-strip__icon services-strip__icon--coral">
+                                    <i class="fa-regular fa-credit-card"></i>
+                                </div>
+
+                                <div class="services-strip__content">
+                                    <h4>СИГУРНО ПЛАЩАНЕ</h4>
+                                    <p>100% защитени транзакции.</p>
                                 </div>
                             </div>
 
                         </div>
-
                     </div>
-                    <!-- End Services Strip -->
+                    <!-- Services Strip End -->
 
                 </div>
             </div>
@@ -451,9 +408,7 @@
                     <!-- Service -->
                     <div class="col-xl-3 col-lg-6 col-md-6">
                         <div class="services-four__single shadow">
-                            <div class="services-four__icon">
-                                <span class="fa-solid fa-screwdriver-wrench"></span>
-                            </div>
+
 
                             <h3 class="services-four__title">
                                 <a href="/service/izrabotka-ochila">
@@ -534,7 +489,7 @@
                     <span class="section-title-two__tagline">Защо нас</span>
                     <div class="section-title-two__tagline-shape-1"></div>
                 </div>
-                <h2 class="section-title-two__title title-animation">
+                <h2 class="section-title-two__title title-animation text-black-50">
                     Качество, опит и доверие <br />
                     във всеки детайл
                 </h2>

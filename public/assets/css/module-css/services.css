@@ -208,8 +208,9 @@
 .services-two {
     position: relative;
     display: block;
-    padding: 120px 0 90px;
+    padding: 40px 0 0px;
     z-index: 1;
+    background: linear-gradient(145deg, rgb(0 0 0 / 98%), rgba(42, 42, 42, 0.96));
 }
 
 .services-two__single {
@@ -370,7 +371,7 @@
     display: block;
     padding: 40px 0 0;
     z-index: 1;
-    background-color: #f7ddbacc;
+    background: linear-gradient(145deg, rgba(19, 19, 19, 0.98), rgba(42, 42, 42, 0.96));
     /* border-top: 4px solid black; */
     /* background: url(/assets/images/about/about.png);
     background-size: cover;
@@ -482,7 +483,7 @@
     display: block;
     padding: 170px 0 120px;
     z-index: 1;
-    background-color: #f7ddba6e;
+    background-color: #faf4f2;
 }
 
 .service-details__left {
@@ -833,7 +834,7 @@
   # Services Five
   --------------------------------------------------------------*/
 .services-five .services-two__single {
-    background-color: #ffc991;
+    background-color: white;
 }
 
 

@@ -285,9 +285,7 @@
                 <div class="col-xl-4 col-lg-4">
 
                     <div class="services-two__single">
-                        <div class="services-two__icon">
-                            <i class="fa-solid fa-glasses"></i>
-                        </div>
+
 
                         <h3 class="services-two__title">
                             <a href="/service/konsultaciy-za-ochila">Консултация за очила</a>
@@ -299,9 +297,7 @@
                     </div>
 
                     <div class="services-two__single">
-                        <div class="services-two__icon">
-                            <i class="fa-solid fa-eye"></i>
-                        </div>
+
 
                         <h3 class="services-two__title">
                             <a href="/service/kompiutarna-diagnostika">Компютърна диагностика</a>
@@ -330,9 +326,7 @@
                 <div class="col-xl-4 col-lg-4">
 
                     <div class="services-two__single">
-                        <div class="services-two__icon">
-                            <i class="fa-solid fa-screwdriver-wrench"></i>
-                        </div>
+
 
                         <h3 class="services-two__title">
                             <a href="/service/izrabotka-ochila">Изработка на очила</a>
@@ -344,9 +338,7 @@
                     </div>
 
                     <div class="services-two__single">
-                        <div class="services-two__icon">
-                            <i class="fa-solid fa-toolbox"></i>
-                        </div>
+
 
                         <h3 class="services-two__title">
                             <a href="/service/regulirane-serviz-ochila">Регулиране и сервиз</a>
@@ -408,7 +400,7 @@
                                                 </h4>
 
                                                 <p class="testimonial-showcase__location">
-                                                    Доволен клиент 
+                                                    Доволен клиент
                                                 </p>
                                             </div>
                                         </div>
