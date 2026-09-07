@@ -31,6 +31,17 @@
                                             </p>
                                         </li>
 
+                                                 <li>
+                                            <div class="footer-widget__contact-icon-box">
+                                                <span class="icon-pin"></span>
+                                                <p>Бургас</p>
+                                            </div>
+
+                                            <p class="footer-widget__contact-text">
+                                                ж.к. Изгрев, бл. 110, Бургас
+                                            </p>
+                                        </li>
+
                                         <li>
                                             <div class="footer-widget__contact-icon-box">
                                                 <span class="icon-phone"></span>

@@ -59,10 +59,6 @@
                             стягане и подмяна на винтчета и дребни елементи, както и изправяне на рамки при изкривяване.
                         </p>
 
-                        <p class="service-details__text-3">
-                            Извършваме почистване и полиране на рамки и накрайници, както и проверка на стабилността
-                            и правилното разположение на лещите.
-                        </p>
 
                         <div class="row">
                             <div class="col-xl-6">
@@ -155,12 +151,7 @@
                                         <p>Изправяне на рамки при изкривяване</p>
                                     </li>
 
-                                    <li>
-                                        <div class="icon">
-                                            <span class="icon-double-arrow-right"></span>
-                                        </div>
-                                        <p>Почистване и полиране на рамки и накрайници</p>
-                                    </li>
+
                                 </ul>
 
                                 <ul class="service-details__bottom-points list-unstyled">
@@ -185,12 +176,6 @@
                                         <p>След удар, падане или изкривяване</p>
                                     </li>
 
-                                    <li>
-                                        <div class="icon">
-                                            <span class="icon-double-arrow-right"></span>
-                                        </div>
-                                        <p>При смяна на накрайници или наносници</p>
-                                    </li>
                                 </ul>
                             </div>
 

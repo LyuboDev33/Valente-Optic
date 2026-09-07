@@ -104,7 +104,7 @@
 
                                 <div class="services-strip__content">
                                     <h4>БЕЗПЛАТНА ДОСТАВКА</h4>
-                                    <p>Над 100 лв.</p>
+                                    <p>Над 100 €</p>
                                 </div>
                             </div>
 

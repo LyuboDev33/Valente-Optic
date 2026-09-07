@@ -3361,7 +3361,7 @@ body.product-variant-sidebar-open {
 }
 
 .main-slider-two__btn-custom:hover {
-    background: #a95d55;
+    background: #0da7ac;
     color: #fff;
     transform: translateY(-2px);
 }
@@ -5263,7 +5263,6 @@ body.product-variant-sidebar-open {
 
 .cookies__modal p:first-child {
         font-size: 18px;
-    color: black !important;
     margin: 10px auto;
 
 }
@@ -5302,7 +5301,7 @@ body.product-variant-sidebar-open {
 @media (min-width: 480px) {
 
     .cookies__modal {
-        background: #f7ddba;
+        background: #05777b;
         color: white;
         width: 400px;
         border-color: white;
@@ -5328,7 +5327,7 @@ body.product-variant-sidebar-open {
         border-color: white;
         border: 4px solid white;
         border-radius: 20px;
-        background: #f7ddba;
+        background: #05777b;
         color: white;
         height: auto;
         width: 100%;
@@ -5369,3 +5368,89 @@ body.product-variant-sidebar-open {
 /*--------------------------------------------------------------
 # End
 --------------------------------------------------------------*/
+    .contact-four__maps {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .contact-four__map-card {
+        overflow: hidden;
+        border: 1px solid #e8e8e8;
+        border-radius: 16px;
+        background: #ffffff;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+    }
+
+    .contact-four__map-header {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 18px 20px;
+        border-bottom: 1px solid #eeeeee;
+    }
+
+    .contact-four__map-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 44px;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: #f4f4f4;
+    }
+
+    .contact-four__map-icon span {
+        font-size: 20px;
+    }
+
+    .contact-four__map-content h4 {
+        margin: 0 0 4px;
+        font-size: 20px;
+        font-weight: 600;
+    }
+
+    .contact-four__map-content p {
+        margin: 0;
+        font-size: 15px;
+        line-height: 1.5;
+        color: #666666;
+    }
+
+    .contact-four__map-frame {
+        position: relative;
+        width: 100%;
+        height: 330px;
+    }
+
+    .contact-four__map-frame iframe {
+        display: block;
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+
+    @media (max-width: 991px) {
+        .contact-four__right {
+            margin-top: 40px;
+        }
+    }
+
+    @media (max-width: 575px) {
+        .contact-four__map-header {
+            padding: 15px;
+        }
+
+        .contact-four__map-content h4 {
+            font-size: 18px;
+        }
+
+        .contact-four__map-content p {
+            font-size: 14px;
+        }
+
+        .contact-four__map-frame {
+            height: 280px;
+        }
+    }

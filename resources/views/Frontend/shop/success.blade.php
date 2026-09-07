@@ -9,7 +9,7 @@
         <div class="container">
             <div class="row align-items-center">
 
-                <div class="col-xl-6">
+                <div class="col-xl-6 align-self-start">
                     <div class="contact-four__left">
 
                         <div class="section-title text-left sec-title-animation animation-style2">
@@ -19,7 +19,7 @@
                                 </span>
                             </div>
 
-                            <h3 class="">
+                            <h3 class="text-white">
                                 🎉 Поръчката е приета! <br>
                                 Вашата поръчка беше направена успешно.
                             </h3>
@@ -57,9 +57,9 @@
                 <div class="col-xl-6">
                     <div class="contact-four__right text-center">
                         <img
-                            src="/assets/images/succes-checkout.png"
+                            src="/assets/images/image-success-paymnet.jpg"
                             alt="Поръчката е успешна"
-                            class="img-fluid"
+                            class="img-fluid rounded-4"
                         >
                     </div>
                 </div>

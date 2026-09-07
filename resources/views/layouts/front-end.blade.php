@@ -47,7 +47,6 @@
 
     <!-- template styles -->
     <link rel="stylesheet" href="/assets/css/style.css?v=<?php echo time(); ?>" />
-    {{-- <link rel="stylesheet" href="/assets/css/style-new-colors.css?v=<?php echo time(); ?>" /> --}}
 
     <link rel="stylesheet" href="/assets/css/shop.css?v=<?php echo time(); ?>" />
     <link rel="stylesheet" href="/assets/css/responsive.css?v=<?php echo time(); ?>" />
@@ -98,6 +97,17 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
     <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5TH8D7VHM4"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-5TH8D7VHM4');
+    </script>
+
 
 
 </head>
