@@ -282,10 +282,6 @@ class OrdersController extends Controller
 
         $finalPrice = (float) $baseFinalPrice;
 
-        if ($purchaseType === 'frame_with_glasses') {
-            $finalPrice += (float) $lensIndex->price;
-        }
-
         $products = Session::get('products', []);
 
         $productKey = (string) $product->id;

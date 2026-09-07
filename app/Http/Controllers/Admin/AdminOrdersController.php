@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Promocode;
 use App\Models\Order;
+use App\Models\OrderProduct;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 
@@ -16,7 +17,6 @@ class AdminOrdersController extends Controller
 
         $orders = Order::orderBy('id', 'desc')
             ->get();
-
 
         return view('admin.Orders.Index', [
             'orders' => $orders
@@ -42,9 +42,12 @@ class AdminOrdersController extends Controller
             )->first();
         }
 
+
         return view('admin.Orders.Show', [
             'order' => $order,
             'promoCode' => $promoCode,
         ]);
     }
+
+    
 }

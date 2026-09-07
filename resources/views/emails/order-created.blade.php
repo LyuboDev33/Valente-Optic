@@ -189,39 +189,10 @@
                                             <strong>Количество:</strong>
                                             {{ $product->quantity }}
 
-                                            @if (!empty($product->lens_index))
-                                                <br>
-
-                                                <strong>Индекс на стъклото:</strong>
-
-                                                {{ data_get($product->lens_index, 'name', data_get($product->lens_index, 'value', '—')) }}
-
-                                                @if (data_get($product->lens_index, 'price'))
-                                                    —
-                                                    {{ number_format((float) data_get($product->lens_index, 'price'), 2) }}
-                                                    EUR
-                                                @endif
-                                            @endif
-
-                                            @if (!empty($product->glass_value))
-                                                <br>
-
-                                                <strong>Избрано стъкло:</strong>
-
-                                                {{ data_get($product->glass_value, 'name', data_get($product->glass_value, 'value', '—')) }}
-
-                                                @if (data_get($product->glass_value, 'price'))
-                                                    —
-                                                    {{ number_format((float) data_get($product->glass_value, 'price'), 2) }}
-                                                    EUR
-                                                @endif
-                                            @endif
-
                                             <br>
 
-                                            <strong>Единична цена:</strong>
-                                            {{ number_format((float) $product->price, 2) }}
-                                            EUR
+                                            <strong>Цена на рамката:</strong>
+                                            {{ number_format((float) ($product->base_price ?? $product->price), 2) }} EUR
 
                                             @if ($product->discount)
                                                 <br>
@@ -249,29 +220,90 @@
                                                 Общо
                                             </span>
 
-                                            @if ($product->discount)
-                                                <strong
-                                                    style="
-                                                        font-size: 17px;
-                                                        line-height: 24px;
-                                                        color: #222222;
-                                                    ">
-                                                    {{ number_format(($product->price - ($product->price * $product->discount) / 100) * $product->quantity, 2) }}
-                                                    EUR
-                                                </strong>
-                                            @else
-                                                <strong
-                                                    style="
-                                                        font-size: 17px;
-                                                        line-height: 24px;
-                                                        color: #222222;
-                                                    ">
-                                                    {{ number_format($product->price * $product->quantity, 2) }}
-                                                    EUR
-                                                </strong>
-                                            @endif
+                                            <strong
+                                                style="
+                                                    font-size: 17px;
+                                                    line-height: 24px;
+                                                    color: #222222;
+                                                ">
+                                                {{ number_format((float) $product->final_price * $product->quantity, 2) }} EUR
+                                            </strong>
                                         </td>
                                     </tr>
+
+                                    @if ($product->purchase_type === 'frame_with_glasses')
+                                        <tr>
+                                            <td colspan="3" style="padding: 0 16px 16px;">
+                                                <table width="100%" cellpadding="0" cellspacing="0" border="0"
+                                                    role="presentation"
+                                                    style="
+                                                        background-color: #f8f8f8;
+                                                        border-radius: 8px;
+                                                    ">
+                                                    <tr>
+                                                        <td
+                                                            style="
+                                                                padding: 15px;
+                                                                font-size: 14px;
+                                                                line-height: 22px;
+                                                                color: #555555;
+                                                            ">
+                                                            <strong
+                                                                style="
+                                                                    display: block;
+                                                                    margin-bottom: 10px;
+                                                                    color: #222222;
+                                                                ">
+                                                                Избрани диоптрични стъкла
+                                                            </strong>
+
+                                                            @if ($product->glass_name)
+                                                                <strong>Тип стъкло:</strong>
+                                                                {{ $product->glass_name }}
+                                                                <br>
+                                                            @endif
+
+                                                            @if ($product->glass_value_name)
+                                                                <strong>Избрано стъкло:</strong>
+                                                                {{ $product->glass_value_name }}
+                                                                <br>
+                                                            @endif
+
+                                                            @if ($product->glass_value_price !== null)
+                                                                <strong>Цена на стъклото:</strong>
+                                                                {{ number_format((float) $product->glass_value_price, 2) }} EUR
+                                                                <br>
+                                                            @endif
+
+                                                            @if ($product->glass_value_lens_index_name)
+                                                                <strong>Индекс на стъклото:</strong>
+                                                                {{ $product->glass_value_lens_index_name }}
+                                                                <br>
+                                                            @endif
+
+                                                            @if ($product->glass_value_lens_index_price !== null)
+                                                                <strong>Цена на индекса:</strong>
+                                                                {{ number_format((float) $product->glass_value_lens_index_price, 2) }} EUR
+                                                                <br>
+                                                            @endif
+
+                                                            <br>
+
+                                                            <strong>Крайна цена:</strong>
+                                                            <span
+                                                                style="
+                                                                    font-size: 16px;
+                                                                    font-weight: 700;
+                                                                    color: #222222;
+                                                                ">
+                                                                {{ number_format((float) $product->final_price, 2) }} EUR
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    @endif
 
                                     @if ($product->prescription_image || !empty($product->right_eye) || !empty($product->left_eye) || $product->pd)
                                         <tr>
@@ -401,15 +433,7 @@
                                             border-bottom: 1px solid #eeeeee;
                                         ">
                                         <strong>
-                                            {{ number_format(
-                                                $orderProducts->sum(
-                                                    fn($product) => ($product->discount
-                                                        ? $product->price - ($product->price * $product->discount) / 100
-                                                        : $product->price) * $product->quantity,
-                                                ),
-                                                2,
-                                            ) }}
-                                            EUR
+                                            {{ number_format((float) $order->subtotal, 2) }} EUR
                                         </strong>
                                     </td>
                                 </tr>
@@ -442,7 +466,9 @@
                                             </strong>
                                         </td>
                                     </tr>
+                                @endif
 
+                                @if ((float) $order->delivery_price > 0)
                                     <tr>
                                         <td
                                             style="
@@ -451,28 +477,18 @@
                                                 color: #555555;
                                                 border-bottom: 1px solid #eeeeee;
                                             ">
-                                            Стойност на промо отстъпката:
+                                            Доставка:
                                         </td>
 
                                         <td align="right"
                                             style="
                                                 padding: 15px 18px;
                                                 font-size: 14px;
-                                                color: #c0392b;
+                                                color: #222222;
                                                 border-bottom: 1px solid #eeeeee;
                                             ">
                                             <strong>
-                                                -
-                                                {{ number_format(
-                                                    $orderProducts->sum(
-                                                        fn($product) => ($product->discount
-                                                            ? $product->price - ($product->price * $product->discount) / 100
-                                                            : $product->price) * $product->quantity,
-                                                    ) *
-                                                        ($promoCode->percentage_promo_code / 100),
-                                                    2,
-                                                ) }}
-                                                EUR
+                                                {{ number_format((float) $order->delivery_price, 2) }} EUR
                                             </strong>
                                         </td>
                                     </tr>
@@ -494,32 +510,9 @@
                                             font-size: 20px;
                                             color: #222222;
                                         ">
-                                        @if ($promoCode)
-                                            <strong>
-                                                {{ number_format(
-                                                    $orderProducts->sum(
-                                                        fn($product) => ($product->discount
-                                                            ? $product->price - ($product->price * $product->discount) / 100
-                                                            : $product->price) * $product->quantity,
-                                                    ) *
-                                                        (1 - $promoCode->percentage_promo_code / 100),
-                                                    2,
-                                                ) }}
-                                                EUR
-                                            </strong>
-                                        @else
-                                            <strong>
-                                                {{ number_format(
-                                                    $orderProducts->sum(
-                                                        fn($product) => ($product->discount
-                                                            ? $product->price - ($product->price * $product->discount) / 100
-                                                            : $product->price) * $product->quantity,
-                                                    ),
-                                                    2,
-                                                ) }}
-                                                EUR
-                                            </strong>
-                                        @endif
+                                        <strong>
+                                            {{ number_format((float) $order->total, 2) }} EUR
+                                        </strong>
                                     </td>
                                 </tr>
                             </table>
