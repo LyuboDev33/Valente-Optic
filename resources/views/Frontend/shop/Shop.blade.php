@@ -84,6 +84,26 @@
 
                     <div class="product__sidebar">
 
+                          <div class="shop-category product__sidebar-single">
+                            <h3 class="product__sidebar-title">Категории</h3>
+
+                            <ul class="list-unstyled shop-category__tree">
+
+                                <li class="{{ $category ? 'active' : '' }}">
+                                    <a href="{{ route('shop.index') }}">
+                                        Всички продукти
+                                    </a>
+                                </li>
+
+                                @foreach ($categoriesTree as $node)
+                                    @include('Frontend.shop.partials.category-tree', [
+                                        'node' => $node,
+                                        'activeSlug' => $category?->slug,
+                                    ])
+                                @endforeach
+                            </ul>
+                        </div>
+
 
                         <form method="GET" class="shop-category product__sidebar-single">
                             <h3 class="product__sidebar-title text-center">Филтри</h3>
@@ -98,7 +118,7 @@
                                     <select id="filter-{{ $filter['slug'] }}" name="{{ $filter['slug'] }}"
                                         class="form-select attribute-choice p-0">
                                         <option value=""></option>
-                                    
+
                                         @foreach ($filter['values'] as $value)
                                             <option value="{{ $value['slug'] }}"
                                             @selected(request()->filled($filter['slug']) && request($filter['slug']) === $value['slug'])>
@@ -141,25 +161,7 @@
                         </form>
 
 
-                        <div class="shop-category product__sidebar-single">
-                            <h3 class="product__sidebar-title">Категории</h3>
 
-                            <ul class="list-unstyled shop-category__tree">
-
-                                <li class="{{ $category ? 'active' : '' }}">
-                                    <a href="{{ route('shop.index') }}">
-                                        Всички продукти
-                                    </a>
-                                </li>
-
-                                @foreach ($categoriesTree as $node)
-                                    @include('Frontend.shop.partials.category-tree', [
-                                        'node' => $node,
-                                        'activeSlug' => $category?->slug,
-                                    ])
-                                @endforeach
-                            </ul>
-                        </div>
 
                     </div>
                 </div>

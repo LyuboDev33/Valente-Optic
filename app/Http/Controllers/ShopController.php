@@ -211,6 +211,12 @@ class ShopController extends Controller
      * @param string $slug
      * @return View
      */
+    /**
+     * Show a specific product.
+     *
+     * @param string $slug
+     * @return View
+     */
     public function show(string $slug)
     {
         $product = Product::with([
@@ -218,7 +224,7 @@ class ShopController extends Controller
             'categories.children',
             'attributeValues.type',
             'variants',
-            'variantParent',
+            'variantParent.variants',
         ])
             ->where('slug', $slug)
             ->first();
@@ -230,7 +236,6 @@ class ShopController extends Controller
         // Add each product to last viewed
         ShopService::lastViewedProducts($product);
         $similarProducts = ShopService::similarProducts($product);
-
 
         $category = $product->categories->first();
 
@@ -247,9 +252,15 @@ class ShopController extends Controller
             ->unique('id')
             ->values();
 
+        if ($product->variantParent->isNotEmpty()) {
+            $variants = $product->variantParent->first()->variants;
+        } else {
+            $variants = $product->variants;
+        }
 
         return view('Frontend.shop.Show', [
             'product'             => $product,
+            'variants'            => $variants,
             'sphValues'           => PrescriptionOptions::SPH(),
             'cylValues'           => PrescriptionOptions::CYL(),
             'pdValues'            => PrescriptionOptions::PD(),

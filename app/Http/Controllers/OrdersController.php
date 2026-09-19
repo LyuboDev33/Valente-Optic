@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\NotifyAdminMail;
 use App\Mail\OrderCreated;
 use App\Models\Admin\GlassValue;
-use App\Models\Admin\LanceColor;
-use App\Models\Admin\LensIndex;
 use App\Models\Admin\Promocode;
 use App\Models\Order;
 use App\Models\OrderProduct;
 use App\Models\Product;
-use App\Services\ProductService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -614,13 +612,8 @@ class OrdersController extends Controller
             )->first();
         }
 
-        Mail::to($email)->send(
-            new OrderCreated(
-                $newOrder,
-                $orderProducts,
-                $promoCode
-            )
-        );
+        Mail::to($email)->send(new OrderCreated($newOrder, $orderProducts, $promoCode));
+        Mail::to('valenteoptics@gmail.com')->send(new NotifyAdminMail($newOrder, $orderProducts, $promoCode));
 
         return redirect()->route('checkout.succes');
     }

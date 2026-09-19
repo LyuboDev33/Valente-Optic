@@ -29,8 +29,8 @@ class Glass extends Model
 
     public function values()
     {
-        return $this->hasMany(GlassValue::class);
+        return $this->hasMany(GlassValue::class)->orderByRaw('CAST(value AS DECIMAL(10, 2)) ASC');
     }
 
-    
+
 }

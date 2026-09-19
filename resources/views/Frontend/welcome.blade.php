@@ -93,61 +93,6 @@
                     </div>
 
 
-                    <!-- Services Strip Start -->
-                    <div class="services-strip">
-                        <div class="services-strip__inner">
-
-                            <div class="services-strip__single">
-                                <div class="services-strip__icon">
-                                    <i class="fa-solid fa-truck"></i>
-                                </div>
-
-                                <div class="services-strip__content">
-                                    <h4>БЕЗПЛАТНА ДОСТАВКА</h4>
-                                    <p>Над 100 €</p>
-                                </div>
-                            </div>
-
-
-                            <div class="services-strip__single">
-                                <div class="services-strip__icon">
-                                    <i class="fa-solid fa-shield-halved"></i>
-                                </div>
-
-                                <div class="services-strip__content">
-                                    <h4>14 ДНИ ПРАВО НА ВРЪЩАНЕ</h4>
-                                    <p>Пазарувай спокойно.</p>
-                                </div>
-                            </div>
-
-
-                            <div class="services-strip__single">
-                                <div class="services-strip__icon services-strip__icon--gold">
-                                    <i class="fa-solid fa-award"></i>
-                                </div>
-
-                                <div class="services-strip__content">
-                                    <h4>ГАРАНЦИЯ ЗА КАЧЕСТВО</h4>
-                                    <p>Оригинални продукти.</p>
-                                </div>
-                            </div>
-
-
-                            <div class="services-strip__single">
-                                <div class="services-strip__icon services-strip__icon--coral">
-                                    <i class="fa-regular fa-credit-card"></i>
-                                </div>
-
-                                <div class="services-strip__content">
-                                    <h4>СИГУРНО ПЛАЩАНЕ</h4>
-                                    <p>100% защитени транзакции.</p>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                    <!-- Services Strip End -->
-
                 </div>
             </div>
         </div>

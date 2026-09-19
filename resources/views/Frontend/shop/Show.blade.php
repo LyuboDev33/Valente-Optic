@@ -126,12 +126,13 @@
 
                     <hr>
 
-                    @if ($product->variants->isNotEmpty() || $product->variantParent->isNotEmpty())
+                    @if ($variants->isNotEmpty() || $product->variantParent->isNotEmpty())
                         <div class="card border-0 rounded-5 mb-4">
                             <div class="card-body rounded-5 shadow">
                                 <h5 class="mb-3">Цветове на продукта</h5>
 
                                 <div class="d-flex flex-wrap gap-3">
+
                                     @foreach ($product->variantParent as $parent)
                                         <a href="{{ route('shop.show', $parent->slug) }}" class="product-variant-card">
                                             <img src="{{ asset('assets/images/products/' . $parent->main_image) }}"
@@ -141,29 +142,29 @@
                                         </a>
                                     @endforeach
 
-                                    <a href="{{ route('shop.show', $product->slug) }}"
-                                        class="product-variant-card active">
-                                        <img src="{{ asset('assets/images/products/' . $product->main_image) }}"
-                                            alt="{{ $product->name }}">
+                                    @if ($product->variantParent->isEmpty())
+                                        <a href="{{ route('shop.show', $product->slug) }}"
+                                            class="product-variant-card active">
+                                            <img src="{{ asset('assets/images/products/' . $product->main_image) }}"
+                                                alt="{{ $product->name }}">
 
-                                        <span>
-                                            @if ($product->variantParent->isEmpty())
-                                                Основен
-                                            @else
-                                                {{ $product->name }}
-                                            @endif
-                                        </span>
-                                    </a>
+                                            <span>Основен</span>
+                                        </a>
+                                    @endif
 
-                                    @foreach ($product->variants as $variant)
+                                    @foreach ($variants as $variant)
                                         <a href="{{ route('shop.show', $variant->slug) }}"
-                                            class="product-variant-card">
+                                            @class([
+                                                'product-variant-card',
+                                                'active' => $variant->id === $product->id,
+                                            ])>
                                             <img src="{{ asset('assets/images/products/' . $variant->main_image) }}"
                                                 alt="{{ $variant->name }}">
 
                                             <span>{{ $variant->name }}</span>
                                         </a>
                                     @endforeach
+
                                 </div>
                             </div>
                         </div>

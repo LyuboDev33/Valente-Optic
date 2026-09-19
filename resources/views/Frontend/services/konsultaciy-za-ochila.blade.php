@@ -351,9 +351,11 @@
                             </div>
 
                             <div class="glasses-process">
+
                                 <div class="glasses-process__header">
+
                                     <h2 class="glasses-process__title">
-                                        Как се изработват очила?
+                                        Как се изработват вашите очила?
                                     </h2>
 
                                     <div class="glasses-process__subtitle">
@@ -361,198 +363,281 @@
                                         <p>Процесът стъпка по стъпка</p>
                                         <span></span>
                                     </div>
+
                                 </div>
+
 
                                 <div class="glasses-process__grid">
 
                                     <article class="glasses-process__item">
+
                                         <div class="glasses-process__image">
+
                                             <img src="/assets/images/resources/consult/clean_step_1.png"
                                                 alt="Проверка на зрението" />
 
                                             <span class="glasses-process__number">1</span>
+
                                         </div>
 
                                         <div class="glasses-process__content">
+
                                             {{-- <div class="glasses-process__icon">
-                                                <i class="fa-regular fa-eye"></i>
-                                            </div> --}}
+                    <i class="fa-regular fa-eye"></i>
+                </div> --}}
 
                                             <div>
+
                                                 <h3>Проверка на зрението</h3>
+
                                                 <p>
                                                     Правим прецизен преглед и определяме вашата диоптрична корекция.
                                                 </p>
+
                                             </div>
+
                                         </div>
+
                                     </article>
 
+
                                     <article class="glasses-process__item">
+
                                         <div class="glasses-process__image">
+
                                             <img src="/assets/images/resources/consult/clean_step_2.png"
-                                                alt="Избор на рамка" />
+                                                alt="Избор на стъкла" />
 
                                             <span class="glasses-process__number">2</span>
+
                                         </div>
 
                                         <div class="glasses-process__content">
+
                                             {{-- <div class="glasses-process__icon">
-                                                <i class="fa-solid fa-glasses"></i>
-                                            </div> --}}
+                    <i class="fa-solid fa-glasses"></i>
+                </div> --}}
 
                                             <div>
+
+                                                <h3>Избор на стъкла</h3>
+
+                                                <p>
+                                                    Изберете подходящите стъкла според диоптъра, посочен във вашата
+                                                    рецепта.
+                                                </p>
+
+                                            </div>
+
+                                        </div>
+
+                                    </article>
+
+
+                                    <article class="glasses-process__item">
+
+                                        <div class="glasses-process__image">
+
+                                            <img src="/assets/images/resources/consult/clean_step_3.png"
+                                                alt="Избор на рамка" />
+
+                                            <span class="glasses-process__number">3</span>
+
+                                        </div>
+
+                                        <div class="glasses-process__content">
+
+                                            {{-- <div class="glasses-process__icon">
+                    <i class="fa-regular fa-circle"></i>
+                </div> --}}
+
+                                            <div>
+
                                                 <h3>Избор на рамка</h3>
+
                                                 <p>
                                                     Избирате рамка, която подхожда на вашия стил, лице и ежедневни
                                                     нужди.
                                                 </p>
+
                                             </div>
+
                                         </div>
+
                                     </article>
 
+
                                     <article class="glasses-process__item">
+
                                         <div class="glasses-process__image">
-                                            <img src="/assets/images/resources/consult/clean_step_3.png"
+
+                                            <img src="/assets/images/resources/consult/clean_step_4.png"
                                                 alt="Изработване на стъклата" />
 
-                                            <span class="glasses-process__number">3</span>
-                                        </div>
-
-                                        <div class="glasses-process__content">
-                                            {{-- <div class="glasses-process__icon">
-                                                <i class="fa-regular fa-circle"></i>
-                                            </div> --}}
-
-                                            <div>
-                                                <h3>Изработване на стъклата</h3>
-                                                <p>
-                                                    Стъклата се изработват според вашата диоптрична корекция с висока
-                                                    прецизност.
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </article>
-
-                                    <article class="glasses-process__item">
-                                        <div class="glasses-process__image">
-                                            <img src="/assets/images/resources/consult/clean_step_4.png"
-                                                alt="Покрития и технологии" />
-
                                             <span class="glasses-process__number">4</span>
+
                                         </div>
 
                                         <div class="glasses-process__content">
+
                                             {{-- <div class="glasses-process__icon">
-                                                <i class="fa-solid fa-layer-group"></i>
-                                            </div> --}}
+                    <i class="fa-solid fa-layer-group"></i>
+                </div> --}}
 
                                             <div>
-                                                <h3>Покрития и технологии</h3>
+
+                                                <h3>Изработване на стъклата</h3>
+
                                                 <p>
-                                                    Добавяме антирефлексни покрития, филтри за синя светлина,
-                                                    фотосоларни или други специални решения.
+                                                    Стъклата се изработват индивидуално според избраните параметри и
+                                                    вашата рецепта.
                                                 </p>
+
                                             </div>
+
                                         </div>
+
                                     </article>
 
+
                                     <article class="glasses-process__item">
+
                                         <div class="glasses-process__image">
+
                                             <img src="/assets/images/resources/consult/clean_step_5.png"
                                                 alt="Сглобяване на очилата" />
 
                                             <span class="glasses-process__number">5</span>
+
                                         </div>
 
                                         <div class="glasses-process__content">
+
                                             {{-- <div class="glasses-process__icon">
-                                                <i class="fa-solid fa-screwdriver-wrench"></i>
-                                            </div> --}}
+                    <i class="fa-solid fa-screwdriver-wrench"></i>
+                </div> --}}
 
                                             <div>
+
                                                 <h3>Сглобяване на очилата</h3>
+
                                                 <p>
                                                     Стъклата се поставят в рамката и се фиксират прецизно.
                                                 </p>
+
                                             </div>
+
                                         </div>
+
                                     </article>
 
+
                                     <article class="glasses-process__item">
+
                                         <div class="glasses-process__image">
+
                                             <img src="/assets/images/resources/consult/clean_step_6.png"
                                                 alt="Качествен контрол" />
 
                                             <span class="glasses-process__number">6</span>
+
                                         </div>
 
                                         <div class="glasses-process__content">
+
                                             {{-- <div class="glasses-process__icon">
-                                                <i class="fa-regular fa-star"></i>
-                                            </div> --}}
+                    <i class="fa-regular fa-star"></i>
+                </div> --}}
 
                                             <div>
+
                                                 <h3>Качествен контрол</h3>
+
                                                 <p>
                                                     Проверяваме всяко очило за отлично качество, точност и комфорт при
                                                     носене.
                                                 </p>
+
                                             </div>
+
                                         </div>
+
                                     </article>
 
+
                                     <article class="glasses-process__item">
+
                                         <div class="glasses-process__image">
+
                                             <img src="/assets/images/resources/consult/clean_step_7.png"
                                                 alt="Готови за вас" />
 
                                             <span class="glasses-process__number">7</span>
+
                                         </div>
 
                                         <div class="glasses-process__content">
+
                                             {{-- <div class="glasses-process__icon">
-                                                <i class="fa-solid fa-box"></i>
-                                            </div> --}}
+                    <i class="fa-solid fa-box"></i>
+                </div> --}}
 
                                             <div>
+
                                                 <h3>Готови за вас</h3>
+
                                                 <p>
                                                     Вашите нови очила са готови. Опаковаме ги внимателно и ви ги
                                                     предаваме.
                                                 </p>
+
                                             </div>
+
                                         </div>
+
                                     </article>
 
+
                                     <article class="glasses-process__item">
+
                                         <div class="glasses-process__image">
+
                                             <img src="/assets/images/resources/consult/clean_step_8.png"
                                                 alt="Ясно зрение и повече увереност" />
 
                                             <span class="glasses-process__number">8</span>
+
                                         </div>
 
                                         <div class="glasses-process__content">
+
                                             {{-- <div class="glasses-process__icon">
-                                                <i class="fa-regular fa-face-smile"></i>
-                                            </div> --}}
+                    <i class="fa-regular fa-face-smile"></i>
+                </div> --}}
 
                                             <div>
+
                                                 <h3>Ясно зрение, повече увереност</h3>
+
                                                 <p>
                                                     Насладете се на кристално ясно зрение и комфорт всеки ден.
                                                 </p>
+
                                             </div>
+
                                         </div>
+
                                     </article>
 
                                 </div>
+
 
                                 <div class="glasses-process__footer">
                                     <span></span>
                                     <p>Прецизност. Качество. Грижа за вашето зрение.</p>
                                     <span></span>
                                 </div>
+
                             </div>
 
 
