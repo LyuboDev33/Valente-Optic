@@ -5147,6 +5147,16 @@ fieldset:disabled .btn {
     list-style: none
 }
 
+@media (max-width: 767px) {
+    .pagination {
+            display: flex;
+    padding-left: 0;
+    list-style: none;
+    width: 300px;
+    overflow-x: auto;
+    }
+}
+
 .page-link {
     position: relative;
     display: block;

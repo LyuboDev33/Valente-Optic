@@ -1931,9 +1931,9 @@ Product Details
         right: 10px;
     }
 
-    .checkout__payment__item p {
+    /* .checkout__payment__item p {
         max-width: 50%;
-    }
+    } */
 }
 
 @media (max-width: 480px) {

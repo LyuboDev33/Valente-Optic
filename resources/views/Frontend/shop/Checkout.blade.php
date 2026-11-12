@@ -288,7 +288,6 @@
                                                 <td class="pro__title">
 
                                                     <div class="row align-items-start">
-
                                                         <div class="col-lg-6">
 
                                                             <a href="/shop/product/{{ $product['slug'] }}">
@@ -303,7 +302,6 @@
                                                                 {{ $product['quantity'] }} бр.
                                                             </div>
 
-
                                                         </div>
 
                                                         <div class="col-lg-6">
@@ -312,33 +310,28 @@
                                                                 @if (!empty($product['glass_value']))
                                                                     <p class="mb-1">
                                                                         <strong>Тип стъкло:</strong>
-
                                                                         {{ $product['glass_value']['glass_name'] }}
                                                                     </p>
 
                                                                     <p class="mb-1">
                                                                         <strong>Избран вариант:</strong>
-
                                                                         {{ $product['glass_value']['value'] }}
-
-                                                                        {{-- <span class="text-muted">
-                                                                    (+{{ number_format($product['glass_value']['price'], 2) }} €)
-                                                                </span> --}}
                                                                     </p>
                                                                 @endif
 
                                                                 @if (!empty($product['lens_index']))
                                                                     <div class="d-flex justify-content-between mb-2">
-                                                                        <p> <strong>Индекс на изтъняване:
-                                                                                {{ $product['lens_index']['name'] }}</strong>
+                                                                        <p>
+                                                                            <strong>
+                                                                                Индекс на изтъняване:
+                                                                                {{ $product['lens_index']['name'] }}
+                                                                            </strong>
 
                                                                             +{{ number_format($product['lens_index']['price'], 2) }}
                                                                             €
                                                                         </p>
                                                                     </div>
                                                                 @endif
-
-
 
                                                                 @if (!empty($product['lance_color']))
                                                                     <div class="d-flex justify-content-between mb-2">
@@ -353,14 +346,13 @@
                                                             @endif
 
                                                         </div>
-
                                                     </div>
 
                                                 </td>
 
                                                 <td class="pro__price">
 
-                                                    @if ($product['discount'] > 0)
+                                                    @if (($product['discount'] ?? 0) > 0)
                                                         <del class="text-muted me-2">
                                                             {{ number_format($product['price'] * $product['quantity'], 2) }}
                                                             €
@@ -386,8 +378,6 @@
                                                 </td>
                                             </tr>
                                         @endforeach
-
-
 
                                         @if (!empty($promoCode))
                                             <tr>
@@ -425,7 +415,6 @@
                                             </td>
 
                                             <td class="pro__price">
-
                                                 @if (!empty($promoCode))
                                                     <del class="text-muted d-block">
                                                         {{ number_format($subtotal + $promoDiscount, 2) }} €
@@ -439,7 +428,6 @@
                                                         {{ number_format($subtotal ?? 0, 2) }} €
                                                     </strong>
                                                 @endif
-
                                             </td>
                                         </tr>
 
@@ -468,27 +456,89 @@
 
                                 <div id="promo-code-message" class="mt-2" aria-live="polite"></div>
 
+                                    <button type="submit" class="thm-btn order-btn">
+                                        Завърши поръчката
+                                    </button>
+
                             </div>
 
                             <div class="checkout__payment">
                                 <div class="checkout__payment__item checkout__payment__item--active">
 
-                                    <h3 class="checkout__payment__title text-center">
-                                        Плащане при получаване
-                                    </h3>
+                                    @if ($requiresBankTransfer)
+                                        <div class="alert alert-info text-start mb-4" role="alert">
 
-                                    <p>
-                                        Платете в брой при получаване на пратката от куриера.
-                                    </p>
+                                            <div class="d-flex align-items-start gap-3">
 
-                                    <button type="submit" class="thm-btn order-btn">
-                                        Завърши поръчката
-                                    </button>
+                                                <div>
+                                                    <h4 class="mb-3">
+                                                        <i class="fa-solid fa-circle-info fs-4 mt-1"></i>
+                                                        <strong>
+                                                            Важно: Предварително плащане
+                                                        </strong>
+                                                    </h4>
+
+                                                    <p class="mb-3">
+                                                        При поръчка на диоптрична рамка с избрани
+                                                        стъкла е необходимо
+                                                        <strong>предварително заплащане по банков път</strong>.
+                                                    </p>
+
+                                                    <p class="mb-3">
+                                                        Плащането трябва да бъде извършено
+                                                        <strong>
+                                                            в деня на поръчката или най-късно
+                                                            на следващия ден.
+                                                        </strong>
+                                                    </p>
+
+                                                    <div class="border-top pt-3 mt-3">
+
+                                                        <div class="mb-1">
+                                                            <strong>Банкова сметка (IBAN):</strong>
+                                                        </div>
+
+                                                        <div class="fw-bold fs-5 text-break user-select-all">
+                                                            BG44UBBS80021480971410
+                                                        </div>
+
+                                                        <small class="d-block mt-2">
+                                                            Моля, посочете номера на поръчката
+                                                            като основание за банковия превод.
+                                                        </small>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <h3 class="checkout__payment__title text-center">
+                                            Предварително плащане по банков път
+                                        </h3>
+
+                                        <p>
+                                            След завършване на поръчката е необходимо
+                                            да извършите банков превод по посочената сметка.
+                                        </p>
+                                    @else
+                                        <h3 class="checkout__payment__title text-center">
+                                            Плащане при получаване
+                                        </h3>
+
+                                        <p>
+                                            Платете в брой при получаване на пратката от куриера.
+                                        </p>
+                                    @endif
+
+
 
                                 </div>
+
                             </div>
 
                         </div>
+
                     </div>
 
                 </div>

@@ -158,16 +158,18 @@
                                 @endforelse
 
                             </div>
+                            {{-- Pagination --}}
+                            @if ($products->hasPages())
+                                <div class="row mt-4">
+                                    <div class="col-12 d-flex justify-content-center">
+                                        {{ $products->links() }}
+                                    </div>
+                                </div>
+                            @endif
                         </div>
 
-                        {{-- Pagination --}}
-                        @if ($products->hasPages())
-                            <div class="row mt-4">
-                                <div class="col-12 d-flex justify-content-center">
-                                    {{ $products->links() }}
-                                </div>
-                            </div>
-                        @endif
+
+
 
                     </div>
                 </div>

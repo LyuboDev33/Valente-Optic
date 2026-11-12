@@ -143,6 +143,10 @@ class ShopController extends Controller
             }
         }
 
+        $requiresBankTransfer = collect($products)->contains(
+            fn($product) => ($product['purchase_type'] ?? 'frame_only') === 'frame_with_glasses'
+        );
+
         return view('Frontend.shop.Checkout', [
             'speedyOffices'     => SpeedyOffice::get(),
             'cities'            => City::get(),
@@ -151,6 +155,7 @@ class ShopController extends Controller
             'promoCode'         => $promoCode,
             'promoPercentage'   => $promoPercentage,
             'promoDiscount'     => $promoDiscount,
+            'requiresBankTransfer' => $requiresBankTransfer
         ]);
     }
 

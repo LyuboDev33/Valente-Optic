@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateOrderRequest;
 use App\Mail\NotifyAdminMail;
 use App\Mail\OrderCreated;
 use App\Models\Admin\GlassValue;
@@ -387,76 +388,19 @@ class OrdersController extends Controller
         );
     }
 
+
+
     /**
      * Create a new order.
      *
-     * @param Request $request
+     * @param CreateOrderRequest $request
      * @return RedirectResponse
      */
-    public function create(Request $request): RedirectResponse
+    public function create(CreateOrderRequest $request): RedirectResponse
     {
-        $validated = $request->validate([
-            'fname' => ['required', 'string', 'max:255'],
-            'lname' => ['required', 'string', 'max:255'],
-            'phone' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'email', 'max:255'],
+        $validated = $request->validated();
 
-            'delivery_method' => ['required'],
-
-            'city' =>            ['required_if:delivery_method,personal', 'nullable', 'string', 'max:255'],
-            'billing_address' => ['required_if:delivery_method,personal', 'nullable', 'string', 'max:255'],
-            'office_list' =>     ['required_if:delivery_method,office', 'nullable', 'string', 'max:255'],
-
-            'request_invoice' => ['nullable', 'boolean'],
-
-            'company_name' => ['nullable', 'string', 'max:255'],
-            'company_mol' => ['nullable', 'string', 'max:255'],
-            'company_bulstat' => ['nullable', 'string', 'max:255'],
-            'company_address' => ['nullable', 'string', 'max:255'],
-        ], [
-            'fname.required' => 'Моля, въведете вашето име.',
-            'fname.max' => 'Името не може да бъде по-дълго от 255 символа.',
-
-            'lname.required' => 'Моля, въведете вашата фамилия.',
-            'lname.max' => 'Фамилията не може да бъде по-дълга от 255 символа.',
-
-            'phone.required' => 'Моля, въведете телефонен номер.',
-            'phone.max' => 'Телефонният номер не може да бъде по-дълъг от 255 символа.',
-
-            'email.required' => 'Моля, въведете имейл адрес.',
-            'email.email' => 'Моля, въведете валиден имейл адрес.',
-            'email.max' => 'Имейл адресът не може да бъде по-дълъг от 255 символа.',
-
-            'delivery_method.required' => 'Моля, изберете начин на доставка.',
-
-            'city.required_if' => 'Моля, изберете град.',
-            'city.max' => 'Градът не може да бъде по-дълъг от 255 символа.',
-
-            'billing_address.required_if' => 'Моля, въведете адрес за доставка.',
-            'billing_address.max' => 'Адресът не може да бъде по-дълъг от 255 символа.',
-
-            'office_list.required_if' => 'Моля, изберете офис на Speedy.',
-            'office_list.max' => 'Избраният офис не може да бъде по-дълъг от 255 символа.',
-
-            'company_name.max' => 'Името на фирмата не може да бъде по-дълго от 255 символа.',
-            'company_mol.max' => 'Името на МОЛ не може да бъде по-дълго от 255 символа.',
-            'company_bulstat.max' => 'Булстатът не може да бъде по-дълъг от 255 символа.',
-            'company_address.max' => 'Адресът на фирмата не може да бъде по-дълъг от 255 символа.',
-        ]);
-
-        $personalDelivery =
-            ! empty($validated['city']) &&
-            ! empty($validated['billing_address']);
-
-        $officeDelivery = ! empty($validated['office_list']);
-
-        if (! $personalDelivery && ! $officeDelivery) {
-            return back()
-                ->withErrors([
-                    'delivery' => 'Моля попълнете адрес за доставка или изберете офис на Speedy и попълнете нужните данни.',
-                ])
-                ->withInput();
-        }
+        $isPersonal = $validated['delivery_method'] === 'personal';
 
         $cartProducts = Session::get('products', []);
 
@@ -464,55 +408,70 @@ class OrdersController extends Controller
             return back()
                 ->withErrors([
                     'cart' => 'Количката е празна.',
-                ]);
+                ])
+                ->withInput();
         }
 
         $sessionPromoCode = Session::get('promo_code');
 
-
         try {
-            $order = DB::transaction(function () use ($validated, $cartProducts, $sessionPromoCode) {
+            $result = DB::transaction(function () use (
+                $validated,
+                $cartProducts,
+                $sessionPromoCode,
+                $isPersonal
+            ) {
                 $subtotal = 0;
                 $promoCodeName = $sessionPromoCode['promo_code_name'] ?? null;
 
-
                 foreach ($cartProducts as $product) {
-                    $subtotal +=
-                        (float) $product['final_price'] *
-                        (int) $product['quantity'];
+                    $productPrice = (float) $product['final_price'];
+
+                    if (($product['purchase_type'] ?? 'frame_only') === 'frame_with_glasses') {
+                        $productPrice += (float) ($product['glass_value']['price'] ?? 0);
+                        $productPrice += (float) ($product['lens_index']['price'] ?? 0);
+                    }
+
+                    $subtotal += $productPrice * (int) $product['quantity'];
                 }
 
+                $courier = match ($validated['delivery_method']) {
+                    'office' => 'ekont',
+                    'speedy' => 'speedy',
+                    'pigeon' => 'pigeon',
+                    default => null,
+                };
+
                 $order = Order::create([
-                    'order_number'     => 'ORD-' . date('dmy') . '-' . random_int(1000, 9999),
+                    'order_number' => 'ORD-' . date('dmy') . '-' . random_int(1000, 9999),
 
-                    'first_name'       => $validated['fname'],
-                    'last_name'        => $validated['lname'],
-                    'phone'            => $validated['phone'],
-                    'email'            => $validated['email'],
+                    'first_name' => $validated['fname'],
+                    'last_name' => $validated['lname'],
+                    'phone' => $validated['phone'],
+                    'email' => $validated['email'],
 
-                    'delivery_method'  => $validated['delivery_method'],
+                    'delivery_method' => $validated['delivery_method'],
 
-                    'city'             => $validated['city'] ?? null,
-                    'personal_address' => $validated['billing_address'] ?? null,
+                    'city' => $isPersonal ? ($validated['city'] ?? null) : null,
+                    'personal_address' => $isPersonal ? ($validated['billing_address'] ?? null) : null,
 
-                    'courier'          => ! empty($validated['office_list']) ? 'speedy' : null,
+                    'courier' => $courier,
+                    'office_list' => $isPersonal ? null : ($validated['office_list'] ?? null),
 
-                    'office_list'      => $validated['office_list'] ?? null,
+                    'request_invoice' => $validated['request_invoice'] ?? false,
 
-                    'request_invoice'  => $validated['request_invoice'] ?? false,
+                    'company_name' => $validated['company_name'] ?? null,
+                    'company_mol' => $validated['company_mol'] ?? null,
+                    'company_bulstat' => $validated['company_bulstat'] ?? null,
+                    'company_address' => $validated['company_address'] ?? null,
 
-                    'company_name'     => $validated['company_name'] ?? null,
-                    'company_mol'      => $validated['company_mol'] ?? null,
-                    'company_bulstat'  => $validated['company_bulstat'] ?? null,
-                    'company_address'  => $validated['company_address'] ?? null,
+                    'subtotal' => $subtotal,
+                    'promo_code' => $promoCodeName,
+                    'delivery_price' => 0,
+                    'total' => $subtotal,
 
-                    'subtotal'         => $subtotal,
-                    'promo_code'       => $promoCodeName,
-                    'delivery_price'   => 0,
-                    'total'            => $subtotal,
-
-                    'payment_option'   => 'cash_on_delivery',
-                    'status'           => Order::STATUS_PENDING,
+                    'payment_option' => 'cash_on_delivery',
+                    'status' => Order::STATUS_PENDING,
                 ]);
 
                 $orderProducts = [];
@@ -533,8 +492,7 @@ class OrdersController extends Controller
 
                     if ($currentStock < $orderedQuantity) {
                         throw new \Exception(
-                            'Няма достатъчна наличност за продукт: ' .
-                                $product['name']
+                            'Няма достатъчна наличност за продукт: ' . $product['name']
                         );
                     }
 
@@ -543,39 +501,35 @@ class OrdersController extends Controller
                     ]);
 
                     $orderProduct = OrderProduct::create([
-                        'order_id'                      => $order->id,
-                        'product_id'                    => $product['product_id'],
+                        'order_id' => $order->id,
+                        'product_id' => $product['product_id'],
 
-                        'product_name'                  => $product['name'],
-                        'product_slug'                  => $product['slug'],
-                        'product_image'                 => $product['image'] ?? null,
+                        'product_name' => $product['name'],
+                        'product_slug' => $product['slug'],
+                        'product_image' => $product['image'] ?? null,
 
-                        'price'                         => $product['price'],
-                        'discount'                      => $product['discount'] ?? null,
-                        'base_price'                    => $product['base_price'],
-                        'final_price'                   => $product['final_price'],
-                        'quantity'                      => $product['quantity'],
+                        'price' => $product['price'],
+                        'discount' => $product['discount'] ?? null,
+                        'base_price' => $product['base_price'] ?? $product['price'],
+                        'final_price' => $product['final_price'],
+                        'quantity' => $product['quantity'],
 
-                        'purchase_type'                 => $product['purchase_type'] ?? 'frame_only',
+                        'purchase_type' => $product['purchase_type'] ?? 'frame_only',
 
-                        'glass_id'                      => $product['glass_value']['glass_id'] ?? null,
+                        'glass_id' => $product['glass_value']['glass_id'] ?? null,
+                        'glass_value_id' => $product['glass_value']['id'] ?? null,
+                        'glass_name' => $product['glass_value']['glass_name'] ?? null,
+                        'glass_value_name' => $product['glass_value']['value'] ?? null,
+                        'glass_value_price' => $product['glass_value']['price'] ?? null,
 
-                        'glass_value_id'                => $product['glass_value']['id'] ?? null,
+                        'glass_value_lens_index_id' => $product['lens_index']['id'] ?? null,
+                        'glass_value_lens_index_name' => $product['lens_index']['name'] ?? null,
+                        'glass_value_lens_index_price' => $product['lens_index']['price'] ?? null,
 
-                        'glass_name'                    => $product['glass_value']['glass_name'] ?? null,
-
-                        'glass_value_name'              => $product['glass_value']['value'] ?? null,
-
-                        'glass_value_price'             => $product['glass_value']['price'] ?? null,
-                        'glass_value_lens_index_id'     => $product['lens_index']['id'] ?? null,
-                        'glass_value_lens_index_name'   => $product['lens_index']['name'] ?? null,
-                        'glass_value_lens_index_price'  => $product['lens_index']['price'] ?? null,
-
-                        'prescription_image'            => $product['prescription_image'] ?? null,
-
-                        'right_eye'                     => $product['right_eye'] ?? null,
-                        'left_eye'                      => $product['left_eye'] ?? null,
-                        'pd'                            => $product['pd'] ?? null,
+                        'prescription_image' => $product['prescription_image'] ?? null,
+                        'right_eye' => $product['right_eye'] ?? null,
+                        'left_eye' => $product['left_eye'] ?? null,
+                        'pd' => $product['pd'] ?? null,
                     ]);
 
                     $orderProducts[] = $orderProduct;
@@ -594,26 +548,25 @@ class OrdersController extends Controller
                 ->withInput();
         }
 
-        $newOrder = $order['order'];
-        $orderProducts = $order['orderProducts'];
-        $email = $order['order']->email;
+        $newOrder = $result['order'];
+        $orderProducts = $result['orderProducts'];
+
+        $promoCode = null;
+
+        if ($sessionPromoCode) {
+            $promoCode = Promocode::where('promo_code_name', $sessionPromoCode['promo_code_name'])->first();
+        }
+
+        Mail::to('lyubomir_stoyanov33@abv.bg')
+            ->send(new OrderCreated($newOrder, $orderProducts, $promoCode));
+
+        Mail::to('lyubomir_stoyanov33@abv.bg')
+            ->send(new NotifyAdminMail($newOrder, $orderProducts, $promoCode));
 
         Session::forget([
             'products',
             'promo_code',
         ]);
-
-        $promoCode = null;
-
-        if ($sessionPromoCode) {
-            $promoCode = Promocode::where(
-                'promo_code_name',
-                $sessionPromoCode['promo_code_name']
-            )->first();
-        }
-
-        Mail::to($email)->send(new OrderCreated($newOrder, $orderProducts, $promoCode));
-        Mail::to('valenteoptics@gmail.com')->send(new NotifyAdminMail($newOrder, $orderProducts, $promoCode));
 
         return redirect()->route('checkout.succes');
     }

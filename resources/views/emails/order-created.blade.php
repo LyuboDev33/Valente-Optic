@@ -38,8 +38,7 @@
                                 padding: 35px 25px 20px;
                                 background-color: #ffffff;
                             ">
-                            <img src="{{ url('/assets/images/logo-valente.png') }}" alt="Успешна поръчка"
-                                width="100"
+                            <img src="{{ url('/assets/images/logo-valente.png') }}" alt="Успешна поръчка" width="100"
                                 style="
                                     display: block;
                                     width: 250px;
@@ -192,7 +191,8 @@
                                             <br>
 
                                             <strong>Цена на рамката:</strong>
-                                            {{ number_format((float) ($product->base_price ?? $product->price), 2) }} EUR
+                                            {{ number_format((float) ($product->base_price ?? $product->price), 2) }}
+                                            EUR
 
                                             @if ($product->discount)
                                                 <br>
@@ -226,14 +226,15 @@
                                                     line-height: 24px;
                                                     color: #222222;
                                                 ">
-                                              {{ number_format((
-                                                        (float) $product->final_price
-                                                        + ($product->purchase_type === 'frame_with_glasses'
+                                                {{ number_format(
+                                                    ((float) $product->final_price +
+                                                        ($product->purchase_type === 'frame_with_glasses'
                                                             ? (float) $product->glass_value_price + (float) $product->glass_value_lens_index_price
-                                                            : 0)
-                                                    ) * $product->quantity,
-                                                    2
-                                                ) }} EUR
+                                                            : 0)) *
+                                                        $product->quantity,
+                                                    2,
+                                                ) }}
+                                                EUR
                                             </strong>
                                         </td>
                                     </tr>
@@ -278,7 +279,8 @@
 
                                                             @if ($product->glass_value_price !== null)
                                                                 <strong>Цена на стъклото:</strong>
-                                                                {{ number_format((float) $product->glass_value_price, 2) }} EUR
+                                                                {{ number_format((float) $product->glass_value_price, 2) }}
+                                                                EUR
                                                                 <br>
                                                             @endif
 
@@ -290,21 +292,14 @@
 
                                                             @if ($product->glass_value_lens_index_price !== null)
                                                                 <strong>Цена на индекса:</strong>
-                                                                {{ number_format((float) $product->glass_value_lens_index_price, 2) }} EUR
+                                                                {{ number_format((float) $product->glass_value_lens_index_price, 2) }}
+                                                                EUR
                                                                 <br>
                                                             @endif
 
                                                             <br>
 
-                                                            <strong>Крайна цена:</strong>
-                                                            <span
-                                                                style="
-                                                                    font-size: 16px;
-                                                                    font-weight: 700;
-                                                                    color: #222222;
-                                                                ">
-                                                                {{ number_format((float) $product->final_price, 2) }} EUR
-                                                            </span>
+
                                                         </td>
                                                     </tr>
                                                 </table>
@@ -421,29 +416,7 @@
                                     border: 1px solid #e8e8e8;
                                     border-radius: 8px;
                                 ">
-                                <tr>
-                                    <td
-                                        style="
-                                            padding: 15px 18px;
-                                            font-size: 14px;
-                                            color: #555555;
-                                            border-bottom: 1px solid #eeeeee;
-                                        ">
-                                        Сума на продуктите:
-                                    </td>
 
-                                    <td align="right"
-                                        style="
-                                            padding: 15px 18px;
-                                            font-size: 14px;
-                                            color: #222222;
-                                            border-bottom: 1px solid #eeeeee;
-                                        ">
-                                        <strong>
-                                            {{ number_format((float) $order->subtotal, 2) }} EUR
-                                        </strong>
-                                    </td>
-                                </tr>
 
                                 @if ($promoCode)
                                     <tr>
@@ -518,7 +491,8 @@
                                             color: #222222;
                                         ">
                                         <strong>
-                                            {{ number_format((float) $order->total, 2) }} EUR
+                                            {{ number_format((float) $order->total, 2) }}
+                                            EUR
                                         </strong>
                                     </td>
                                 </tr>
@@ -555,11 +529,19 @@
                                         ">
                                         <strong>Начин на доставка:</strong>
 
-                                        @if ($order->delivery_method === 'office')
-                                            До офис на куриер Speedy
-                                        @else
-                                            До личен адрес
-                                        @endif
+                                        @switch($order->delivery_method)
+                                            @case('office')
+                                                До офис на Еконт
+                                                @break
+                                            @case('speedy')
+                                                До офис на Спиди
+                                                @break
+                                            @case('pigeon')
+                                                До офис на Pigeon Express
+                                                @break
+                                            @default
+                                                До личен адрес
+                                        @endswitch
 
                                         <br>
 

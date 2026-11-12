@@ -210,7 +210,7 @@
                             </h4>
 
                             <p>
-                                Над 100 €
+                                Безплатна доставка само при поръчка на очила ( рамка + стъкла )
                             </p>
 
                         </div>
@@ -219,7 +219,7 @@
 
 
                     <!-- Returns -->
-                    <div class="services-strip__single">
+                    {{-- <div class="services-strip__single">
 
                         <div class="services-strip__icon">
                             <i class="fa-solid fa-shield-halved"></i>
@@ -237,7 +237,7 @@
 
                         </div>
 
-                    </div>
+                    </div> --}}
 
 
                     <!-- Quality -->
