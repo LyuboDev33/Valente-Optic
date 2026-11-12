@@ -65,7 +65,7 @@ Route::prefix('admin')
 
             Route::put('/{product}', [AdminProductsController::class, 'update'])->name('admin.product.update');
             Route::delete('/{product:slug}', [AdminProductsController::class, 'destroy'])->name('admin.products.destroy');
-            Route::delete('/gallery-image/delete/{product}', [AdminProductsController::class, 'deleteGalleryImage'])
+            Route::post('/gallery-image/delete/{product}', [AdminProductsController::class, 'deleteGalleryImage'])
                   ->name('product.gallery-image.delete');
         });
 

@@ -341,7 +341,7 @@
 
                     $.ajax({
                         url: "{{ route('product.gallery-image.delete', $product) }}",
-                        type: "DELETE",
+                        type: "POST",
 
                         data: {
                             _token: document
