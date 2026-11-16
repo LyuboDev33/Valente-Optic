@@ -557,11 +557,9 @@ class OrdersController extends Controller
             $promoCode = Promocode::where('promo_code_name', $sessionPromoCode['promo_code_name'])->first();
         }
 
-        Mail::to('lyubomir_stoyanov33@abv.bg')
-            ->send(new OrderCreated($newOrder, $orderProducts, $promoCode));
+        Mail::to($newOrder->email)->send(new OrderCreated($newOrder, $orderProducts, $promoCode));
 
-        Mail::to('lyubomir_stoyanov33@abv.bg')
-            ->send(new NotifyAdminMail($newOrder, $orderProducts, $promoCode));
+        Mail::to('valenteoptics@gmail.com')->send(new NotifyAdminMail($newOrder, $orderProducts, $promoCode));
 
         Session::forget([
             'products',
