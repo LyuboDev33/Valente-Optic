@@ -269,6 +269,7 @@
                                         </form>
                                     </div>
 
+
                                     <div class="glass-admin-card__body">
                                         @if ($glass->values->isEmpty())
                                             <p class="text-muted mb-0 fst-italic">
@@ -284,6 +285,7 @@
                                                             data-bs-target="#glass-value-{{ $value->id }}"
                                                             aria-expanded="false"
                                                             aria-controls="glass-value-{{ $value->id }}">
+
                                                             <span>{{ $value->value }}</span>
 
                                                             <i class="fa-solid fa-chevron-down"></i>
@@ -291,21 +293,21 @@
 
                                                         <div id="glass-value-{{ $value->id }}"
                                                             class="collapse glass-admin-card__body bg-white">
+
                                                             {{-- ================= GLASS VALUE UPDATE ================= --}}
                                                             <div class="glass-value-row">
                                                                 <form
                                                                     action="{{ route('admin.glass-values.update', $value) }}"
-                                                                    method="POST" class="glass-value-row__form">
+                                                                    method="POST"
+                                                                    class="glass-value-row__form glass-value-update-form">
                                                                     @csrf
-                                                                    @method('PUT')
 
                                                                     <div class="glass-value-row__field">
                                                                         <label>Стойност</label>
 
                                                                         <input type="text" name="value"
                                                                             class="form-control"
-                                                                            value="{{ old("glass_values.$value->id.value", $value->value) }}"
-                                                                            required>
+                                                                            value="{{ $value->value }}" required>
                                                                     </div>
 
                                                                     <div class="glass-value-row__actions">
@@ -330,14 +332,13 @@
                                                                 </form>
                                                             </div>
 
-                                                            {{-- ================= EXISTING LENS INDEXES ================= --}}
+                                                            {{-- ================= LENS INDEXES ================= --}}
                                                             <div class="glass-value-lens-indexes mt-4">
+
                                                                 <div
                                                                     class="d-flex justify-content-between align-items-center mb-3">
-                                                                    {{-- <h6 class="mb-0">
-                                                                    Индекси на изтъняване
-                                                                    </h6> --}}
 
+                                                                    {{-- ================= CREATE LENS INDEX ================= --}}
                                                                     <div class="lens-index-create-box col-lg-3">
                                                                         <h6 class="mb-3">
                                                                             Добави нов индекс
@@ -356,8 +357,7 @@
                                                                             <div class="glass-value-row__field">
                                                                                 <label>Индекс</label>
 
-                                                                                <input type="text"
-                                                                                    name="name"
+                                                                                <input type="text" name="name"
                                                                                     class="form-control rounded-pill"
                                                                                     placeholder="Напр. 1.60" required>
                                                                             </div>
@@ -379,70 +379,32 @@
                                                                         </form>
                                                                     </div>
 
-                                                                    @if ($value->lensIndexes->isEmpty())
-                                                                        <div class="alert alert-light border mb-3 rounded-pill">
-                                                                            Няма добавени индекси към тази стойност.
-                                                                        </div>
-                                                                    @else
-                                                                        <div class="d-flex gap-3 mb-4">
-                                                                            @foreach ($value->lensIndexes as $lensIndex)
-                                                                                <div class="lens-index-admin-row">
-                                                                                    <form
-                                                                                        action="{{ route('admin.glass-value-lens-indexes.update', $lensIndex) }}"
-                                                                                        method="POST"
-                                                                                        class="lens-index-admin-row__form">
-                                                                                        @csrf
-                                                                                        @method('PUT')
+                                                                    {{-- ================= EXISTING LENS INDEXES ================= --}}
+                                                                    <div
+                                                                        class="glass-value-lens-index-list d-flex gap-3 mb-4 flex-wrap">
 
-                                                                                        <div
-                                                                                            class="glass-value-row__field">
-                                                                                            <label>Индекс</label>
+                                                                        @foreach ($value->lensIndexes as $lensIndex)
+                                                                            @include(
+                                                                                'admin.components.lens-index',
+                                                                                [
+                                                                                    'lensIndex' => $lensIndex,
+                                                                                ]
+                                                                            )
+                                                                        @endforeach
 
-                                                                                            <input type="text"
-                                                                                                name="name"
-                                                                                                class="form-control"
-                                                                                                value="{{ old("glass_value_lens_indexes.$lensIndex->id.name", $lensIndex->name) }}"
-                                                                                                placeholder="Напр. 1.60"
-                                                                                                required>
-                                                                                        </div>
+                                                                    </div>
 
-                                                                                        <div
-                                                                                            class="glass-value-row__field">
-                                                                                            <label>Цена</label>
+                                                                    <div
+                                                                        class="glass-value-lens-index-empty alert alert-light border mb-3 rounded-pill
+                                    @if ($value->lensIndexes->isNotEmpty()) d-none @endif">
 
-                                                                                            <input type="number"
-                                                                                                step="0.01"
-                                                                                                name="price"
-                                                                                                class="form-control"
-                                                                                                value="{{ old("glass_value_lens_indexes.$lensIndex->id.price", $lensIndex->price) }}"
-                                                                                                min="0"
-                                                                                                required>
-                                                                                        </div>
+                                                                        Няма добавени индекси към тази стойност.
 
-                                                                                        <button type="submit"
-                                                                                            class="btn btn-primary text-white btn-outline-primary rounded-5 w-100 mt-2 mb-2">
-                                                                                            Запази
-                                                                                        </button>
-                                                                                    </form>
+                                                                    </div>
 
-                                                                                    <form
-                                                                                        action="{{ route('admin.glass-value-lens-indexes.destroy', $lensIndex) }}"
-                                                                                        method="POST"
-                                                                                        onsubmit="return confirm('Сигурен ли си, че искаш да изтриеш този индекс?');">
-                                                                                        @csrf
-                                                                                        @method('DELETE')
-
-                                                                                        <button type="submit"
-                                                                                            class="btn btn-outline-danger rounded-5">
-                                                                                            Изтрий
-                                                                                        </button>
-                                                                                    </form>
-                                                                                </div>
-                                                                            @endforeach
-                                                                        </div>
-                                                                    @endif
                                                                 </div>
                                                             </div>
+
                                                         </div>
                                                     </div>
 
@@ -451,6 +413,7 @@
                                             </div>
                                         @endif
                                     </div>
+
                                 </div>
                             @endforeach
                         </div>
@@ -516,4 +479,163 @@
 
 
     </div>
+
+
+
+    <script>
+        $(document).ready(function() {
+            createLensIndex();
+            updateLensIndex();
+            updateGlassValue();
+        });
+
+        function showSuccessMessage(form, message) {
+            form.find('.ajax-success-message').remove();
+
+            const successMessage = $('<p>', {
+                class: 'ajax-success-message text-success mt-2 mb-0',
+                text: message
+            });
+
+            form.append(successMessage);
+
+            setTimeout(function() {
+                successMessage.fadeOut(300, function() {
+                    $(this).remove();
+                });
+            }, 3000);
+        }
+
+        function createLensIndex() {
+            $(document).on('submit', '.lens-index-create-form', function(e) {
+                e.preventDefault();
+
+                const form = $(this);
+                const container = form.closest('.glass-value-lens-indexes');
+                const button = form.find('button[type="submit"]');
+
+                $.ajax({
+                    url: form.attr('action'),
+                    type: 'POST',
+                    data: form.serialize(),
+
+                    beforeSend: function() {
+                        button.prop('disabled', true);
+                        form.find('.ajax-success-message').remove();
+                    },
+
+                    success: function(response) {
+                        if (response.success) {
+                            container.find('.glass-value-lens-index-list').append(response.html);
+                            container.find('.glass-value-lens-index-empty').hide();
+
+                            form[0].reset();
+
+                            showSuccessMessage(form, response.message);
+                        }
+                    },
+
+                    error: function(xhr) {
+                        if (xhr.status === 422) {
+                            alert(Object.values(xhr.responseJSON.errors).flat().join('\n'));
+                            return;
+                        }
+
+                        alert('Възникна грешка при добавянето на индекса.');
+                    },
+
+                    complete: function() {
+                        button.prop('disabled', false);
+                    }
+                });
+            });
+        }
+
+        function updateLensIndex() {
+            $(document).on('submit', '.lens-index-admin-row__form', function(e) {
+                e.preventDefault();
+
+                const form = $(this);
+                const button = form.find('button[type="submit"]');
+
+                $.ajax({
+                    url: form.attr('action'),
+                    type: 'POST',
+                    data: form.serialize(),
+
+                    beforeSend: function() {
+                        button.prop('disabled', true);
+                        form.find('.ajax-success-message').remove();
+                    },
+
+                    success: function(response) {
+                        if (response.success) {
+                            showSuccessMessage(form, response.message);
+                        }
+                    },
+
+                    error: function(xhr) {
+                        if (xhr.status === 422) {
+                            alert(Object.values(xhr.responseJSON.errors).flat().join('\n'));
+                            return;
+                        }
+
+                        alert('Възникна грешка при обновяването на индекса.');
+                    },
+
+                    complete: function() {
+                        button.prop('disabled', false);
+                    }
+                });
+            });
+        }
+
+        function updateGlassValue() {
+            $(document).on('submit', '.glass-value-update-form', function(e) {
+                e.preventDefault();
+
+                const form = $(this);
+                const button = form.find('button[type="submit"]');
+
+                $.ajax({
+                    url: form.attr('action'),
+                    type: 'POST',
+                    data: form.serialize(),
+
+                    beforeSend: function() {
+                        button.prop('disabled', true);
+                        form.find('.ajax-success-message').remove();
+                    },
+
+                    success: function(response) {
+                        if (response.success) {
+                            const glassValueBox = form.closest('.glass-value-box');
+
+                            glassValueBox
+                                .children('.glass-admin-card__header')
+                                .find('span')
+                                .first()
+                                .text(response.value);
+
+                            showSuccessMessage(form, response.message);
+                        }
+                    },
+
+                    error: function(xhr) {
+                        if (xhr.status === 422) {
+                            alert(Object.values(xhr.responseJSON.errors).flat().join('\n'));
+                            return;
+                        }
+
+                        alert('Възникна грешка при обновяването на стойността.');
+                    },
+
+                    complete: function() {
+                        button.prop('disabled', false);
+                    }
+                });
+            });
+        }
+    </script>
+
 </x-backend>

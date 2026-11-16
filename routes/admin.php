@@ -22,14 +22,14 @@ Route::prefix('admin')
             Route::delete('/destroy/{glass}', [AdminGlassesController::class, 'destroyGlass'])->name('admin.glasses.destroy');
 
             Route::post('/values/store', [AdminGlassesController::class, 'storeGlassValue'])->name('admin.glass-values.store');
-            Route::put('/values/update/{glassValue}', [AdminGlassesController::class, 'updateGlassValue'])->name('admin.glass-values.update');
+            Route::post('/values/update/{glassValue}', [AdminGlassesController::class, 'updateGlassValue'])->name('admin.glass-values.update');
             Route::delete('/values/destroy/{glassValue}', [AdminGlassesController::class, 'destroyGlassValue'])->name('admin.glass-values.destroy');
 
 
             Route::post('/value-lens-indexes/store', [AdminGlassesController::class, 'storeGlassValueLensIndex'])
             ->name('admin.glass-value-lens-indexes.store');
 
-            Route::put('/value-lens-indexes/update/{glassValueLensIndex}',[AdminGlassesController::class, 'updateGlassValueLensIndex'])
+            Route::post('/value-lens-indexes/update/{glassValueLensIndex}',[AdminGlassesController::class, 'updateGlassValueLensIndex'])
             ->name('admin.glass-value-lens-indexes.update');
 
             Route::delete('/value-lens-indexes/destroy/{glassValueLensIndex}',[AdminGlassesController::class, 'destroyGlassValueLensIndex'])

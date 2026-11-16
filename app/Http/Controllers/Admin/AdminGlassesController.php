@@ -8,8 +8,10 @@ use App\Models\Admin\GlassValue;
 use App\Models\Admin\GlassValueLensIndex;
 use App\Models\Admin\VisionType;
 use App\Models\Category;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\View\View;
 
 class AdminGlassesController extends Controller
@@ -97,9 +99,9 @@ class AdminGlassesController extends Controller
      *
      * @param Request $request
      * @param GlassValue $glassValue
-     * @return RedirectResponse
+     * @return JsonResponse
      */
-    public function updateGlassValue(Request $request, GlassValue $glassValue): RedirectResponse
+    public function updateGlassValue(Request $request, GlassValue $glassValue): JsonResponse
     {
         $validated = $request->validate([
             'value' => ['required', 'string', 'max:255'],
@@ -113,7 +115,11 @@ class AdminGlassesController extends Controller
             'value' => $validated['value'],
         ]);
 
-        return back()->with('success', 'Стойността беше обновена успешно!');
+        return response()->json([
+            'success' => true,
+            'message' => 'Стойността беше обновена успешно!',
+            'value'   => $glassValue->value,
+        ]);
     }
 
     /**
@@ -142,56 +148,29 @@ class AdminGlassesController extends Controller
         return back()->with('success', 'Стойността беше изтрита успешно!');
     }
 
+
     /**
      * Store a new lens index for a glass value.
-     *
-     * @param Request $request
-     * @return RedirectResponse
      */
-    public function storeGlassValueLensIndex(Request $request): RedirectResponse
+    public function storeGlassValueLensIndex(Request $request): JsonResponse
     {
         $validated = $request->validate([
-            'glass_value_id' => [
-                'required',
-                'exists:glass_values,id',
-            ],
-
-            'name' => [
-                'required',
-                'string',
-                'max:255',
-            ],
-
-            'price' => [
-                'required',
-                'numeric',
-                'min:0',
-            ],
-        ], [
-            'glass_value_id.required' => 'Моля, изберете стойност на стъклото.',
-            'glass_value_id.exists'   => 'Избраната стойност на стъклото не съществува.',
-
-            'name.required' => 'Моля, въведете индекс на изтъняване.',
-            'name.string'   => 'Индексът трябва да бъде текст.',
-            'name.max'      => 'Индексът не може да бъде по-дълъг от 255 символа.',
-            'name.unique'   => 'Този индекс вече е добавен към избраната стойност.',
-
-            'price.required' => 'Моля, въведете цена.',
-            'price.numeric'  => 'Цената трябва да бъде число.',
-            'price.min'      => 'Цената не може да бъде отрицателна.',
+            'glass_value_id' => ['required', 'exists:glass_values,id'],
+            'name' => ['required', 'string', 'max:255'],
+            'price' => ['required', 'numeric', 'min:0'],
         ]);
 
-        GlassValueLensIndex::create([
-            'glass_value_id' => $validated['glass_value_id'],
-            'name'           => $validated['name'],
-            'price'          => $validated['price'],
-        ]);
+        $lensIndex = GlassValueLensIndex::create($validated);
 
-        return back()->with(
-            'success',
-            'Индексът на изтъняване беше добавен успешно!'
-        );
+        $html = view('admin.components.lens-index', ['lensIndex' => $lensIndex])->render();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Индексът на изтъняване беше добавен успешно!',
+            'html' => $html,
+        ]);
     }
+
 
 
     /**
@@ -199,9 +178,9 @@ class AdminGlassesController extends Controller
      *
      * @param Request $request
      * @param GlassValueLensIndex $glassValueLensIndex
-     * @return RedirectResponse
+     * @return JsonResponse
      */
-    public function updateGlassValueLensIndex(Request $request, GlassValueLensIndex $glassValueLensIndex): RedirectResponse
+    public function updateGlassValueLensIndex(Request $request, GlassValueLensIndex $glassValueLensIndex): JsonResponse
     {
         $validated = $request->validate([
             'name' => [
@@ -231,10 +210,10 @@ class AdminGlassesController extends Controller
             'price' => $validated['price'],
         ]);
 
-        return back()->with(
-            'success',
-            'Индексът на изтъняване беше обновен успешно!'
-        );
+        return response()->json([
+            'success' => true,
+            'message' => 'Индексът на изтъняване беше обновен успешно!',
+        ]);
     }
 
     /**
