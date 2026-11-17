@@ -705,6 +705,19 @@
                                 Информация за плащане
                             </h6>
 
+                            <div class="mb-4">
+                                <h3>Забележка:</h3>
+
+                                @if (filled($order->description))
+                                    <p>{{ $order->description }}</p>
+                                @else
+                                    <p class="text-muted">
+                                        Няма добавена забележка към тази поръчка.
+                                    </p>
+                                @endif
+                            </div>
+
+
                             <div class="d-flex justify-content-between mb-2">
 
                                 <span>
