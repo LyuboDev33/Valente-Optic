@@ -23,17 +23,20 @@ class AppServiceProvider extends ServiceProvider
     {
         View::composer('*', function ($view) {
 
-            $categories = Cache::remember(
-                'product_categories_tree',
-                now()->addHours(24),
-                function () {
-                    return ProductService::buildCategoriesTree();
-                }
-            );
+            static $categories = null;
+
+            if ($categories === null) {
+                $categories = Cache::remember(
+                    'product_categories_tree',
+                    now()->addHours(24),
+                    function () {
+                        return ProductService::buildCategoriesTree();
+                    }
+                );
+            }
 
             $view->with('categoriesFrontEndHeader', $categories);
         });
-
 
         Paginator::useBootstrapFive();
     }

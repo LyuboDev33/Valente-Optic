@@ -342,7 +342,7 @@
 
                                                                         <td rowspan="2" data-label="PD">
                                                                             <select name="pd"
-                                                                                class="form-select">
+                                                                                class="form-select pd-select">
                                                                                 <option value="">Изберете
                                                                                 </option>
 

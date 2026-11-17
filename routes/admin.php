@@ -27,13 +27,13 @@ Route::prefix('admin')
 
 
             Route::post('/value-lens-indexes/store', [AdminGlassesController::class, 'storeGlassValueLensIndex'])
-            ->name('admin.glass-value-lens-indexes.store');
+                ->name('admin.glass-value-lens-indexes.store');
 
-            Route::post('/value-lens-indexes/update/{glassValueLensIndex}',[AdminGlassesController::class, 'updateGlassValueLensIndex'])
-            ->name('admin.glass-value-lens-indexes.update');
+            Route::post('/value-lens-indexes/update/{glassValueLensIndex}', [AdminGlassesController::class, 'updateGlassValueLensIndex'])
+                ->name('admin.glass-value-lens-indexes.update');
 
-            Route::delete('/value-lens-indexes/destroy/{glassValueLensIndex}',[AdminGlassesController::class, 'destroyGlassValueLensIndex'])
-            ->name('admin.glass-value-lens-indexes.destroy');
+            Route::delete('/value-lens-indexes/destroy/{glassValueLensIndex}', [AdminGlassesController::class, 'destroyGlassValueLensIndex'])
+                ->name('admin.glass-value-lens-indexes.destroy');
         });
 
         Route::prefix('/vision-type')->group(function () {
@@ -52,7 +52,8 @@ Route::prefix('admin')
         Route::prefix('orders')->group(function () {
             Route::get('/', [AdminOrdersController::class, 'index'])->name('admin.orders.index');
             Route::get('/show/{order_id}',  [AdminOrdersController::class, 'show'])->name('admin.orders.show');
-            Route::put('/update-order-status', [AdminOrdersController::class, 'updateOrderStatus'])->name('admin.update.order.status');
+            Route::put('/update-order-status/{order}', [AdminOrdersController::class, 'updateOrderStatus'])
+                ->name('admin.update.order.status');
         });
 
         Route::prefix('products')->group(function () {
@@ -66,7 +67,7 @@ Route::prefix('admin')
             Route::put('/{product}', [AdminProductsController::class, 'update'])->name('admin.product.update');
             Route::delete('/{product:slug}', [AdminProductsController::class, 'destroy'])->name('admin.products.destroy');
             Route::post('/gallery-image/delete/{product}', [AdminProductsController::class, 'deleteGalleryImage'])
-                  ->name('product.gallery-image.delete');
+                ->name('product.gallery-image.delete');
         });
 
 

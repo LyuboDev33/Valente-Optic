@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('last_name');
             $table->string('phone');
             $table->string('email');
+            $table->string('description')->nullable();
 
             // Delivery
             $table->string('delivery_method');

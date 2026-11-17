@@ -27,6 +27,7 @@ class CreateOrderRequest extends FormRequest
             'lname' => ['required', 'string', 'max:255'],
             'phone' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255'],
+            'description' => ['max: 500'],
 
             'delivery_method' => ['required', 'in:personal,office,speedy,pigeon'],
 

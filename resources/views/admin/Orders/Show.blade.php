@@ -33,40 +33,74 @@
 
                     </div>
 
-                    <div class="col-lg-6 col-md-6 text-md-end">
+                    <div class="col-lg-6 col-md-6">
 
-                        @switch($order->status)
+                        <form method="POST" action="{{ route('admin.update.order.status', $order) }}">
 
-                            @case(\App\Models\Order::STATUS_PENDING)
-                                <span class="badge bg-warning text-dark p-2">
-                                    Чакаща
-                                </span>
-                            @break
+                            @csrf
+                            @method('PUT')
 
-                            @case(\App\Models\Order::STATUS_PROCESSING)
-                                <span class="badge bg-info text-dark p-2">
-                                    В обработка
-                                </span>
-                            @break
+                            <div class="d-flex align-items-center justify-content-md-end gap-2 flex-wrap">
 
-                            @case(\App\Models\Order::STATUS_DELIVERED)
-                                <span class="badge bg-success p-2">
-                                    Доставена
-                                </span>
-                            @break
+                                <div>
+                                    <select name="status" id="status" class="form-select" required>
 
-                            @case(\App\Models\Order::STATUS_CANCELLED)
-                                <span class="badge bg-danger p-2">
-                                    Отказана
-                                </span>
-                            @break
+                                        @foreach ($orderStatuses as $value => $label)
+                                            <option value="{{ $value }}" @selected(old('status', $order->status) === $value)>
+                                                {{ $label }}
+                                            </option>
+                                        @endforeach
 
-                            @default
-                                <span class="badge bg-secondary p-2">
-                                    {{ $order->status }}
-                                </span>
+                                    </select>
+                                </div>
 
-                        @endswitch
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fa fa-save me-1"></i>
+                                    Запази
+                                </button>
+
+                                <div>
+                                    @switch($order->status)
+                                        @case(\App\Models\Order::STATUS_PENDING)
+                                            <span class="badge bg-warning text-dark p-2">
+                                                Чакаща
+                                            </span>
+                                        @break
+
+                                        @case(\App\Models\Order::STATUS_PROCESSING)
+                                            <span class="badge bg-info text-dark p-2">
+                                                В обработка
+                                            </span>
+                                        @break
+
+                                        @case(\App\Models\Order::STATUS_DELIVERED)
+                                            <span class="badge bg-success p-2">
+                                                Доставена
+                                            </span>
+                                        @break
+
+                                        @case(\App\Models\Order::STATUS_CANCELLED)
+                                            <span class="badge bg-danger p-2">
+                                                Отказана
+                                            </span>
+                                        @break
+
+                                        @default
+                                            <span class="badge bg-secondary p-2">
+                                                {{ $order->status }}
+                                            </span>
+                                    @endswitch
+                                </div>
+
+                            </div>
+
+                            @error('status')
+                                <div class="text-danger text-md-end mt-2">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+
+                        </form>
 
                     </div>
 
@@ -82,10 +116,8 @@
 
                         <article class="d-flex align-items-start gap-3">
 
-                            <span
-                                class="rounded-circle bg-primary d-flex align-items-center justify-content-center"
-                                style="width: 42px; height: 42px;"
-                            >
+                            <span class="rounded-circle bg-primary d-flex align-items-center justify-content-center"
+                                style="width: 42px; height: 42px;">
                                 <i class="fa fa-user text-white"></i>
                             </span>
 
@@ -120,10 +152,8 @@
 
                         <article class="d-flex align-items-start gap-3">
 
-                            <span
-                                class="rounded-circle bg-primary d-flex align-items-center justify-content-center"
-                                style="width: 42px; height: 42px;"
-                            >
+                            <span class="rounded-circle bg-primary d-flex align-items-center justify-content-center"
+                                style="width: 42px; height: 42px;">
                                 <i class="fa fa-truck text-white"></i>
                             </span>
 
@@ -138,13 +168,9 @@
                                     Доставка:
 
                                     @if ($order->delivery_method === 'office')
-
                                         До офис на куриер Speedy
-
                                     @else
-
                                         До адрес
-
                                     @endif
 
                                     <br>
@@ -152,13 +178,9 @@
                                     Плащане:
 
                                     @if ($order->payment_option === 'cash_on_delivery')
-
                                         При получаване
-
                                     @else
-
                                         {{ $order->payment_option }}
-
                                     @endif
 
                                     <br>
@@ -166,7 +188,6 @@
                                     Статус:
 
                                     @switch($order->status)
-
                                         @case(\App\Models\Order::STATUS_PENDING)
                                             Чакаща
                                         @break
@@ -185,7 +206,6 @@
 
                                         @default
                                             {{ $order->status }}
-
                                     @endswitch
 
                                 </p>
@@ -200,10 +220,8 @@
 
                         <article class="d-flex align-items-start gap-3">
 
-                            <span
-                                class="rounded-circle bg-primary d-flex align-items-center justify-content-center"
-                                style="width: 42px; height: 42px;"
-                            >
+                            <span class="rounded-circle bg-primary d-flex align-items-center justify-content-center"
+                                style="width: 42px; height: 42px;">
                                 <i class="fa fa-location-dot text-white"></i>
                             </span>
 
@@ -216,25 +234,17 @@
                                 <p class="mb-1">
 
                                     @if ($order->city)
-
                                         Град: {{ $order->city }}
 
                                         <br>
-
                                     @endif
 
                                     @if ($order->office_list)
-
                                         Офис: {{ $order->office_list }}
-
                                     @elseif($order->personal_address)
-
                                         Адрес: {{ $order->personal_address }}
-
                                     @else
-
                                         —
-
                                     @endif
 
                                 </p>
@@ -274,7 +284,6 @@
                                 <tbody>
 
                                     @foreach ($order->products as $product)
-
                                         <tr>
 
                                             <td>
@@ -283,20 +292,16 @@
 
                                                     <div class="img-box">
 
-                                                        <img
-                                                            src="{{ asset('/assets/images/products/' . $product->product_image) }}"
+                                                        <img src="{{ asset('/assets/images/products/' . $product->product_image) }}"
                                                             alt="{{ $product->product_name }}"
-                                                            style="width: 55px; height: 55px; object-fit: cover; border-radius: 8px;"
-                                                        >
+                                                            style="width: 55px; height: 55px; object-fit: cover; border-radius: 8px;">
 
                                                     </div>
 
                                                     <div>
 
-                                                        <a
-                                                            target="_blank"
-                                                            href="{{ route('shop.show', $product->product_slug) }}"
-                                                        >
+                                                        <a target="_blank"
+                                                            href="{{ route('shop.show', $product->product_slug) }}">
 
                                                             <strong>
                                                                 {{ $product->product_name }}
@@ -311,13 +316,11 @@
                                                         </small>
 
                                                         @if ($product->purchase_type === 'frame_with_glasses')
-
                                                             <br>
 
                                                             <span class="badge bg-info text-dark mt-2">
                                                                 Рамка с диоптрични стъкла
                                                             </span>
-
                                                         @endif
 
                                                     </div>
@@ -338,13 +341,9 @@
                                             <td>
 
                                                 @if ($product->discount)
-
                                                     {{ $product->discount }}%
-
                                                 @else
-
                                                     Няма
-
                                                 @endif
 
                                             </td>
@@ -358,13 +357,9 @@
                                                 <strong>
 
                                                     {{ number_format(
-                                                        (
-                                                            (float) ($product->base_price ?? $product->price)
-                                                            +
-                                                            (float) ($product->glass_value_lens_index_price ?? 0)
-                                                        )
-                                                        * $product->quantity,
-                                                        2
+                                                        ((float) ($product->base_price ?? $product->price) + (float) ($product->glass_value_lens_index_price ?? 0)) *
+                                                            $product->quantity,
+                                                        2,
                                                     ) }}
                                                     EUR
 
@@ -375,7 +370,6 @@
                                         </tr>
 
                                         @if ($product->purchase_type === 'frame_with_glasses')
-
                                             <tr>
 
                                                 <td colspan="5">
@@ -397,7 +391,6 @@
                                                                     </h6>
 
                                                                     @if ($product->glass_name)
-
                                                                         <div class="mb-2">
 
                                                                             <strong>
@@ -409,11 +402,9 @@
                                                                             {{ $product->glass_name }}
 
                                                                         </div>
-
                                                                     @endif
 
                                                                     @if ($product->glass_value_name)
-
                                                                         <div class="mb-2">
 
                                                                             <strong>
@@ -425,11 +416,9 @@
                                                                             {{ $product->glass_value_name }}
 
                                                                         </div>
-
                                                                     @endif
 
                                                                     @if ($product->glass_value_lens_index_name)
-
                                                                         <div class="mb-2">
 
                                                                             <strong>
@@ -441,11 +430,9 @@
                                                                             {{ $product->glass_value_lens_index_name }}
 
                                                                         </div>
-
                                                                     @endif
 
                                                                     @if ($product->glass_value_lens_index_price !== null)
-
                                                                         <div class="mb-0">
 
                                                                             <strong>
@@ -454,14 +441,10 @@
 
                                                                             <br>
 
-                                                                            {{ number_format(
-                                                                                $product->glass_value_lens_index_price,
-                                                                                2
-                                                                            ) }}
+                                                                            {{ number_format($product->glass_value_lens_index_price, 2) }}
                                                                             EUR
 
                                                                         </div>
-
                                                                     @endif
 
                                                                 </div>
@@ -483,18 +466,15 @@
                                                                         </span>
 
                                                                         <strong>
-                                                                            {{ number_format(
-                                                                                $product->base_price ?? $product->price,
-                                                                                2
-                                                                            ) }}
+                                                                            {{ number_format($product->base_price ?? $product->price, 2) }}
                                                                             EUR
                                                                         </strong>
 
                                                                     </div>
 
                                                                     @if ($product->glass_value_lens_index_price !== null)
-
-                                                                        <div class="d-flex justify-content-between mb-2">
+                                                                        <div
+                                                                            class="d-flex justify-content-between mb-2">
 
                                                                             <span>
                                                                                 Индекс
@@ -502,15 +482,11 @@
                                                                             </span>
 
                                                                             <strong>
-                                                                                {{ number_format(
-                                                                                    $product->glass_value_lens_index_price,
-                                                                                    2
-                                                                                ) }}
+                                                                                {{ number_format($product->glass_value_lens_index_price, 2) }}
                                                                                 EUR
                                                                             </strong>
 
                                                                         </div>
-
                                                                     @endif
 
                                                                     <hr>
@@ -526,10 +502,8 @@
                                                                         <strong class="text-success">
 
                                                                             {{ number_format(
-                                                                                (float) ($product->base_price ?? $product->price)
-                                                                                +
-                                                                                (float) ($product->glass_value_lens_index_price ?? 0),
-                                                                                2
+                                                                                (float) ($product->base_price ?? $product->price) + (float) ($product->glass_value_lens_index_price ?? 0),
+                                                                                2,
                                                                             ) }}
                                                                             EUR
 
@@ -538,8 +512,8 @@
                                                                     </div>
 
                                                                     @if ($product->quantity > 1)
-
-                                                                        <div class="d-flex justify-content-between mt-2">
+                                                                        <div
+                                                                            class="d-flex justify-content-between mt-2">
 
                                                                             <span>
                                                                                 Количество:
@@ -551,7 +525,8 @@
 
                                                                         </div>
 
-                                                                        <div class="d-flex justify-content-between mt-2">
+                                                                        <div
+                                                                            class="d-flex justify-content-between mt-2">
 
                                                                             <span>
                                                                                 <strong>
@@ -562,20 +537,15 @@
                                                                             <strong class="text-success">
 
                                                                                 {{ number_format(
-                                                                                    (
-                                                                                        (float) ($product->base_price ?? $product->price)
-                                                                                        +
-                                                                                        (float) ($product->glass_value_lens_index_price ?? 0)
-                                                                                    )
-                                                                                    * $product->quantity,
-                                                                                    2
+                                                                                    ((float) ($product->base_price ?? $product->price) + (float) ($product->glass_value_lens_index_price ?? 0)) *
+                                                                                        $product->quantity,
+                                                                                    2,
                                                                                 ) }}
                                                                                 EUR
 
                                                                             </strong>
 
                                                                         </div>
-
                                                                     @endif
 
                                                                 </div>
@@ -601,26 +571,18 @@
                                                                 <br>
 
                                                                 @if ($product->prescription_image)
+                                                                    <a href="{{ asset('/assets/images/prescriptions/' . $product->prescription_image) }}"
+                                                                        target="_blank">
 
-                                                                    <a
-                                                                        href="{{ asset('/assets/images/prescriptions/' . $product->prescription_image) }}"
-                                                                        target="_blank"
-                                                                    >
-
-                                                                        <img
-                                                                            src="{{ asset('/assets/images/prescriptions/' . $product->prescription_image) }}"
+                                                                        <img src="{{ asset('/assets/images/prescriptions/' . $product->prescription_image) }}"
                                                                             alt="Рецепта"
-                                                                            style="width: 90px; height: 90px; object-fit: cover; border-radius: 8px; margin-top: 8px;"
-                                                                        >
+                                                                            style="width: 90px; height: 90px; object-fit: cover; border-radius: 8px; margin-top: 8px;">
 
                                                                     </a>
-
                                                                 @else
-
                                                                     <span class="text-muted">
                                                                         Няма качена рецепта
                                                                     </span>
-
                                                                 @endif
 
                                                             </div>
@@ -631,8 +593,7 @@
                                                                     Дясно око (OD):
                                                                 </strong>
 
-                                                                @if (! empty($product->right_eye))
-
+                                                                @if (!empty($product->right_eye))
                                                                     <ul class="list-unstyled mb-0 mt-2">
 
                                                                         <li>
@@ -656,13 +617,10 @@
                                                                         </li>
 
                                                                     </ul>
-
                                                                 @else
-
                                                                     <p class="text-muted mb-0 mt-2">
                                                                         Няма въведени данни
                                                                     </p>
-
                                                                 @endif
 
                                                             </div>
@@ -673,8 +631,7 @@
                                                                     Ляво око (OS):
                                                                 </strong>
 
-                                                                @if (! empty($product->left_eye))
-
+                                                                @if (!empty($product->left_eye))
                                                                     <ul class="list-unstyled mb-0 mt-2">
 
                                                                         <li>
@@ -698,13 +655,10 @@
                                                                         </li>
 
                                                                     </ul>
-
                                                                 @else
-
                                                                     <p class="text-muted mb-0 mt-2">
                                                                         Няма въведени данни
                                                                     </p>
-
                                                                 @endif
 
                                                             </div>
@@ -712,7 +666,6 @@
                                                         </div>
 
                                                         @if ($product->pd)
-
                                                             <div class="mt-2">
 
                                                                 <strong>
@@ -722,7 +675,6 @@
                                                                 {{ $product->pd }}
 
                                                             </div>
-
                                                         @endif
 
                                                     </div>
@@ -730,9 +682,7 @@
                                                 </td>
 
                                             </tr>
-
                                         @endif
-
                                     @endforeach
 
                                 </tbody>
@@ -741,10 +691,7 @@
 
                         </div>
 
-                        <a
-                            href="{{ route('admin.orders.index') }}"
-                            class="btn btn-primary mt-3"
-                        >
+                        <a href="{{ route('admin.orders.index') }}" class="btn btn-primary mt-3">
                             Назад към поръчките
                         </a>
 
@@ -768,15 +715,11 @@
 
                                     {{ number_format(
                                         $order->products->sum(
-                                            fn($product) =>
-                                                (
-                                                    (float) ($product->base_price ?? $product->price)
-                                                    +
-                                                    (float) ($product->glass_value_lens_index_price ?? 0)
-                                                )
-                                                * $product->quantity
+                                            fn($product) => ((float) ($product->base_price ?? $product->price) +
+                                                (float) ($product->glass_value_lens_index_price ?? 0)) *
+                                                $product->quantity,
                                         ),
-                                        2
+                                        2,
                                     ) }}
                                     EUR
 
@@ -785,7 +728,6 @@
                             </div>
 
                             @if ($promoCode)
-
                                 <div class="d-flex justify-content-between mb-2">
 
                                     <span>
@@ -797,11 +739,9 @@
                                     </strong>
 
                                 </div>
-
                             @endif
 
                             @if ($order->delivery_price > 0)
-
                                 <div class="d-flex justify-content-between mb-2">
 
                                     <span>
@@ -814,7 +754,6 @@
                                     </strong>
 
                                 </div>
-
                             @endif
 
                             <hr>
@@ -830,26 +769,14 @@
                                 <strong class="h5 mb-0 text-success">
 
                                     {{ number_format(
-                                        (
-                                            $order->products->sum(
-                                                fn($product) =>
-                                                    (
-                                                        (float) ($product->base_price ?? $product->price)
-                                                        +
-                                                        (float) ($product->glass_value_lens_index_price ?? 0)
-                                                    )
-                                                    * $product->quantity
-                                            )
-                                            *
-                                            (
-                                                $promoCode
-                                                    ? 1 - ((float) $promoCode->percentage_promo_code / 100)
-                                                    : 1
-                                            )
-                                        )
-                                        +
-                                        (float) $order->delivery_price,
-                                        2
+                                        $order->products->sum(
+                                            fn($product) => ((float) ($product->base_price ?? $product->price) +
+                                                (float) ($product->glass_value_lens_index_price ?? 0)) *
+                                                $product->quantity,
+                                        ) *
+                                            ($promoCode ? 1 - (float) $promoCode->percentage_promo_code / 100 : 1) +
+                                            (float) $order->delivery_price,
+                                        2,
                                     ) }}
                                     EUR
 
@@ -868,7 +795,6 @@
                             </p>
 
                             @if ($order->request_invoice)
-
                                 <div>
                                     {{ $order->company_name }}
                                 </div>
@@ -884,13 +810,10 @@
                                 <div>
                                     {{ $order->company_address }}
                                 </div>
-
                             @else
-
                                 <p class="mb-0">
                                     Няма фирмени данни
                                 </p>
-
                             @endif
 
                         </div>

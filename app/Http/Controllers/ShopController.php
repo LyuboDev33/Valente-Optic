@@ -15,10 +15,11 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Cache;
+
 
 class ShopController extends Controller
 {
-    /** Show all products */
     /** Show all products */
     public function index(Request $request)
     {
@@ -69,7 +70,17 @@ class ShopController extends Controller
 
         $category = Category::where('slug', $category_slug)->firstOrFail();
 
-        $categoryIds = ProductService::getCategoryIds($category);
+
+        $categoriesTree = Cache::remember(
+            'product_categories_tree',
+            now()->addHours(24),
+            fn() => ProductService::buildCategoriesTree()
+        );
+
+        $categoryIds = ProductService::getCategoryIds(
+            $categoriesTree,
+            $category->id
+        );
 
         $query = Product::with([
             'categories',
@@ -248,8 +259,9 @@ class ShopController extends Controller
             $category = $category->parent;
         }
 
-        $glasses = Glass::with('values')
-            ->get();
+        $glasses = Glass::with([
+            'values.lensIndexes',
+        ])->get();
 
         $visionTypes = $glasses
             ->pluck('visionType')

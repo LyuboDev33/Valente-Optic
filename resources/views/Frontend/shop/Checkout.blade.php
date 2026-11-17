@@ -209,6 +209,25 @@
                                     </div>
                                 </div>
 
+                                <div class="billing_input_box checkout-description mt-4">
+                                    <label for="description">
+                                        Допълнителни инструкции към поръчката
+                                        <span class="text-muted">(по желание)</span>
+                                    </label>
+
+                                    <textarea
+                                        name="description"
+                                        id="description"
+                                        rows="5"
+                                        maxlength="1000"
+                                        placeholder="Напишете допълнителни инструкции или уточнения относно вашата поръчка...">{{ old('description') }}</textarea>
+
+                                    @error('description')
+                                        <div class="text-danger mt-1">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+
                                 <div class="checkout-invoice mt-4">
                                     <div class="checked-box">
                                         <input type="checkbox" name="request_invoice" id="request_invoice"
@@ -456,9 +475,9 @@
 
                                 <div id="promo-code-message" class="mt-2" aria-live="polite"></div>
 
-                                    <button type="submit" class="thm-btn order-btn">
-                                        Завърши поръчката
-                                    </button>
+                                <button type="submit" class="thm-btn order-btn">
+                                    Завърши поръчката
+                                </button>
 
                             </div>
 

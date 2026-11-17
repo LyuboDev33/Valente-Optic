@@ -450,6 +450,8 @@ class OrdersController extends Controller
                     'phone' => $validated['phone'],
                     'email' => $validated['email'],
 
+                    'description' => $validated['description'] ?? null,
+
                     'delivery_method' => $validated['delivery_method'],
 
                     'city' => $isPersonal ? ($validated['city'] ?? null) : null,

@@ -4,9 +4,10 @@ namespace App\Services;
 
 use App\Models\Category;
 use App\Models\Product;
-use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Cache;
 
 class ProductService
 {
@@ -37,37 +38,71 @@ class ProductService
         return $query;
     }
 
-    /** This method checks whether the product is Dioptric
+    /**
+     * Check whether the product belongs to the sunglasses category
+     * or any of its subcategories.
      *
      * @param Product $product
-     * @return boolean
+     * @return bool
      */
     public static function isProductSunglasses(Product $product): bool
     {
-        $categoryIds = [];
+        $categoriesTree = Cache::remember(
+            'product_categories_tree',
+            now()->addHours(24),
+            fn() => self::buildCategoriesTree()
+        );
 
-        foreach ($product->categories as $category) {
-            $categoryIds = array_merge($categoryIds, self::getCategoryIds($category));
+        $sunglassesCategory = Category::where('slug', 'slunchevi-ochila')->first();
+
+        if (!$sunglassesCategory) {
+            return false;
         }
 
-        return Category::whereIn('id', array_unique($categoryIds))
-            ->where('slug', 'slunchevi-ochila')
+        $sunglassesCategoryIds = self::getCategoryIds(
+            $categoriesTree,
+            $sunglassesCategory->id
+        );
+
+        return $product->categories()
+            ->whereIn('categories.id', $sunglassesCategoryIds)
             ->exists();
     }
 
-    /** Return all ids of a given category
+    /**
+     * Get the IDs of a category and all its descendants.
      *
-     * @param Collection $category
-     * @return array[]
+     * @param array $categoriesTree
+     * @param int $categoryId
+     * @return array
      */
-    public static function getCategoryIds($category)
+    public static function getCategoryIds(array $categoriesTree, int $categoryId): array
     {
-        $ids = [$category->id];
+        foreach ($categoriesTree as $category) {
 
-        if ($category->children) {
-            foreach ($category->children as $child) {
-                $ids = array_merge($ids, self::getCategoryIds($child));
+            if ($category['id'] === $categoryId) {
+                return self::collectCategoryIds($category);
             }
+
+            $ids = self::getCategoryIds($category['children'], $categoryId);
+
+            if (!empty($ids)) {
+                return $ids;
+            }
+        }
+
+        return [];
+    }
+
+    /**
+     * Recursively collect category IDs without database queries.
+     */
+    private static function collectCategoryIds(array $category): array
+    {
+        $ids = [$category['id']];
+
+        foreach ($category['children'] as $child) {
+            $ids = array_merge($ids, self::collectCategoryIds($child));
         }
 
         return $ids;
@@ -82,29 +117,32 @@ class ProductService
     /** Build the categories tree from root nodes (recursive via Category->children) */
     public static function buildCategoriesTree(): array
     {
-        $roots = Category::whereNull('category_parent_id')
-            ->with('children')
+        $categories = Category::query()
             ->orderBy('name')
-            ->get();
+            ->get(['id', 'name', 'slug', 'category_parent_id']);
 
-        return self::buildTree($roots);
+        $grouped = $categories->groupBy('category_parent_id');
+
+        return self::buildTree($grouped, null);
     }
 
-    /** Recursive helper used by buildCategoriesTree
+    /**
+     * Recursively build the category hierarchy in memory.
      *
-     * @param Collection $categories
-     * @return array[]
+     * @param Collection $grouped
+     * @param int|null $parentId
+     * @return array
      */
-    private static function buildTree($categories): array
+    private static function buildTree(Collection $grouped, ?int $parentId): array
     {
         $tree = [];
 
-        foreach ($categories as $category) {
+        foreach ($grouped->get($parentId, collect()) as $category) {
             $tree[] = [
-                'id'       => $category->id,
-                'name'     => $category->name,
-                'slug'     => $category->slug,
-                'children' => self::buildTree($category->children),
+                'id' => $category->id,
+                'name' => $category->name,
+                'slug' => $category->slug,
+                'children' => self::buildTree($grouped, $category->id),
             ];
         }
 
